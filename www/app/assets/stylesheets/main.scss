@@ -1,0 +1,14 @@
+.header {
+	background: #eee;
+	&:hover {
+		color: #fff;
+		font-size: 12px;
+	}
+
+	&:active {
+		color:#000;
+		font-weight: bold;
+	}
+
+
+}

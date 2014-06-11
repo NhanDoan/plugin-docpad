@@ -18,15 +18,18 @@
   "bugs": {
     "url": "https://github.com/elena-kolevska/grunt-laravel/issues"
   },
-  "devDependencies": {
-    "grunt": "~0.4.2",
+ "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-compress": "~0.5.2",
     "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-imagemin": "^0.7.1",
-    "grunt-contrib-less": "~0.8.2",
-    "grunt-contrib-sass": "^0.7.3",
-    "grunt-contrib-uglify": "~0.2.7",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-phpunit": "~0.3.1"
-  }
+    "grunt-contrib-cssmin": "~0.6.1",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-sass": "~0.4.1",
+    "grunt-contrib-livereload": "~0.1.2",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-watch": "~0.5.1",
+    "grunt-notify": "~0.2.4",
+    "grunt-phpunit": "~0.3.0"
+  } 
 }
