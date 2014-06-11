@@ -1,0 +1,9 @@
+/www/bootstrap/compiled.php
+/www/vendor
+/www/node_modules
+/www/composer.phar
+/www/composer.lock
+/www/.env.*.php
+/www/.env.php
+/www/.DS_Store
+/www/Thumbs.db
