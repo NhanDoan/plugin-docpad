@@ -73,9 +73,10 @@ sudo chown -R $USER /usr/local ~/.npm
 chmod -R 755 ~/.npm
 sudo chown -R $USER:$GROUPS ~/tmp
 sudo apt-get install gem --force-yes --yes
-gem update --system
-gem install sass
-gem install compass
+sudo apt-get install libgemplugin-ruby --force-yes --yes
+# sudo gem update --system
+sudo gem install sass
+sudo gem install compass
 # install yo general docpad, general laravel , bower and grunt
 sudo npm install bower grunt-cli -g
 
@@ -92,6 +93,6 @@ sudo /etc/init.d/apache2 restart
 cd /vagrant/www
 
 composer update
-npm install
+sudo npm install
 grunt default
  			
