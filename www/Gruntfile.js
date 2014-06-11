@@ -1,95 +1,185 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-    var mozjpeg = require('imagemin-mozjpeg');
-
-    //Initializing the configuration object
+    // Initialize configuration object
     grunt.initConfig({
+
+        // Read in project settings
+        pkg: grunt.file.readJSON('package.json'),
+
+        // User editable project settings & variables
         options: {
-            dest: './public/assets',
-            src: './app/assets',
-            dest_js: '<%= options.dest %>/javascript',
-            src_js: '<%= options.src %>/javascript',
-            dest_css: '<%= options.dest %>/stylesheets',
-            src_css: '<%= options.src %>/stylesheets',
-            bower_bt: './bower_components/bootstrap',
-            bower_jq: './bower_components/jQuery'
-        },
-        // Task configuration
-        copy: {
-            main: {
-                expand: true,
-                cwd: '<%= options.bower_bt %>/fonts/',
-                src: '**',
-                dest: '<%= options.dest %>/fonts/',
-                flatten: true,
-                filter: 'isFile',
+            // Base path to your assets folder
+            base: 'app/assets',
+
+            // Published assets path
+            publish: 'public/assets',
+
+            // Files to be clean on rebuild
+            clean: {
+                all: ['<%= options.css.concat %>',
+                        '<%= options.css.min %>',
+                        '<%= options.sass.compiled %>',
+                        '<%= options.js.min %>',
+                        '<%= options.js.concat %>'],
+                concat: ['<%= options.css.concat %>', '<%= options.js.concat %>']
             },
-        },
-        less: {
-            development: {
-                options: {
-                    compress: true, //minifying the result
-                },
-                files: {
-                    //compiling frontend.less into frontend.css
-                    "<%= options.dest_css %>/frontend.css": "<%= options.src_css %>/frontend.less"
+
+            // CSS settings
+            css: {
+                base: 'app/assets/stylesheets',                         // Base path to your CSS folder
+                files: ['app/assets/stylesheets/*.css'],                         // CSS files in order you'd like them concatenated and minified
+                concat: '<%= options.css.base %>/concat.css',   // Name of the concatenated CSS file
+                min: '<%= options.publish %>/styles/styles.min.css'     // Name of the minified CSS file
+            },
+
+            // JavaScript settings
+            js: {
+                base: 'app/assets/javascripts',                          // Base path to you JS folder
+                files: ['./bower_components/jquery/dist/jquery.js',
+                    './bower_components/bootstrap/dist/js/bootstrap.js',
+                    'app/assets/javascript/frontend.js'],                           // JavaScript files in order you'd like them concatenated and minified
+                concat: '<%= options.js.base %>/concat.js',     // Name of the concatenated JavaScript file
+                min: '<%= options.publish %>/javascripts/scripts.min.js'     // Name of the minified JavaScript file
+            },
+
+            // SASS Settings
+            sass: {
+                base: 'app/assets/stylesheets',                            // Base path to you SASS folder
+                file: 'app/assets/stylesheets/main.scss',                          // SASS file (ideally, one file which contains imports)
+                compiled: '<%= options.css.base %>/main.css'    // Name of the compiled SASS file
+            },
+
+            // Notification messages
+            notify: {
+                watch: {
+                    title: 'Live Reloaded!',
+                    message: 'Files were modified, recompiled and site reloaded'
                 }
+            },
+
+            // Files and folders to watch for live reload and rebuild purposes
+            watch: {
+                files: ['<%= options.js.files %>',
+                 '<%= options.css.files %>',
+                 '<%= options.sass.base %>/*.sass',
+                 '<%= options.sass.base %>/*.scss',
+                 '!<%= options.js.min %>',
+                 '!<%= options.sass.compiled %>']
             }
         },
-        sass: { // Task
-            dist: { // Target
-                options: { // Target options
-                    style: 'expanded'
-                },
-                files: { // Dictionary of files
-                    'main.css': 'main.scss', // 'destination': 'source'
-                    'widgets.css': 'widgets.scss'
-                }
+
+        // Clean files and folders before replacement
+        clean: {
+            all: {
+                src:[
+                    '<%= options.clean.all %>',
+                    'tmp'
+                ]
+            },
+            concat: {
+                src: '<%= options.clean.concat %>'
             }
         },
+
+        // Concatenate multiple sets of files
         concat: {
-            options: {
-                separator: ';',
+            css: {
+                files: {
+                    '<%= options.css.concat %>' : ['<%= options.css.files %>']
+                }
             },
             js_frontend: {
-                src: [
-                    '<%= options.bower_jq %>/dist/jquery.js',
-                    '<%= options.bower_bt %>/dist/js/bootstrap.js',
-                    '<%= options.src_js%>/frontend.js'
-                ],
-                dest: '<%= options.src_js%>/frontend-min.js',
-            }
-        },
-        uglify: {
-            options: {
-                mangle: false // Use if you want the names of your functions and variables unchanged
-            },
-            frontend: {
+                options: {
+                    block: true,
+                    line: true,
+                    stripBanners: true
+                },
                 files: {
-                    '<%= options.dest_js%>/frontend-min.js': '<%= options.src_js%>/frontend-min.js',
+                    '<%= options.js.concat %>' : '<%= options.js.files %>',
                 }
             }
         },
-        phpunit: {
-            classes: {},
-            options: {}
+
+        // Minify and concatenate CSS files
+        cssmin: {
+            minify: {
+                src: '<%= options.css.concat %>',
+                dest: '<%= options.css.min %>'
+            }
         },
+
+        // Javascript linting - JS Hint
+        jshint: {
+            files: ['<%= options.js.files %>'],
+            options: {
+                // Options to override JSHint defaults
+                curly: true,
+                indent: 4,
+                trailing: true,
+                devel: true,
+                globals: {
+                    jQuery: true
+                }
+            }
+        },
+
+        // Compile SASS files
+        sass: {
+            dist: {
+                files: {
+                    '<%= options.sass.compiled %>': '<%= options.sass.file %>'
+                }
+            },
+            options: {
+                sourcemap: true,
+                loadPath: ['{{vendor_path}}'],
+            },
+            main: {
+                files: [{
+                    expand: true,
+                    src: ['<%= options.sass.base %>/{,*/}*.{scss,sass}'],
+                    dest: './tmp',
+                    ext: '.css'
+                }]
+            }
+        },
+
+        // Display notifications
+        notify: {
+            watch: {
+                options: {
+                    title: '<%= options.notify.watch.title %>',
+                    message: '<%= options.notify.watch.message %>'
+                }
+            }
+        },
+
+        // Javascript minification - uglify
+        uglify: {
+            options: {
+                preserveComments: false
+            },
+            files: {
+                src: '<%= options.js.concat %>',
+                dest: '<%= options.js.min %>'
+            }
+        },
+
+        // Watch for files and folder changes
         watch: {
             js_frontend: {
                 files: [
                     //watched files
-                    '<%= options.bower_jq %>/dist/jquery.js',
-                    '<%= options.bower_bt %>/dist/js/bootstrap.js',
-                    '<%= options.src_js %>/frontend.js'
+                   '<%= options.js.files %>'
                 ],
-                tasks: ['concat:js_frontend', 'uglify:frontend'], //tasks to run
+                tasks: ['concat:js_frontend', 'uglify'], //tasks to run
                 options: {
                     livereload: true //reloads the browser
                 }
             },
-            less: {
-                files: ['<%= options.src_css %>/*.less'], //watched files
-                tasks: ['less'], //tasks to run
+            sass: {
+                files: ['<%= options.sass.file %>'], //watched files
+                tasks: ['sass', 'concat:css', 'cssmin'], //tasks to run
                 options: {
                     livereload: true //reloads the browser
                 }
@@ -98,30 +188,23 @@ module.exports = function(grunt) {
                 files: ['app/controllers/*.php', 'app/models/*.php'], //the task will run only when you save files in this location
                 tasks: ['phpunit']
             }
-        },
-        imagemin: {
-            dynamic: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= options.src %>/images/',
-                    src: ['**/*.{png,jpg,gif}'],
-                    dest: '<%= options.dest %>/images/'
-                }]
-            }
         }
+
     });
 
-    // Plugin loading
+    // Load npm tasks
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-livereload');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-phpunit');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-notify');
 
-    // Task definition
-    grunt.registerTask('init', ['copy', 'less', 'concat', 'uglify', 'imagemin']);
-    grunt.registerTask('default', ['watch']);
-
-};
+    // Register tasks
+    grunt.registerTask('default', ['watch']); // Default task
+    grunt.registerTask('init', ['clean:all', 'sass',  'sass:dist', 'concat', 'cssmin', 'uglify', 'clean:concat']);
+}
