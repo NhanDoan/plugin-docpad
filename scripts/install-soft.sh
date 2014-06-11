@@ -36,7 +36,7 @@ echo "--- Installing and configuring Xdebug ---"
 sudo apt-get install -y php5-xdebug
 
 cat << EOF | sudo tee -a /etc/php5/mods-available/xdebug.ini
-xdebug.scream=1
+xdebug.scream=0
 xdebug.cli_color=1
 xdebug.show_local_vars=1
 EOF
@@ -76,7 +76,7 @@ sudo chown -R $USER:$GROUPS ~/tmp
 sudo gem install compass
 
 # install yo general docpad, general laravel , bower and grunt
-sudo npm install yo bower grunt-cli generator-docpad generator-genlaravel -g
+sudo npm install bower grunt-cli -g
 
 # install composer
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
@@ -87,4 +87,7 @@ sudo cp -rf /vagrant/scripts/apache-config/default /etc/apache2/sites-available/
 
 # restart apache
 sudo /etc/init.d/apache2 restart
- 			
+
+# update composer
+cd /vagrant/www
+composer update
