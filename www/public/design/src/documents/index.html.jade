@@ -1,0 +1,338 @@
+---
+title: "VA Loan Center"
+layout: "default"
+---
+section#content
+	h2 Get Today’s Best VA Loan Rates
+	.desc Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sem mauris, eleifend in consectetur id, ornare vitae turpis. Pellentesque viverra gravida velit, eu vulputate risus scelerisque id.		
+	.content
+		.row.m-t-lg
+			form(action='', id='getRates', method='post', name='getRates')
+				.col-md-3
+					aside#formNav
+						.form-header
+							| Mortgage Rates for
+							span 10014
+						.form-body
+							#purchase
+								.form-group
+									.clearfix
+										strong Loan Purpose
+									.clearfix
+										input(checked='checked', name='purchase', type='radio', value='')
+										span Purchase
+										input(name='refinance', type='radio', value='')
+										span Refinance
+								.form-group
+									.clearfix
+										strong Home Type
+									select.form-94(name='hometype')
+										option(value='singlefamily') Single Family
+								.form-group
+									.clearfix
+										strong Loan Amount
+									select.form-94(name='loanamount')
+										option(value='200') $200,000
+								.form-group
+									.clearfix
+										strong Down Payment
+									.clearfix
+										select.form-45(name='downpayment')
+											option(value='0') 0% 
+										input.form-45(type='text', placeholder='$')
+								.form-group
+									.clearfix
+										strong Home Type
+									select.form-94(name='hometype')
+										option(value='singlefamily') Single Family
+								.form-group
+									.clearfix
+										strong Home Type
+									select.form-94(name='hometype')
+										option(value='singlefamily') Single Family
+								.form-group
+									.clearfix
+										strong Home Type
+									select.form-94(name='hometype')
+										option(value='singlefamily') Single Family
+								.form-group.clearfix
+									.pull-left.form-checkbox
+										input(type='checkbox', value='')
+									.pull-left.form-text I’m receiving disability compensation from the VA
+								.form-group.clearfix
+									.pull-left.form-checkbox
+										input(type='checkbox', value='')
+									.pull-left.form-text Connect me with a realtor in my area that specializes in VA Loan home pruchases
+								.form-group.text-center.clearfix
+									a(href='#')
+										.btn-get-rates Get Rates
+							#refinance
+								.form-group
+									.clearfix
+										strong Loan Purpose
+									.clearfix
+										input(name='purchase', type='radio', value='')
+										span Purchase
+										input(checked='checked', name='refinance', type='radio', value='')
+										span Refinance
+								.form-group.clearfix
+									.clearfix
+										strong Type
+									.pull-left.form-radio
+										input(checked='checked', type='radio', value='')
+									.pull-left.form-title
+										| Cash Out
+										.clearfix
+											input.form-88(type='text', placeholder='$0')
+									.pull-left.form-radio.m-t
+										input(type='radio', value='')
+									.pull-left.form-title.m-t
+										| Interest Rate Reduction Refinance Loan (IRRRL)
+										.clearfix
+											a(href='#') What’s this?
+								.form-group
+									.clearfix
+										strong Loan Amount
+									select.form-94(name='loanamount')
+										option(value='200') $200,000
+								.form-group
+									.clearfix
+										strong Credit Score
+									.clearfix
+										select.form-94(name='creditscore')
+											option(value='0') 720-739 (very good)
+								.form-group
+									.clearfix
+										strong Status
+									select.form-94(name='status')
+										option(value='singlefamily') Veteran
+								.form-group.clearfix
+									.pull-left.form-checkbox
+										input(type='checkbox', value='')
+									.pull-left.form-text I’m receiving disability compensation from the VA
+								.form-group.clearfix
+									.pull-left.form-checkbox
+										input(type='checkbox', value='')
+									.pull-left.form-text Connect me with a realtor in my area that specializes in VA Loan home pruchases
+								.form-group.text-center.clearfix
+									a(href='#')
+										.btn-get-rates Get Rates
+				.col-md-9
+					section.list-form
+						ul
+							li
+								.row
+									.col-md-4.rates
+										span.rates-check.m-r-lg
+											input(name='ratescheck', type='checkbox', value='')
+										| 3.725
+										span %APR
+									.col-md-3
+										.clearfix 30 year fixed
+										.clearfix 3.325 % Rate - $2,372/mo
+										.clearfix $4,000 closing cost
+									.col-md-5.text-right
+										a(href='#contactForm', data-toggle='modal')
+											.container-btn-show-lender
+												.btn-show-lender-text
+													| Show Lender
+												.btn-show-lender-img
+													.btn-curve
+													| K
+										.request-quote-container
+											span.lender-img-container.text-center
+												img.img-responsive.m-r-lg(src='images/lender/bnc-bank-logo.png')
+											a(href='#thankyouForm', data-toggle='modal')
+												span.btn-request-quote Request Quote
+							li
+								.row
+									.col-md-4.rates
+										span.rates-check.m-r-lg
+											input(name='ratescheck', type='checkbox', value='')
+										| 3.728
+										span %APR
+									.col-md-3
+										.clearfix 30 year fixed
+										.clearfix 3.325 % Rate - $2,527/mo
+										.clearfix $5,000 closing cost
+									.col-md-5.text-right
+										a(href='#contactForm', data-toggle='modal') 
+											.container-btn-show-lender
+												.btn-show-lender-text
+													| Show Lender
+												.btn-show-lender-img
+													.btn-curve
+													| E
+										.request-quote-container
+											span.lender-img-container.text-center
+												img.img-responsive.m-r-lg(src='images/lender/state-bank-logo.png')
+											a(href='#thankyouForm', data-toggle='modal')
+												span.btn-request-quote Request Quote
+							li
+								.row
+									.col-md-4.rates
+										span.rates-check.m-r-lg
+											input(name='ratescheck', type='checkbox', value='')
+										| 3.732
+										span %APR
+									.col-md-3
+										.clearfix 30 year fixed
+										.clearfix 3.732 % Rate - $2,602/mo
+										.clearfix $5,000 closing cost
+									.col-md-5.text-right
+										a(href='#contactForm', data-toggle='modal') 
+											.container-btn-show-lender
+												.btn-show-lender-text
+													| Show Lender
+												.btn-show-lender-img
+													.btn-curve
+													| C
+										.request-quote-container
+											span.lender-img-container.text-center
+												img.img-responsive.m-r-lg(src='images/lender/national-bank-logo.png')
+											a(href='#thankyouForm', data-toggle='modal')
+												span.btn-request-quote Request Quote
+							li
+								.row
+									.col-md-4.rates
+										span.rates-check.m-r-lg
+											input(name='ratescheck', type='checkbox', value='')
+										| 3.732
+										span %APR
+									.col-md-3
+										.clearfix 30 year fixed
+										.clearfix 3.732 % Rate - $2,614/mo
+										.clearfix $5,000 closing cost
+									.col-md-5.text-right
+										a(href='#contactForm', data-toggle='modal') 
+											.container-btn-show-lender
+												.btn-show-lender-text
+													| Show Lender
+												.btn-show-lender-img
+													.btn-curve
+													| L
+										.request-quote-container
+											span.lender-img-container.text-center
+												img.img-responsive.m-r-lg(src='images/lender/nas-bank-logo.png')
+											a(href='#thankyouForm', data-toggle='modal')
+												span.btn-request-quote Request Quote
+							li
+								.row
+									.col-md-4.rates
+										span.rates-check.m-r-lg
+											input(name='ratescheck', type='checkbox', value='')
+										| 3.732
+										span %APR
+									.col-md-3
+										.clearfix 30 year fixed
+										.clearfix 3.732 % Rate - $2,702/mo
+										.clearfix $5,000 closing cost
+									.col-md-5.text-right
+										a(href='#contactForm', data-toggle='modal') 
+											.container-btn-show-lender
+												.btn-show-lender-text
+													| Show Lender
+												.btn-show-lender-img
+													.btn-curve
+													| S
+										.request-quote-container
+											span.lender-img-container.text-center
+												img.img-responsive.m-r-lg(src='images/lender/first-choice-logo.png')
+											a(href='#thankyouForm', data-toggle='modal')
+												span.btn-request-quote Request Quote
+							li
+								.row
+									.col-md-4.rates
+										span.rates-check.m-r-lg
+											input(name='ratescheck', type='checkbox', value='')
+										| 3.736
+										span %APR
+									.col-md-3
+										.clearfix 30 year fixed
+										.clearfix 3.732 % Rate - $2,702/mo
+										.clearfix $5,000 closing cost
+									.col-md-5.text-right
+										a(href='#contactForm', data-toggle='modal') 
+											.container-btn-show-lender
+												.btn-show-lender-text
+													| Show Lender
+												.btn-show-lender-img
+													.btn-curve
+													| S
+										.request-quote-container
+											span.lender-img-container.text-center
+												img.img-responsive.m-r-lg(src='images/lender/first-choice-logo.png')
+											a(href='#thankyouForm', data-toggle='modal')
+												span.btn-request-quote Request Quote
+							li
+								.text-right
+									.request-quote-container
+										a(href='#thankyouForm', data-toggle='modal')
+											span.btn-request-quote Request Multiple Quotes
+		.row.m-b-lg
+			.col-md-3
+				.ad-img-container
+					.m-t-lg
+						a(href='#')
+							img.img-responsive(src='images/ad-img-1.png')
+					.m-t-lg
+						a(href='#')
+							img.img-responsive(src='images/ad-img-2.png')
+			.col-md-9
+				.row
+					.col-md-6.m-t-lg
+						section.rss
+							.rss-header VA Loan Captain News
+							.rss-body
+								.rss-container-content
+									.title The VA Loan Approval Countdown
+									.desc
+										| How long does it take to obtain a VA loan approval? That’s probably one of the first questions...
+										a(href='#') Read more
+									.by by Grant Moon, April 30, 2014
+								hr
+								.rss-container-content
+									.title The VA 3 Day Rescission Period
+									.desc
+										| The VA loan used to buy and finance a property is the best program around for those who qualify and need or want a no money...
+										a(href='#') Read more
+									.by by Grant Moon, April 30, 2014
+								hr
+								.rss-container-content
+									.title The Online VA Loan Application
+									.desc
+										| Once you’ve decided who your VA lender will be, if you haven’t already it’s time to complete a VA loan application...
+										a(href='#') Read more
+									.by by Grant Moon, April 30, 2014
+								hr
+								.rss-container-content
+									.link-more
+										a(href='#') More in VA Loan Captain >
+					.col-md-6.m-t-lg
+						section.rss
+							.rss-header Veteran News
+							.rss-body
+								.rss-container-content
+									.title DOD eyes specialized program to enlist undocumented immigrants
+									.desc
+										| The Pentagon is reviewing a program that allows qualified noncitizens to enlist in the military, and officials say...
+										a(href='#') Read more
+									.by 3:50 PM, May 20, 2014
+								hr
+								.rss-container-content
+									.title US to send 6,000 to Jordan for annual military exercise
+									.desc
+										| The VA loan used to buy and finance a property is the best program around for those who qualify and need or want a no money...
+										a(href='#') Read more
+									.by 1:22 PM, May 20, 2014
+								hr
+								.rss-container-content
+									.title Ukraine's hobbled navy: 'Times are not the best'
+									.desc
+										| Ukraine's navy is in Odessa's harbor, though it can be hard to spot. It's tucked behind a collection of storage tanks and ...
+										a(href='#') Read more
+									.by 10:57 AM, May 20, 1997
+								hr
+								.rss-container-content
+									.link-more
+										a(href='#') More in Veteran News >

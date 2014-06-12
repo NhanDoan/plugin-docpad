@@ -1,0 +1,153 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        title
+            != document.title || "VA Loan Captain"
+        meta(name='description', content='va, loan, capitain, center, get real time pricing')
+        meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+        link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css', type='text/css')
+        link(rel='stylesheet', href='css/main.css', type='text/css')
+        //- jQuery
+        script(src='http://code.jquery.com/jquery-1.10.2.min.js')
+        //- Bootstrap
+        script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js')
+        //- Favicon
+        link(rel='shortcut icon', href='favicon.ico')
+    body
+        .container.wrapper
+            header.navbar.navbar-inverse.bs-docs-nav.header
+                .navbar-header
+                    #logo
+                        h1
+                            a(href='./index.html') Stars and Strips
+                    button.navbar-toggle(data-toggle='collapse', data-target='.bs-navbar-collapse', type='button')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                .navigation
+                    .pull-left
+                        .title VA Loan Center
+                        .powered Powered by
+                        .captain-logo
+                    .pull-right.nav-container
+                        nav#primaryNav.navbar-collapse.collapse.bs-navbar-collapse
+                            ul.nav
+                                li
+                                    a(href='#') Home
+                                li
+                                    a(href='#') Free VA Loan Book
+                                li
+                                    a(href='#') Learning Center
+            block main-content                
+                != content
+            footer
+                #footer
+                    © 2014 Stars and Stripes. All Rights Reserved.
+                    span |
+                    span
+                        a(href='#') Disclaimer
+                    span |
+                    span
+                        a(href='#') Comment Policy
+                    span |
+                    span
+                        a(href='#') Web Notices and Privacy Policy
+                    span |
+                    span
+                        a(href='#') Accessibility/Section 508
+
+        .modal.fade#contactForm(aria-hidden='true', aria-labelledby='myModalLabel', data-backdrop='true', role='dialog', tabindex='-1')
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button(aria-hidden='true', class='close', data-dismiss='modal', type='button')
+                        h3 One more step!
+                        h6 Please confirm your information so that we may accurately match your record.
+                    .modal-body
+                        .row.m-t-lg
+                            .col-md-6
+                                .clearfix
+                                    strong First name
+                                .clearfix
+                                    input(name='firstname', type='text')
+                            .col-md-6
+                                .clearfix
+                                    strong Last name
+                                .clearfix
+                                    input(name='lastname', type='text')
+                        .row.m-t-lg
+                            .col-md-6
+                                .clearfix
+                                    strong Email
+                                .clearfix
+                                    input(name='email', type='text')
+                            .col-md-6
+                                .clearfix
+                                    strong Phone
+                                .clearfix
+                                    input(name='phone', type='text')
+                                .clearfix.m-t-sm
+                                    input(type='checkbox', value='')
+                                    span.m-l-xs
+                                        | I agree to the 
+                                        a(href='#') Auto Dialer Disclosure
+                        hr
+                        .row.m-t-lg
+                            .col-md-12
+                                .clearfix
+                                    strong Address
+                                .clearfix
+                                    input(name='address', type='text')
+                        .row.m-t-lg
+                            .col-md-6
+                                .clearfix
+                                    strong City
+                                .clearfix
+                                    input(name='city', type='text')
+                            .col-md-3
+                                .clearfix
+                                    strong State
+                                .clearfix
+                                    select(name='state')
+                                        option(value='singlefamily') NY
+                            .col-md-3
+                                .clearfix
+                                    strong Zip code
+                                .clearfix
+                                    input(name='zipcode', placeholder='10014', type='text')
+                        .row.m-t-lg
+                            .col-md-12
+                                input(type='checkbox', value='')
+                                span.m-l-xs
+                                    | I agree with the 
+                                    a(href='#') Terms of Service
+                        .row.m-t-lg
+                            .col-md-12
+                                a(href='#')
+                                    span.btn-get-rates.m-r-lg Submit
+                                a(data-dismiss='modal', href='#')
+                                    span Cancel
+
+        .modal.fade#thankyouForm(aria-hidden='true', aria-labelledby='myModalLabel', data-backdrop='true', role='dialog', tabindex='-1')
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button(aria-hidden='true', class='close', data-dismiss='modal', type='button')
+                        h3 Thank you, John!
+                    .modal-body
+                        .row
+                            .col-md-12 A VA loan specialist will be contacting you shortly at:
+                        .row.m-t-lg
+                            .col-md-12
+                                .clearfix
+                                    span.m-r-sm Email:
+                                    strong john.doe@gmail.com
+                                .clearfix
+                                    span.m-r-sm Phone:
+                                    strong 212-662-1234
+                        .row.m-t-lg
+                            .col-md-12.m-t.m-r-lg                                
+                                a(data-dismiss='modal', href='#')
+                                    span.btn-get-rates Close
