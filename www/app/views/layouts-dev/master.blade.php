@@ -46,7 +46,7 @@
             <!-- include footer -->
             @include('layouts.footer')
         </div>
-
+        @yield('modal')
     </body>
 
     <!-- build:js assets/javascripts/frontend.js -->

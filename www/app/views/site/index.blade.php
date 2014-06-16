@@ -207,7 +207,9 @@
 	@include('site.partials._news')
 @stop
 
-<!-- include signup form modal -->
-@include('site.partials._signup-form')
-<!-- include request quote model -->
-@include('site.partials._thank-form')
+@section('modal')
+  <!-- include signup form modal -->
+  @include('site.partials._signup-form')
+  <!-- include request quote model -->
+  @include('site.partials._thank-form')
+@stop
