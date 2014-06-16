@@ -94,5 +94,4 @@ cd /vagrant/www
 
 composer update
 sudo npm install
-grunt default
  			
