@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts-dev.master')
 
 @section('content')
 	<section class="list-form">
