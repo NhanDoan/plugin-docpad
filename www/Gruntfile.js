@@ -54,9 +54,9 @@ module.exports = function (grunt) {
             // JavaScript settings
             js: {
                 base: 'app/assets/javascripts',                          // Base path to you JS folder
-                files: ['./bower_components/jquery/dist/jquery.js',
-                    './bower_components/bootstrap/dist/js/bootstrap.js',
-                    'app/assets/javascript/frontend.js'],                           // JavaScript files in order you'd like them concatenated and minified
+                files: ['<%= options.assets %>/jquery/dist/jquery.js',
+                    '<%= options.assets %>/sass-bootstrap/dist/js/bootstrap.min.js',
+                    '<%= options.assets %>/javascripts/frontend.js'],                           // JavaScript files in order you'd like them concatenated and minified
                 concat: '<%= options.js.base %>/concat.js',     // Name of the concatenated JavaScript file
                 min: '<%= options.dist_assets %>/javascripts/scripts.min.js'     // Name of the minified JavaScript file
             },
@@ -161,10 +161,6 @@ module.exports = function (grunt) {
                     '<%= options.sass.compiled %>': '<%= options.sass.file %>'
                 }
             },
-            options: {
-                sourcemap: true,
-                loadPath: ['{{vendor_path}}'],
-            },
             main: {
                 files: [{
                     expand: true,
@@ -256,7 +252,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-
+      
         // Display notifications
         notify: {
             watch: {
@@ -269,21 +265,18 @@ module.exports = function (grunt) {
 
         // Watch for files and folder changes
         watch: {
-            js_frontend: {
-                files: [
-                    //watched files
-                   '<%= options.js.files %>'
-                ],
-                tasks: ['concat:js_frontend', 'uglify'], //tasks to run
+            sass: {
+                files: ['<%= options.sass.file %>'], //watched files
+                tasks: ['sass', 'copy:style'], //tasks to run
                 options: {
                     livereload: true //reloads the browser
                 }
             },
-            sass: {
-                files: ['<%= options.sass.file %>'], //watched files
-                tasks: ['sass', 'concat:css', 'cssmin', 'clean:concat'], //tasks to run
+            js: {
+                files: ['<%= options.assets %>/javascripts/frontend.js'],
+                tasks: ['useminPrepare','concat', 'copy:js'] ,
                 options: {
-                    livereload: true //reloads the browser
+                    livereload: true
                 }
             },
             tests: {
@@ -298,6 +291,6 @@ module.exports = function (grunt) {
     // Register tasks
     grunt.registerTask('default', ['watch']); // Default task
     grunt.registerTask('build-dev', ['clean:all', 'sass', 'copy']);
-    grunt.registerTask('build-pro', ['clean:all', 'copy', 'sass', 'useminPrepare', 'htmlmin', 'concat', 'cssmin', 'uglify', 'filerev', 'usemin', 'clean:concat']);
+    grunt.registerTask('build-prod', ['clean:all', 'copy', 'sass', 'useminPrepare', 'htmlmin', 'concat', 'cssmin', 'uglify', 'filerev', 'usemin', 'clean:concat']);
 
 }
