@@ -24,12 +24,17 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
+// $env = $app->detectEnvironment(array(
 
-	'local' => array('your-machine-name'),
+// 	'local' => array('your-machine-name'),
 
-));
+// ));
+$env = $app->detectEnvironment( function() {
 
+	if (file_exists(__DIR__ . '/environment.php'))
+		return require __DIR__ . '/environment.php';
+	
+});
 /*
 |--------------------------------------------------------------------------
 | Bind Paths
