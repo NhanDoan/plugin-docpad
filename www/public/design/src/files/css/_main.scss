@@ -441,6 +441,12 @@ a, a:hover, a:focus {
 .rates-check {
 	display:none;
 }
+.hide-important {
+  display: none !important;
+}
+.reset-label {
+  font-weight: normal;
+}
 .request-quote-container {
 	display:none;
 	margin-top:10px;

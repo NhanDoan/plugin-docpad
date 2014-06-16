@@ -1,18 +1,30 @@
 module.exports = function (grunt) {
 
+     // show elapsed time at the end
+        require('time-grunt')(grunt);
+
+        // load all grunt tasks
+        require('load-grunt-tasks')(grunt);
+    
     // Initialize configuration object
     grunt.initConfig({
-
-        // Read in project settings
-        pkg: grunt.file.readJSON('package.json'),
-
+       
+        
         // User editable project settings & variables
         options: {
             // Base path to your assets folder
-            base: 'app/assets',
+            assets: 'app/assets',
+            
+            dist_assets: 'public/assets',
+
+            // App base
+            app: 'app',
 
             // Published assets path
-            publish: 'public/assets',
+            dist: 'public',
+
+            // Base path bower components
+            bower: './bower_components',
 
             // Files to be clean on rebuild
             clean: {
@@ -24,12 +36,19 @@ module.exports = function (grunt) {
                 concat: ['<%= options.css.concat %>', '<%= options.js.concat %>']
             },
 
+
+            // fonts settings 
+            fonts: {
+                base: '<%= options.bower %>',
+                files: '<%= options.fonts.base %>/bootstrap/'
+            },
+
             // CSS settings
             css: {
                 base: 'app/assets/stylesheets',                         // Base path to your CSS folder
                 files: ['app/assets/stylesheets/*.css'],                         // CSS files in order you'd like them concatenated and minified
                 concat: '<%= options.css.base %>/concat.css',   // Name of the concatenated CSS file
-                min: '<%= options.publish %>/styles/styles.min.css'     // Name of the minified CSS file
+                min: '<%= options.dist_assets %>/styles/styles.min.css'     // Name of the minified CSS file
             },
 
             // JavaScript settings
@@ -39,7 +58,7 @@ module.exports = function (grunt) {
                     './bower_components/bootstrap/dist/js/bootstrap.js',
                     'app/assets/javascript/frontend.js'],                           // JavaScript files in order you'd like them concatenated and minified
                 concat: '<%= options.js.base %>/concat.js',     // Name of the concatenated JavaScript file
-                min: '<%= options.publish %>/javascripts/scripts.min.js'     // Name of the minified JavaScript file
+                min: '<%= options.dist_assets %>/javascripts/scripts.min.js'     // Name of the minified JavaScript file
             },
 
             // SASS Settings
@@ -73,7 +92,9 @@ module.exports = function (grunt) {
             all: {
                 src:[
                     '<%= options.clean.all %>',
-                    'tmp'
+                    'tmp',
+                    'public/assets',
+                    'public/views'
                 ]
             },
             concat: {
@@ -81,45 +102,55 @@ module.exports = function (grunt) {
             }
         },
 
-        // Concatenate multiple sets of files
-        concat: {
-            css: {
-                files: {
-                    '<%= options.css.concat %>' : ['<%= options.css.files %>']
-                }
+        // Copies remaining files to places other tasks can use
+        copy: {
+            js: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= options.assets %>',
+                    dest: '<%= options.dist_assets %>',
+                    src: [
+                       'jquery/jquery.min.js',
+                       'sass-bootstrap/dist/js/bootstrap.min.js',
+                       'javascripts/frontend.js'
+                    ]
+                }]
             },
-            js_frontend: {
-                options: {
-                    block: true,
-                    line: true,
-                    stripBanners: true
-                },
-                files: {
-                    '<%= options.js.concat %>' : '<%= options.js.files %>',
-                }
-            }
-        },
-
-        // Minify and concatenate CSS files
-        cssmin: {
-            minify: {
-                src: '<%= options.css.concat %>',
-                dest: '<%= options.css.min %>'
-            }
-        },
-
-        // Javascript linting - JS Hint
-        jshint: {
-            files: ['<%= options.js.files %>'],
-            options: {
-                // Options to override JSHint defaults
-                curly: true,
-                indent: 4,
-                trailing: true,
-                devel: true,
-                globals: {
-                    jQuery: true
-                }
+            style: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= options.assets %>',
+                    dest: '<%= options.dist_assets %>',
+                    src: [
+                       'sass-bootstrap/dist/css/bootstrap.min.css',
+                       'stylesheets/main.css'
+                    ]
+                }]
+            },
+            images: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= options.assets %>',
+                    dest: '<%= options.dist_assets %>',
+                    src: [
+                        '{,*/}*.{ico,png,txt}',
+                        'images/{,*/}*.{ico,png,txt}'
+                    ]
+                }]
+            },
+            fonts: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= options.fonts.files %>',
+                    dest: '<%= options.dist_assets %>',
+                    src: [
+                        'fonts/{,*/}*.*'
+                    ]
+                }]
             }
         },
 
@@ -144,6 +175,88 @@ module.exports = function (grunt) {
             }
         },
 
+        // 
+        filerev: {
+            options: {
+                encoding: 'utf8',
+                algorithm: 'md5',
+                length: 8
+            },
+            source: {
+                files: [{
+                    src: [
+                        '<%= options.dist_assets %>/javascripts/{,*/}*.js',
+                        '<%= options.dist_assets %>/stylesheets/{,*/}*.css'
+                    ]
+                }]
+            }
+        },
+
+        useminPrepare: {
+            html: [
+                '<%= options.app %>/views/layouts-dev/{,*/}*.php',
+                '<%= options.app %>/views/layouts-dev/site-dev/{,*/}*.php'
+            ],
+            options: {
+                dest: '<%= options.dist %>'
+            }
+            
+        },
+
+        // usemin has access to the revved files mapping through grunt.filerev.summary
+        usemin: {
+            options: {
+                dirs: ['<%= options.dist_assets %>'],
+                assetsDirs: ['<%= options.dist %>'],
+                patterns: {
+                    js: [
+                        [/["']([^:"']+\.(?:png|gif|jpe?g))["']/img, 'Image replacement in js files']
+                    ]
+                }
+            },
+            html: ['<%= options.app %>/views/layouts/{,*/}*.php'],
+            css: ['<%= options.dist_assets %>/stylesheets/{,*/}*.css'],
+            js: ['<%= options.dist_assets %>/javascripts/{,*/}*.js']
+
+        },
+
+        htmlmin: {
+            dist: {
+                options: {
+                    /*removeCommentsFromCDATA: true,
+                    // https://github.com/yeoman/grunt-usemin/issues/44
+                    //collapseWhitespace: true,
+                    collapseBooleanAttributes: true,
+                    removeAttributeQuotes: true,
+                    removeRedundantAttributes: true,
+                    useShortDoctype: true,
+                    removeEmptyAttributes: true,
+                    removeOptionalTags: true*/
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= options.app %>/views/layouts-dev',
+                    src: '{,*/}*.php',
+                    dest: '<%= options.app %>/views/layouts'
+                }]
+            }
+        },
+
+        // Javascript linting - JS Hint
+        jshint: {
+            files: ['<%= options.js.files %>'],
+            options: {
+                // Options to override JSHint defaults
+                curly: true,
+                indent: 4,
+                trailing: true,
+                devel: true,
+                globals: {
+                    jQuery: true
+                }
+            }
+        },
+
         // Display notifications
         notify: {
             watch: {
@@ -151,17 +264,6 @@ module.exports = function (grunt) {
                     title: '<%= options.notify.watch.title %>',
                     message: '<%= options.notify.watch.message %>'
                 }
-            }
-        },
-
-        // Javascript minification - uglify
-        uglify: {
-            options: {
-                preserveComments: false
-            },
-            files: {
-                src: '<%= options.js.concat %>',
-                dest: '<%= options.js.min %>'
             }
         },
 
@@ -179,7 +281,7 @@ module.exports = function (grunt) {
             },
             sass: {
                 files: ['<%= options.sass.file %>'], //watched files
-                tasks: ['sass', 'concat:css', 'cssmin'], //tasks to run
+                tasks: ['sass', 'concat:css', 'cssmin', 'clean:concat'], //tasks to run
                 options: {
                     livereload: true //reloads the browser
                 }
@@ -192,19 +294,10 @@ module.exports = function (grunt) {
 
     });
 
-    // Load npm tasks
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-compress');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-livereload');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-notify');
 
     // Register tasks
     grunt.registerTask('default', ['watch']); // Default task
-    grunt.registerTask('init', ['clean:all', 'sass',  'sass:dist', 'concat', 'cssmin', 'uglify', 'clean:concat']);
+    grunt.registerTask('build-dev', ['clean:all', 'sass', 'copy']);
+    grunt.registerTask('build-pro', ['clean:all', 'copy', 'sass', 'useminPrepare', 'htmlmin', 'concat', 'cssmin', 'uglify', 'filerev', 'usemin', 'clean:concat']);
+
 }

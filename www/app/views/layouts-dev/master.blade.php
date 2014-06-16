@@ -6,10 +6,14 @@
     </title>
     <meta name="description" content="va, loan, capitain, center, get real time pricing">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   
 
-    {{ HTML::style('//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css') }}
-    {{ HTML::style('assets/stylesheets/main.css') }}
-    
+    <!-- build:css assets/stylesheets/main.css -->
+    <link rel="stylesheet" type="text/css" href="../../assets/sass-bootstrap/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../../assets/stylesheets/main.css"/>
+    <!-- endbuild -->
+
     <link rel="shortcut icon" href="favicon.ico">
     </head>
     <body>
@@ -45,7 +49,9 @@
 
     </body>
 
-    {{ HTML::script('http://code.jquery.com/jquery-1.10.2.min.js') }}
-    {{ HTML::script('//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js') }}
-    {{ HTML::script('assets/javascript/main.js') }}
+    <!-- build:js assets/javascripts/frontend.js -->
+        <script src="../../assets/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="../../assets/sass-bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../../assets/javascripts/frontend.js"></script>
+    <!-- endbuild -->
 </html>

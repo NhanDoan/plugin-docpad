@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', 'SiteController@index');
 
-
+// Route::get('/', function()
+// {
+// 	return View::make('site/index');
+// });
