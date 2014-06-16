@@ -27,3 +27,5 @@ www/app/assets/jquery
 www/app/assets/sass-bootstrap
 
 www/public/assets
+.vagrant/machines
+www/app/views/layouts
