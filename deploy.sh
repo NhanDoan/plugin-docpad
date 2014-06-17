@@ -16,7 +16,7 @@ bower install --force-yes --yes
 sudo rm -rf /var/www/*
 sudo ln -s `pwd`/* /var/www
 sudo /etc/init.d/apache2 restart
-
+chmod -R 777 /app/storage
 ENV_DEV="dev" #this is our enviroment development.
 ENV_PROD="prod" #this is our enviroment production.
 
@@ -26,3 +26,4 @@ if [ "$ENV" == "$ENV_PROD" ]; then
 else
         grunt build-dev	
 fi
+
