@@ -174,7 +174,7 @@ input {
 	width:100%;
 	.desc {
 		font-size:1.4em;
-		margin-bottom: 20px;
+		margin-bottom: 30px;
 	}
 	.content {
 		#formNav {
@@ -253,14 +253,14 @@ input {
 				width:100%;
 				li {
 					border-top:1px #e0e0e0 solid;
-					padding:20px 10px;
+					padding:16px 10px;
 					&:hover, &.active {
 						background:#fcfaed;
 					}
 					&:last-child {
 						padding-bottom:0;
 					}
-					a, img {
+					img {
 						display: inline-block;
 					}
 				}
@@ -289,25 +289,28 @@ input {
 				font-weight: 700;
 				padding:7px 15px;
 			}
-			.rss-body .rss-container-content {
-				.title {
-					color:#0f3d6e;
-					font-size: 1.6em;
-					font-weight: 700;
-					margin-top:20px;
-					margin-bottom: 5px;
-				}
-				.desc {
-					font-size: 1.2em;
-					margin-bottom: 3px;
-				}
-				.by {
-					color:#999;					
-					font-size: 1em;
-					font-weight: 700;
-				}
-				.link-more {
-					font-size: 1.3em;
+			.rss-body {
+				margin:5px;
+				.rss-container-content {
+					.title {
+						color:#0f3d6e;
+						font-size: 1.6em;
+						font-weight: 700;
+						margin-top:20px;
+						margin-bottom: 5px;
+					}
+					.desc {
+						font-size: 1.2em;
+						margin-bottom: 3px;
+					}
+					.by {
+						color:#999;					
+						font-size: 1em;
+						font-weight: 700;
+					}
+					.link-more {
+						font-size: 1.3em;
+					}
 				}
 			}
 		}
@@ -334,6 +337,7 @@ a, a:hover, a:focus {
 	}
 }
 .container-btn-show-lender {
+	display:inline-block;
 	margin-top:12px;
 	position:relative;
 }
@@ -419,10 +423,10 @@ a, a:hover, a:focus {
 	border-bottom:0;
 	padding:15px 50px;
 	.close {
-		background: url(../images/close-bt.png);
-		height:17px;
+		background: url(../images/close-bt.png) no-repeat;
+		height:18px;
 		opacity: 1;
-		width:17px;
+		width:18px;
 		margin-top:10px;
 		margin-right:-30px;
 	}
@@ -453,6 +457,12 @@ a, a:hover, a:focus {
 	.lender-img-container {
 		display:inline-block;
 		width: 150px;
+		vertical-align:middle;
+		.sponsored {
+			color:#999;
+			font-size: 0.9em;
+			font-weight: 700;
+		}
 	}
 }
 @media screen and (max-width: 767px) {

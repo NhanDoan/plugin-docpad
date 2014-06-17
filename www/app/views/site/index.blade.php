@@ -25,6 +25,7 @@
             <div class="request-quote-container">
               <span class="lender-img-container text-center">
                 {{ HTML::image('assets/images/lender/bnc-bank-logo.png', '', ['class' => 'img-responsive m-r-lg']) }}
+                <div class="sponsored">Sponsored Lender</div>
               </span>
               <a href="#thankyouForm" data-toggle="modal">
                 <span class="btn-request-quote">Request Quote</span>

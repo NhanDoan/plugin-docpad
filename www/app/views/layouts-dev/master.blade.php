@@ -22,7 +22,7 @@
             @include('layouts.header')
 
             <section id="content">
-                <h2>Get Today’s Best VA Loan Rates</h2>
+                <h2>Get Today's Best VA Loan Rates</h2>
                 <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sem mauris, eleifend in consectetur id, ornare <br/>vitae turpis. Pellentesque viverra gravida velit, eu vulputate risus scelerisque id.      </div>
                 <div class="content">
                     <div class="row m-t-lg">
@@ -37,7 +37,7 @@
                         </div>
                     </div>
 
-                    <div class="row m-b-lg news">
+                    <div class="row m-b-lg m-t-lg news">
                        @yield('news')
                     </div>
                 </div>
