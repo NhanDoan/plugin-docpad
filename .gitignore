@@ -26,6 +26,6 @@ www/.tmp/concat/assets/stylesheets/main.css
 www/app/assets/jquery
 www/app/assets/sass-bootstrap
 
-www/public/assets
-.vagrant/machines
+www/public
+.vagrant
 www/app/views/layouts
