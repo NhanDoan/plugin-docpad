@@ -3,15 +3,18 @@
 # This is some secure program that uses security.
 
 ENV=$1
-sudo rm -rf /var/www/*
 
-sudo ln -s `pwd`/www/* /var/www
-
+# cd www to update package and composer update for application
 cd www
+
 composer update
 npm install
 bower install --force-yes --yes
 
+# return folder root and symlink into 
+
+sudo rm -rf /var/www/*
+sudo ln -s `pwd`/* /var/www
 sudo /etc/init.d/apache2 restart
 
 ENV_DEV="dev" #this is our enviroment development.
