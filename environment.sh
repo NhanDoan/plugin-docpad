@@ -1,5 +1,5 @@
 
-#!/bin/sh
+#!/bin/bash
 # This is some secure program that uses security.
 
 ENV_DEV="dev" #this is our enviroment development.
