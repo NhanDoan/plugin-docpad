@@ -263,6 +263,26 @@ module.exports = function (grunt) {
             }
         },
 
+        replace: {
+            prod: {
+                src: ['./bootstrap/environment.php'],
+                overwrite: true,                 // overwrite matched source files
+                replacements: [{
+                  from: 'dev',
+                  to: 'prod'
+                }]
+            },
+
+            dev: {
+                src: ['./bootstrap/environment.php'],
+                overwrite: true,                 // overwrite matched source files
+                replacements: [{
+                  from: 'prod',
+                  to: 'dev'
+                }]
+            }
+        },
+
         // Watch for files and folder changes
         watch: {
             sass: {
@@ -290,7 +310,7 @@ module.exports = function (grunt) {
 
     // Register tasks
     grunt.registerTask('default', ['watch']); // Default task
-    grunt.registerTask('build-dev', ['clean:all', 'sass', 'copy']);
-    grunt.registerTask('build-prod', ['clean:all', 'copy', 'sass', 'useminPrepare', 'htmlmin', 'concat', 'cssmin', 'uglify', 'filerev', 'usemin', 'clean:concat']);
+    grunt.registerTask('build-dev', ['clean:all', 'sass', 'copy', 'replace:dev']);
+    grunt.registerTask('build-prod', ['clean:all', 'copy', 'sass', 'useminPrepare', 'htmlmin', 'concat', 'cssmin', 'uglify', 'filerev', 'usemin', 'clean:concat', 'replace:prod']);
 
 }
