@@ -36,7 +36,8 @@
     "grunt-notify": "~0.2.4",
     "grunt-phpunit": "~0.3.0",
     "grunt-usemin": "~2.0.0",
-    "time-grunt": "~0.1.1"
+    "time-grunt": "~0.1.1",
+    "grunt-text-replace": "~0.3.6"
 
   }
 }
