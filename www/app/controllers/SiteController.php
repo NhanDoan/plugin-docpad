@@ -16,6 +16,14 @@ class SiteController extends BaseController {
 	*/
 	public function index()
 	{
+		
+		$params = array(
+									'stateAbbr'			=> '',
+									'marketplaceId'	=> 10000,
+									'loanAmount'		=> 70000,
+								);
+		$results = Helpers::curl_exec_format($params);
+
 		$this->layout->content = View::make('site/index');
 	}
 
