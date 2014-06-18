@@ -1,0 +1,149 @@
+@import url(http://fonts.googleapis.com/css?family=Anton);
+#vaLoanWidget {
+	font-family: Arial, sans-serif!important;
+}
+#vaLoanWidget div {
+	display: inline-block!important;
+}
+#vaLoanWidget h2 {
+	font-family: 'Anton', sans-serif!important;
+	font-size: 2.25em!important;
+}
+#vaLoanWidget h3 {
+	font-size: 1.875em!important;
+}
+#vaLoanWidget input {
+	background: #fff!important;
+	font-size: 1em!important;
+	padding:7px 10px!important;
+	width:215px!important;
+}
+#vaLoanWidget span {
+	margin:0 8px!important;
+	display: inline-block!important;
+}
+#vaLoanWidget .va-loan-box {
+	border-radius: 5px!important;
+	box-shadow: 0 0 5px rgba(0,0,0,0.3)!important;
+	float: left!important;
+	margin:20px 0!important;
+	-moz-border-radius: 5px!important;
+	-webkit-border-radius: 5px!important;
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3)!important;
+	width:600px!important;
+}
+#vaLoanWidget .pull-left {
+	float:left!important;
+}
+#vaLoanWidget .pull-right {
+	float:right!important;
+}
+#vaLoanWidget .va-loan-box .va-loan-header {
+	background:#44464d!important;
+	border-radius: 5px 5px 0 0!important;
+	color:#fff!important;
+	float:left!important;
+	padding:25px 25px 15px!important;
+	-moz-border-radius: 5px 5px 0 0!important;
+	-webkit-border-radius: 5px 5px 0 0!important;
+	width:550px!important;
+}
+#vaLoanWidget .va-loan-box .va-loan-header .icon-home {
+	background: url(../images/icon-home.png) no-repeat!important;
+	height:76px!important;
+	width:79px!important;
+	margin-right: 20px!important;
+}
+#vaLoanWidget .va-loan-box .va-loan-header .desc {
+	font-size: 1em!important;
+	margin-top:10px!important;
+}
+#vaLoanWidget .va-loan-box .va-loan-header .line {
+	background:rgba(255,255,255,0.2)!important;
+	float: left!important;
+	height:1px!important;
+	margin:15px 0!important;
+	width:100%!important;
+}
+#vaLoanWidget .va-loan-box .va-loan-header .form-container {
+	float:left!important;
+	font-size: 0.875em!important;
+	width:100%!important;
+}
+#vaLoanWidget .va-loan-box .va-loan-header .form-container select {
+	background: #fff!important;
+	color:#333!important;
+	border: 0!important;
+	border-radius: 3px!important;
+	box-shadow: 0 0 3px rgba(0,0,0,0.3)!important;
+	cursor:pointer!important;
+	display: inline-block!important;
+	font-size: 1em!important;
+	padding:7px 5px!important;
+	-moz-border-radius: 3px!important;
+	-webkit-border-radius: 3px!important;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.3)!important;
+	width:150px!important;
+	height:30px!important;
+}
+#vaLoanWidget .va-loan-box .va-loan-header .form-container .divide {
+	background:#ccc!important;
+	display: inline-block!important;
+	height:30px!important;
+	position:absolute!important;
+	right:28px!important;
+	top:-7px!important;
+	width:1px!important;
+}
+#vaLoanWidget .va-loan-box .va-loan-header .form-container .arrow {
+	border-bottom:0!important;
+	border-left:6px solid transparent!important;
+	border-right:6px solid transparent!important;
+	border-top:6px solid #666!important;
+	height:0!important;
+	position:absolute!important;
+	right:4px!important;
+	top:40%!important;
+	vertical-align: middle!important;
+	width:0!important;
+}
+#vaLoanWidget .va-loan-box .va-loan-footer {
+	background:#fff!important;
+	border-radius: 0 0 5px 5px!important;
+	float: left!important;
+	font-size:0.625em!important;
+	padding:10px 25px!important;
+	-moz-border-radius: 0 0 5px 5px!important;
+	-webkit-border-radius: 0 0 5px 5px!important;
+	width:550px!important;
+}
+#vaLoanWidget .va-loan-box .va-loan-footer .logo {
+	background: url(../images/logo.jpg) no-repeat!important;
+	height:26px!important;
+	width:100px!important;
+	display: inline-block!important;
+	vertical-align: middle!important;
+}
+#vaLoanWidget .va-loan-box .va-loan-footer .btn-get-rates {
+	background:#44464d!important;
+	border-radius: 3px!important;
+	color:#fff!important;
+	cursor: pointer!important;
+	font-size:1.625em!important;
+	font-weight: bold!important;
+	padding:7px 40px!important;
+	-moz-border-radius: 3px!important;
+	-webkit-border-radius: 3px!important;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #999!important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #999!important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #999!important;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #999!important;
+}
