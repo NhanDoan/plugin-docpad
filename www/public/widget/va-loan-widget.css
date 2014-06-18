@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Anton);
+@import url(https://fonts.googleapis.com/css?family=Anton);
 #vaLoanWidget {
 	font-family: Arial, sans-serif!important;
 }
@@ -49,7 +49,7 @@
 	width:550px!important;
 }
 #vaLoanWidget .va-loan-box .va-loan-header .icon-home {
-	background: url(../images/icon-home.png) no-repeat!important;
+	background: url(images/icon-home.png) no-repeat!important;
 	height:76px!important;
 	width:79px!important;
 	margin-right: 20px!important;
@@ -118,7 +118,7 @@
 	width:550px!important;
 }
 #vaLoanWidget .va-loan-box .va-loan-footer .logo {
-	background: url(../images/logo.jpg) no-repeat!important;
+	background: url(images/logo.jpg) no-repeat!important;
 	height:26px!important;
 	width:100px!important;
 	display: inline-block!important;
