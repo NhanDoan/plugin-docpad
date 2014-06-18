@@ -1,4 +1,4 @@
-<div class="col-md-9">
+<div class="clearfix">
   <div class="row">
     <div class="col-md-6 m-t-lg">
       <section class="rss">

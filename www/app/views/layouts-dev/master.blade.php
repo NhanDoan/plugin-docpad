@@ -30,15 +30,13 @@
                             <div class="col-md-3">
                                 <!-- include sidebar -->
                                 @include('site.partials._sidebar')
+                                @include('site.partials._sidebar-image')
                             </div>
                         </form>
                         <div class="col-md-9">
                             @yield('content')
+                            @yield('news')
                         </div>
-                    </div>
-
-                    <div class="row m-b-lg m-t-lg news">
-                       @yield('news')
                     </div>
                 </div>
             </section>

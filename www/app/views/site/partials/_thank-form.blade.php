@@ -1,4 +1,4 @@
-<div id="thankyouForm" aria-hidden="true" aria-labelledby="myModalLabel" data-backdrop="true" role="dialog" tabindex="-1" class="modal fade">
+<div id="thankyouForm" aria-hidden="true" aria-labelledby="myModalLabel" data-backdrop="true" role="dialog" tabindex="-1" class="modal fade form">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
