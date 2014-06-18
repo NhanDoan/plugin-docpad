@@ -1,6 +1,6 @@
 var sidebar = {
 	purposeChange: function() {
-		$('input[name=mortgageType').change(function() {
+		$('input[name="mortgageType"]').change(function() {
 
 			if ($(this).val() == 1) {
 				$('#refinance').hide();

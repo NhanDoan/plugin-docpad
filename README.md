@@ -37,9 +37,12 @@ Contains scripts & config file for [vagrant](http://www.vagrantup.com/)
 ## Run application
 
 1. Install package and vendor application
+
   ``` 
-    - If you want to building project with environment production. Please run: 
-      ./deploy.sh prod
-    - If you want to building project with environment development. Please run:
-      ./deploy.sh dev
+  If you want to building project with environment production. Please run: 
+  ./deploy.sh prod
+
+  If you want to building project with environment development. Please run:
+  ./deploy.sh dev
+  
   ```
