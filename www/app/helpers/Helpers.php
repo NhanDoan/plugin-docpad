@@ -7,12 +7,16 @@ class Helpers {
     * @param  array  $params get paramater
     * @return string  resutl with json format
     */
-    public static function curl_execute($uri, $params = array()) {
+    public static function curl_execute( $params = array() ) {
+
+        
+        $apiUrl = Config::get('mortechapi.url');
+        $apiParams = Config::get('mortechapi.params');
 
         $ch = curl_init();
 
         //set the url, number of POST vars, POST data
-        curl_setopt($ch, CURLOPT_URL, $uri);
+        curl_setopt($ch, CURLOPT_URL, $apiUrl);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_FORBID_REUSE, 0);
 
@@ -23,13 +27,14 @@ class Helpers {
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
-        if ( !empty($params) ) {
-
-            $queryString = Helpers::build_query_string($params);
-
-            curl_setopt($ch, CURLOPT_POST, count($params));
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $queryString);
+        if ( !empty($params = array_filter($params)) ) {
+            $apiParams = array_merge($apiParams, $params);
         }
+
+        $queryString = Helpers::build_query_string($apiParams);
+
+        curl_setopt($ch, CURLOPT_POST, count($apiParams));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $queryString);
 
         //execute post
         $results = curl_exec($ch);
@@ -53,7 +58,7 @@ class Helpers {
             return $results['lenderOffers']['@items'];
         }
 
-        return array();
+        return $results['errorMsg'];
     }
 
     /**
@@ -62,9 +67,9 @@ class Helpers {
     * @param  array  $params get paramater
     * @return array  results after format
     */
-    public static function curl_exec_format($uri, $params = array()) {
+    public static function curl_exec_format($params = array()) {
 
-        $result_str = Helpers::curl_execute( $uri, $params );
+        $result_str = Helpers::curl_execute( $params );
 
         return Helpers::format_result($result_str);
     }

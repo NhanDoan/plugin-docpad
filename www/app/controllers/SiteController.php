@@ -16,21 +16,14 @@ class SiteController extends BaseController {
 	*/
 	public function index()
 	{
-
-		$uri = 'https://awsratecloud.mortech-inc.com/servlet/MarketplaceServlet';
+		
 		$params = array(
-									'licenseKey' 		=> 'k98fLwDVYaaNRy/5IN0fciIaEgce4YwK7q8aU/WKfH4=',
-									'stateAbbr'			=> 'TX',
+									'stateAbbr'			=> '',
 									'marketplaceId'	=> 10000,
 									'loanAmount'		=> 70000,
-									'lender'				=> '17nbkc01',
-									'lender1' 			=> '17kans01',
-									'lender2' 			=> '17nasb01',
-									'lender3' 			=> '37gpnm01',
-									'lender4' 			=> '05harb01',
 								);
-		$results = Helpers::curl_exec_format($uri, $params);
-		
+		$results = Helpers::curl_exec_format($params);
+
 		$this->layout->content = View::make('site/index');
 	}
 
