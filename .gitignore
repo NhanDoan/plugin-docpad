@@ -2,6 +2,7 @@ www/bootstrap/compiled.php
 www/vendor
 www/node_modules
 www/components
+www/.sass-cache
 www/composer.phar
 www/composer.lock
 www/.env.*.php

@@ -38,19 +38,11 @@ Contains scripts & config file for [vagrant](http://www.vagrantup.com/)
 
 1. Install package and vendor application
 
-  ```
-  cd /vagrant/www
-  composer update
-  sudo npm install -d
-  bower update
-  ```
+  ``` 
+  If you want to building project with environment production. Please run: 
+  ./deploy.sh prod
 
-2. Run project with enviroment development or production
+  If you want to building project with environment development. Please run:
+  ./deploy.sh dev
   
-  ```
-  cd /vagrant
-  ./environment.sh
-  Note: - If you want to building project with environment production. Please ENTER: prod
-        - If you want to building project with environment production. Please ENTER: dev
-
   ```
