@@ -16,13 +16,13 @@ class SiteController extends BaseController {
 	*/
 	public function index()
 	{
-		
-		$params = array(
-									'stateAbbr'			=> '',
-									'marketplaceId'	=> 10000,
-									'loanAmount'		=> 70000,
-								);
-		$results = Helpers::curl_exec_format($params);
+		// $stateAbbr = Helpers::geocode_execute('94107');
+		// $params = array(
+		// 							'stateAbbr'			=> $stateAbbr,
+		// 							'marketplaceId'	=> 10000,
+		// 							'loanAmount'		=> 70000,
+		// 						);
+		// $results = Helpers::mortech_execute($params);
 
 		$this->layout->content = View::make('site/index');
 	}
