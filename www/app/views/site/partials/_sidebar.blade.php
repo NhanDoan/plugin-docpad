@@ -4,7 +4,7 @@
     <div id="purchase">
       <div class="form-group">
         <div class="clearfix"><strong>Loan Purpose</strong></div>
-        <div class="clearfix">
+        <div class="clearfix m-t-xs">
           <span>
             {{ Form::radio('mortgageType', '1', true, ['id' => 'rdo-purchase']) }}
             {{ Form::label('rdo-purchase', 'Purchase', ['class' => 'reset-label']) }}
@@ -16,8 +16,8 @@
         </div>
       </div>
 
-      <div class="form-group clearfix", id="refinance">
-        <div class="clearfix"><strong>Type</strong></div>
+      <div class="form-group clearfix" id="refinance">
+        <div class="clearfix m-b-xs"><strong>Type</strong></div>
         <div class="pull-left form-radio">
           {{ Form::radio('cash', '0', true, ['id' => 'cash-out']) }}
         </div>
