@@ -2,8 +2,12 @@ var Sidebar = {
 	init: function() {
 		Sidebar.purposeChange();
 		Sidebar.getRates();
+    Sidebar.getZipCode();
+    Sidebar.getDownPayment();
 	},
-
+  calDownPayment : function (loanAmount, percent) {
+      return loanAmount*(percent/100);
+  },
 	purposeChange: function() {
 		$('input[name="mortgageType"]').change(function() {
 
@@ -16,6 +20,61 @@ var Sidebar = {
 			}
 		});
 	},
+  
+  getZipCode:function (argument) {
+    // using for action click text zip code
+    $('.form-header').on('click', 'span', function() {
+        var _value = $(this).html();
+        $(this).remove();
+        $('input.zipCode').removeClass('hidden').val(_value);
+
+    });
+
+    $('.form-header').on('blur', 'input.zipCode', function () {
+      var _valInput = ($(this).val()),
+        _this = $(this);
+      $.ajax({
+        url:  '/checkzip/' + _valInput,
+        type: 'get',
+        cache: false,
+        dataType: 'json',
+        beforeSend: function() {
+        },
+        success: function(data) {
+          if (data.message === "" ) {
+            
+            _this.parent().append($('<span />').html(_valInput));
+            _this.addClass('hidden');
+            } else {
+
+              _this.addClass('error-zipCode');
+            }
+          },
+        error: function(xhr, textStatus, thrownError) {
+          alert('Something went to wrong.Please Try again later...');
+        }
+      });
+    });
+  },
+
+  getDownPayment: function (argument) {
+    // calculation value Down Payment
+    $('select[name="loanAmount"]').change(function () {
+        var _valueLoanAmount = $(this).val(),
+            _valDownPayment = $('select[name="downPayment"]').val(),
+
+            _downPaymentAmount = Sidebar.calDownPayment(_valueLoanAmount, _valDownPayment);
+        $('input[name="downPaymentAmount"]').val('$' + _downPaymentAmount);
+    });
+
+    $('select[name="downPayment"]').change(function () {
+        var _valDownPayment = $(this).val(),
+            _valueLoanAmount = $('select[name="loanAmount"]').val();
+        
+            _downPaymentAmount = Sidebar.calDownPayment(_valueLoanAmount, _valDownPayment);
+        $('input[name="downPaymentAmount"]').val('$' + _downPaymentAmount);
+    });
+  },
 
 	getRates: function() {
 		$('#formNav').on('click', '.btn-get-rates', function() {

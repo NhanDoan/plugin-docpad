@@ -6,7 +6,11 @@
 {{ Form::open(array('route' => 'getRates')) }}
 
   <aside id="formNav" class="m-b-lg clearfix">
-    <div class="form-header">Mortgage Rates for<span>10014</span></div>
+    <div class="form-header">Mortgage Rates for<span>{{ (isset($params['zipCode'])) ? $params['zipCode'] : '10014'}}</span>
+        {{
+            Form::text('zipCode', null, array('class' => 'zipCode hidden', 'required' , 'maxlength' => '5'))
+        }}
+    </div>
     <div class="form-body">
       <div id="purchase">
         <div class="form-group">
@@ -81,7 +85,7 @@
               </div>
             </div>
             <div class="col-text">
-              {{ Form::text('downPaymentAmount', null, ['placeholder' => '$', 'class' => 'form-88']) }}
+              {{ Form::text('downPaymentAmount', null, ['placeholder' => '$', 'class' => 'form-88','disabled']) }}
             </div>
           </div>
         </div>

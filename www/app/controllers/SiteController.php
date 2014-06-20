@@ -92,10 +92,18 @@ class SiteController extends BaseController {
 	 * @param  string $zipcode zipcode user enter
 	 * @return json   string json message
 	 */
-	public function validateZip($zipcode) {
-		$stateAbbr = Helpers::geocode_execute($zipcode);
+	public function validateZip($zipCode) {
+		$message = '';
 
-		return json_encode(array('message' => ($stateAbbr == '-1') ? 'Zipcode Invalid' : '' ));
+        if( !is_numeric($zipCode) || strlen($zipCode) != 5 ) {
+
+            $message = 'Zipcode Invalid';
+        } else {
+
+            $stateAbbr = Helpers::geocode_execute($zipCode);
+            $message = ($stateAbbr == '-1') ? 'Zipcode Invalid' : '' ;
+        }
+        return json_encode(array('message' => $message));
 	}
 
 }

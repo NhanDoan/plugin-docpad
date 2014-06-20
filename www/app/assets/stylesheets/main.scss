@@ -249,6 +249,14 @@ input[type="checkbox"], input[type="radio"] {
 					margin-left:5px;
 				}
 			}
+			.error-zipCode {
+				border-color: #A94442;
+				box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+			}
+			.zipCode {
+                width: 30%;
+                margin-left: .5em;
+            }
 			.form-body {
 				background: url(../images/form-bg.png);
 				font-size: 1.2em;
