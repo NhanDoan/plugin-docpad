@@ -139,4 +139,36 @@ class Helpers {
     public static function money($value) {
         return '$' . number_format( $value, 0, '', ',' ); 
     }
+
+    /**
+     * get VA Loan Caption News
+     * @return array list news
+     */
+    public static function get_news() {
+
+        $rssUrl = Config::get('veteran-news-rss.rss_url');
+
+        $xml = simplexml_load_file($rssUrl);
+
+        if ( !empty($xml) ) {
+            // only get 3 element
+            $items = $xml->xpath('/rss/channel/article[position() <= 3]');
+            return $items;
+        }
+        
+        return null;
+    }
+
+    public static function str_limit( $str, $length = 125, $more = '...') {
+        
+        if (strlen($str) <= $length) return $str;
+
+        $newstr = substr($str, 0, $length);
+
+        if (substr($newstr, -1, 1) != ' ') 
+            $newstr = substr($newstr, 0, strrpos($newstr, " "));
+
+        return $newstr . $more;
+
+    }
 }

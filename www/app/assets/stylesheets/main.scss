@@ -168,28 +168,7 @@ input[type="checkbox"], input[type="radio"] {
 		}
 	}
 }
-/*
-.styled-select {
-	border:none;
-	border-radius:2px;
-	-moz-border-radius:2px;
-	-webkit-border-radius:2px;
-	min-height:26px;
-	vertical-align: middle;
-	select {
-		appearance: none;
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		background: #fff url(../images/form-arrow.png) no-repeat scroll 100% 50%;
-		box-shadow: 0 2px 0 rgba(0,0,0,0.3);
-		text-indent: 0.01px;
-		text-overflow: '';
-		padding-left: 5px;
-		&:focus {
-			outline: none;
-		}
-	}
-}*/
+
 .styled-select {
     display: inline-block;
     position: relative;
@@ -206,7 +185,7 @@ input[type="checkbox"], input[type="radio"] {
         font: inherit;
         line-height: 1.2;
         margin: 0;
-        min-height:26px;
+        height:23px;
         padding: 4px 3px 3px 5px;
         outline:none; /* remove focus ring from Webkit */
     	width:100%;
@@ -221,7 +200,7 @@ input[type="checkbox"], input[type="radio"] {
         bottom: 0;
         color: grey;
         content: "▼";
-        line-height: 30px;
+        line-height: 24px;
         padding: 0 7px;
         pointer-events:none;
         position: absolute;
@@ -295,12 +274,10 @@ input[type="checkbox"], input[type="radio"] {
 				.form-45 {
 					@extend .form-94;
 					width:45%;
-					min-height:26px;
 				}
 				.form-88 {
 					@extend .form-94;
 					width:88%;
-					min-height:26px;
 				}
 				.form-120 {
 					@extend .form-94;
@@ -558,37 +535,7 @@ a, a:hover, a:focus {
 		}
 	}
 }
-/*
-@-moz-document url-prefix() {
-	.styled-select {
-		overflow: hidden;
-		width:94%;
-		select {
-			background: #fff url(../images/form-arrow.png) no-repeat scroll 90% 50%;
-         	-webkit-appearance: none;
-			width:110%!important;
-			&#state {
-				background-position: 80% 50%;
-				padding-top:5px;
-				width:120%!important;
-			}
-		}
-	}
-	.col-p {
-		.col-select {
-			padding-right:0;
-			.styled-select {
-				select {
-					background: #fff url(../images/form-arrow.png) no-repeat scroll 80% 50%;
-				}
-			}
-		}
-		.col-text {
-			padding-left:0;
-		}
-	}
-}
-*/
+
 @media screen and (max-width: 767px) {
 	.nav-container {
 		clear:both;

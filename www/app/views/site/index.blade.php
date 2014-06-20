@@ -12,7 +12,7 @@
 
 
 @section('news')
-	@include('site.partials._news')
+	@include('site.partials._news', array('valoanNews' => $valoanNews))
 @stop
 
 @section('modal')

@@ -16,11 +16,15 @@ class SiteController extends BaseController {
 	*/
 	public function index()
 	{
+
+		$valoanNews = Helpers::get_news();
+
 		$params = Input::except('_token');
 	
 		$results = $this->calculate();
 
-		$this->layout->content = View::make('site/index', compact('params', 'results'));
+		$this->layout->content = View::make('site/index', compact('params', 'results', 'valoanNews'));
+
 	}
 
 	public function getRates() {
