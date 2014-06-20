@@ -168,6 +168,7 @@ input[type="checkbox"], input[type="radio"] {
 		}
 	}
 }
+/*
 .styled-select {
 	border:none;
 	border-radius:2px;
@@ -188,18 +189,56 @@ input[type="checkbox"], input[type="radio"] {
 			outline: none;
 		}
 	}
+}*/
+.styled-select {
+    display: inline-block;
+    position: relative;
+	width:94%;
+    select {
+        background: white;
+        border:0;
+        border-radius:2px;
+        -moz-border-radius:2px;
+        -webkit-border-radius:2px;
+        box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+        color:#333;
+        display: inline-block;
+        font: inherit;
+        line-height: 1.2;
+        margin: 0;
+        min-height:26px;
+        padding: 4px 3px 3px 5px;
+        outline:none; /* remove focus ring from Webkit */
+    	width:100%;
+    }
+    /* Select arrow styling */
+    &:after {
+        background: white;
+        border-left:1px #ccc solid;
+        border-radius:0 2px 2px 0;
+        -moz-border-radius:0 2px 2px 0;
+        -webkit-border-radius:0 2px 2px 0;
+        bottom: 0;
+        color: grey;
+        content: "▼";
+        line-height: 30px;
+        padding: 0 7px;
+        pointer-events:none;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
 }
 .col-p {
 	.col-select {
 		float: left;
 		padding-left:15px;
-		padding-right:15px;
 		width:50%;
+		margin-top:2px;
 	}
 	.col-text {
 		float: left;
-		padding-left:5px;
-		padding-right:0;
 		width:43%;
 	}
 
@@ -256,10 +295,12 @@ input[type="checkbox"], input[type="radio"] {
 				.form-45 {
 					@extend .form-94;
 					width:45%;
+					min-height:26px;
 				}
 				.form-88 {
 					@extend .form-94;
 					width:88%;
+					min-height:26px;
 				}
 				.form-120 {
 					@extend .form-94;
@@ -397,6 +438,7 @@ a, a:hover, a:focus {
 	-webkit-border-radius:5px 0 0 5px;
 	font-size: 1.4em;
 	float:left;
+	height:38px;
 	padding:4px 0 4px 25px;
 }
 .btn-show-lender-img {
@@ -455,7 +497,6 @@ a, a:hover, a:focus {
 		border:none;
 		box-shadow: 0 -1px 0 rgba(0,0,0,0.3);
 		height:27px;
-		margin-top:3px;
 		width:100%;
 	}
 	input[type="checkbox"], input[type="radio"] {
@@ -517,6 +558,7 @@ a, a:hover, a:focus {
 		}
 	}
 }
+/*
 @-moz-document url-prefix() {
 	.styled-select {
 		overflow: hidden;
@@ -546,6 +588,7 @@ a, a:hover, a:focus {
 		}
 	}
 }
+*/
 @media screen and (max-width: 767px) {
 	.nav-container {
 		clear:both;
@@ -562,12 +605,10 @@ a, a:hover, a:focus {
 			padding:10px 0;
 		}
 	}
+	#content {
+		padding:10px 20px;
+	}
 	#content .content .list-form ul li:first-child {
 		margin:0;
-	}
-	.col-p {
-		.col-select {
-			padding-right:35px;
-		}
 	}
 }

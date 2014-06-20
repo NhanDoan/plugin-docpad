@@ -52,7 +52,7 @@
                 '1' => 'Single Family',
                 '2' => 'Multi-unit',
                 '3' => 'Condo'
-              ], (isset($params['propertyType'])) ? $params['propertyType'] : 1, ['class' => 'form-94']) 
+              ], (isset($params['propertyType'])) ? $params['propertyType'] : 1) 
             }}
           </div>
         </div>
@@ -60,8 +60,7 @@
           <div class="clearfix"><strong>Loan Amount</strong></div>
           <div class="styled-select">
             {{ Form::select('loanAmount', $loanAmount, 
-              (isset($params['loanAmount'])) ? $params['loanAmount'] : 200000, 
-              ['class' => 'form-94'])
+              (isset($params['loanAmount'])) ? $params['loanAmount'] : 200000)
             }}
           </div>
         </div>
@@ -77,12 +76,12 @@
                   '10' => '10%',
                   '15' => '15%',
                   '20' => '20%'
-                  ], isset($params['downPayment']) ? $params['downPayment'] : 0, ['class' => 'form-120'])
+                  ], isset($params['downPayment']) ? $params['downPayment'] : 0)
                 }}
               </div>
             </div>
             <div class="col-text">
-              {{ Form::text('downPaymentAmount', null, ['placeholder' => '$', 'class' => 'form-45']) }}
+              {{ Form::text('downPaymentAmount', null, ['placeholder' => '$', 'class' => 'form-88']) }}
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
               '2' => '30 Year Fixed',
               '3' => '3/1 ARM',
               '4' => '5/1 ARM'
-              ], (isset($params['loanProduct'])) ? $params['loanProduct'] : 2, ['class' => 'form-94'])
+              ], (isset($params['loanProduct'])) ? $params['loanProduct'] : 2)
             }}
           </div>
         </div>
@@ -109,7 +108,7 @@
                 '3' => '660 - 679 (fair)',
                 '8' => '640 - 659 (fair)',
                 '4' => '620 - 639 (low)'
-              ], (isset($params['creditRating'])) ? $params['creditRating'] : 5, ['class' => 'form-94'])
+              ], (isset($params['creditRating'])) ? $params['creditRating'] : 5)
             }}
           </div>
         </div>
@@ -120,7 +119,7 @@
                 '0' => 'Veteran',
                 '1' => 'Active Duty',
                 '2' => 'Reservist'
-              ], (isset($params['veteranType'])) ? $params['veteranType'] : 0, ['class' => 'form-94'])
+              ], (isset($params['veteranType'])) ? $params['veteranType'] : 0)
             }}
           </div>
         </div>
