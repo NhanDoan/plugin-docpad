@@ -113,6 +113,7 @@ module.exports = function (grunt) {
                     src: [
                        'jquery/jquery.min.js',
                        'sass-bootstrap/dist/js/bootstrap.min.js',
+                       'javascripts/jquery.blockUI.js',
                        'javascripts/frontend.js'
                     ]
                 }]

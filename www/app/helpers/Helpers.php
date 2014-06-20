@@ -25,7 +25,6 @@ class Helpers {
         if ( !empty( $params ) ) {
             
             $queryString = Helpers::build_query_string($params);
-
             curl_setopt($ch, CURLOPT_POST, count($params));
             curl_setopt($ch, CURLOPT_POSTFIELDS, $queryString);
         }
@@ -65,7 +64,7 @@ class Helpers {
 
             } // call mortech api the successful
             elseif ( $results['status'] === 0 ) {
-                $results = $results['lenderOffers']['@items'];
+                $results = isset($results['lenderOffers']['@items']) ? $results['lenderOffers']['@items'] : array();
             } // call mortech api fail 
             elseif ( $results['status'] === '-1') {
                 $results = $results['errorMsg'];
@@ -89,7 +88,7 @@ class Helpers {
         $apiUrl = Config::get('mortechapi.url');
         $apiParams = Config::get('mortechapi.params');
 
-        if ( !empty($params = array_filter( $params )) ) {
+        if ( !empty($params = array_diff( $params, array('', ' ', null, false) )) ) {
 
             $apiParams = array_merge($apiParams, $params);
         }
@@ -130,5 +129,14 @@ class Helpers {
 
         return implode( '&', $query_array );
 
+    }
+
+    /**
+     * convert number to money
+     * @param  int $value 
+     * @return string
+     */
+    public static function money($value) {
+        return '$' . number_format( $value, 0, '', ',' ); 
     }
 }

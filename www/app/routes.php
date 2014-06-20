@@ -11,7 +11,11 @@
 |
 */
 
-Route::get('/', 'SiteController@index');
+Route::get('/', array('uses' => 'SiteController@index'));
+Route::post('getRates', array('uses' => 'SiteController@getRates', 'as' => 'getRates'));
+
+Route::get('checkzip/{zipcode}', 'SiteController@validateZip');
+
 
 // Route::get('/', function()
 // {

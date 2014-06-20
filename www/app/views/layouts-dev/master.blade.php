@@ -26,12 +26,10 @@
                 <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sem mauris, eleifend in consectetur id, ornare <br/>vitae turpis. Pellentesque viverra gravida velit, eu vulputate risus scelerisque id.      </div>
                 <div class="content">
                     <div class="row m-t-lg">
-                        <form action="" id="getRates" method="post" name="getRates">
-                            <div class="col-md-3">
-                                <!-- include sidebar -->
-                                @include('site.partials._sidebar')
-                            </div>
-                        </form>
+                        <div class="col-md-3">
+                            @yield('sidebar')
+                            
+                        </div>
                         <div class="col-md-9">
                             @yield('content')
                         </div>
@@ -52,6 +50,7 @@
     <!-- build:js assets/javascripts/frontend.js -->
         <script src="../../assets/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="../../assets/sass-bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../../assets/javascripts/jquery.blockUI.js"></script>
         <script src="../../assets/javascripts/frontend.js"></script>
     <!-- endbuild -->
 </html>
