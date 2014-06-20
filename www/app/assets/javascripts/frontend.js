@@ -27,6 +27,7 @@ var Sidebar = {
         var _value = $(this).html();
         $(this).remove();
         $('input.zipCode').removeClass('hidden').val(_value);
+        $('input.zipCode').focus();
 
     });
 
