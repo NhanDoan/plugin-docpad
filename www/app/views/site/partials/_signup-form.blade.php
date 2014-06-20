@@ -72,7 +72,9 @@
               <label for="state">State</label>
             </div>
             <div class="clearfix">
-              {{ Form::select('state', ['NY', 'CA'], null, ['id' => 'state']) }}
+              <div class="styled-select">
+                {{ Form::select('state', ['NY', 'CA'], null, ['id' => 'state']) }}
+              </div>
             </div>
           </div>
           <div class="col-md-3">

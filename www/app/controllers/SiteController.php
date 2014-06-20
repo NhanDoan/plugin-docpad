@@ -46,7 +46,7 @@ class SiteController extends BaseController {
 		$params = ($stateAbbr !== '-1' ) ? array_merge( $params, array('stateAbbr' => $stateAbbr) ) : $params;
 
 		if ( isset($params['mortgageType']) ) {
-			if ( $params['mortgageType'] == 1 ) {
+			if ( $params['mortgageType'] == 'purchase' ) {
 				$params['propertyValue'] = 200000;
 
 				if (isset($params['loanAmount']))
@@ -54,8 +54,8 @@ class SiteController extends BaseController {
 
 			} else {
 				
-				$params['currentMortgageBalance'] = $params['loanAmount'];
-				$params['propertyValue'] = $params['loanAmount'];
+				$params['currentMortgageBalance'] = $params['propertyValue'] = $params['loanAmount'];
+				// $params['propertyValue'] = $params['loanAmount'];
 				unset($params['loanAmount']);
 
 				if ($params['cash'] == 1)

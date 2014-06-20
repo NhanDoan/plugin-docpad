@@ -7,7 +7,7 @@ var Sidebar = {
 	purposeChange: function() {
 		$('input[name="mortgageType"]').change(function() {
 
-			if ($(this).val() == 1) {
+			if ($(this).val() == 'purchase') {
 				$('#refinance').hide();
 				$('.purchase').show();
 			} else {
@@ -57,7 +57,8 @@ var Contact = {
 		$('#contactForm').on('click', '.btn-get-rates', function() {
 
 			$('.show-lender, .news').addClass('hide-important');
-			$('.request-quote-container, .rates-check').show();
+			$('.request-quote-container').show();
+			$('.rates-check').addClass('display-block');
 			$('#contactForm').modal('hide');
 		});
 	}
