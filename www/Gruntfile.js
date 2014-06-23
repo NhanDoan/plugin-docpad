@@ -113,7 +113,6 @@ module.exports = function (grunt) {
                     src: [
                        'jquery/jquery.min.js',
                        'sass-bootstrap/dist/js/bootstrap.min.js',
-                       'javascripts/jquery.blockUI.js',
                        'javascripts/frontend.js'
                     ]
                 }]
@@ -137,8 +136,8 @@ module.exports = function (grunt) {
                     cwd: '<%= options.assets %>',
                     dest: '<%= options.dist_assets %>',
                     src: [
-                        '{,*/}*.{ico,png,txt}',
-                        'images/{,*/}*.{ico,png,txt}'
+                        '{,*/}*.{ico,png,txt,gif}',
+                        'images/{,*/}*.{ico,png,txt,gif}'
                     ]
                 }]
             },
@@ -300,10 +299,10 @@ module.exports = function (grunt) {
                     livereload: true
                 }
             },
-            tests: {
-                files: ['app/controllers/*.php', 'app/models/*.php'], //the task will run only when you save files in this location
-                tasks: ['phpunit']
-            }
+            // tests: {
+            //     files: ['app/controllers/*.php', 'app/models/*.php'], //the task will run only when you save files in this location
+            //     tasks: ['phpunit']
+            // }
         }
 
     });

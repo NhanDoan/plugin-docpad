@@ -38,7 +38,7 @@ var Sidebar = {
     $('.form-header').on('click', 'span', function() {
         var _value = $(this).html();
         $(this).remove();
-        $('input.zipCode').removeClass('hidden').val(_value);
+        $('input.zipCode').removeClass('hidden error-zipCode').val(_value);
         $('input.zipCode').focus();
 
     });
@@ -46,27 +46,28 @@ var Sidebar = {
     $('.form-header').on('blur', 'input.zipCode', function () {
       var _valInput = ($(this).val()),
         _this = $(this);
-      $.ajax({
-        url:  '/checkzip/' + _valInput,
-        type: 'get',
-        cache: false,
-        dataType: 'json',
-        beforeSend: function() {
-        },
-        success: function(data) {
-          if (data.message === "" ) {
-            
-            _this.parent().append($('<span />').html(_valInput));
-            _this.addClass('hidden');
-            } else {
+          $.ajax({
+            url:  '/checkzip/' + _valInput,
+            type: 'get',
+            cache: false,
+            dataType: 'json',
+            beforeSend: function() {
+            },
+            success: function(data) {
+              console.log(data);
+              if (data.message === "" ) {
+                
+                _this.parent().append($('<span />').html(_valInput));
+                _this.addClass('hidden');
+                } else {
 
-              _this.addClass('error-zipCode');
+                  _this.addClass('error-zipCode');
+                }
+              },
+            error: function(xhr, textStatus, thrownError) {
+                _this.addClass('error-zipCode');
             }
-          },
-        error: function(xhr, textStatus, thrownError) {
-          alert('Something went to wrong.Please Try again later...');
-        }
-      });
+          });
     });
   },
 
@@ -98,21 +99,16 @@ var Sidebar = {
 				url: form.attr('action'),
 				data: form.serialize(),
 				beforeSend: function() {
-					$.blockUI({ css: {
-            border: 'none',
-            padding: '15px',
-            backgroundColor: '#000',
-            '-webkit-border-radius': '10px',
-            '-moz-border-radius': '10px',
-            opacity: 0.5,
-            color: '#fff'
-        } });
-				},
+					$('div.btn-get-rates').addClass('indicator');
+          $('section.list-form').addClass('indicator-hidden');
+        },
 				
 				success: function(data) {
-					$.unblockUI();
-					$('.list-form').empty().html(data);
-					$('.news').removeClass('hide');
+					
+          $('div.btn-get-rates').removeClass('indicator');
+          $('section.list-form').removeClass('indicator-hidden');
+          $('.list-form').empty().html(data);
+          $('.news').removeClass('hide');
 					Lender.btnRequest();
 				},
 				error: function() {
