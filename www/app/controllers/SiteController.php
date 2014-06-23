@@ -58,11 +58,11 @@ class SiteController extends BaseController {
 
 			} else {
 				
-				$params['currentMortgageBalance'] = $params['propertyValue'] = $params['loanAmount'];
+				$params['currentMortgageBalance'] = $params['propertyValue'] = 200000;
 				// $params['propertyValue'] = $params['loanAmount'];
 				unset($params['loanAmount']);
 
-				if ($params['cash'] == 1)
+				if (isset($params['cash']) && $params['cash'] == 1)
 					$params['mortgageType'] = 4;
 			}
 		} // if user not select 'Loan Purpose' radio set default value

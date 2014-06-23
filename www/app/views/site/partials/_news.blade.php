@@ -47,7 +47,7 @@
           
           <div class="rss-container-content">
             <div class="link-more">
-              {{ HTML::link('http://www.stripes.com/news/veterans', 'More in Veteran News', array('target' => '_blank')) }}
+              {{ HTML::link('http://www.stripes.com/news/veterans', 'More in Veteran News >', array('target' => '_blank')) }}
             </div>
           </div>
         </div>

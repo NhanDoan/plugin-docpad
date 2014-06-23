@@ -4,23 +4,35 @@ var Sidebar = {
 		Sidebar.getRates();
     Sidebar.getZipCode();
     Sidebar.getDownPayment();
+    Sidebar.handlePurpose(Sidebar.urlParam('mortgageType'));
 	},
+
+  urlParam: function(name) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    
+    return (results === null) ? null : (results[1] || 0);
+  },
+
   calDownPayment : function (loanAmount, percent) {
       return loanAmount*(percent/100);
   },
+
 	purposeChange: function() {
 		$('input[name="mortgageType"]').change(function() {
-
-			if ($(this).val() == 'purchase') {
-				$('#refinance').hide();
-				$('.purchase').show();
-			} else {
-				$('#refinance').show();
-				$('.purchase').hide();
-			}
+      Sidebar.handlePurpose($(this).val());
 		});
 	},
-  
+
+  handlePurpose: function(purpose) {
+    if (purpose == 'refinance') {
+      $('#refinance').show();
+      $('.purchase').hide();
+    } else {
+      $('#refinance').hide();
+      $('.purchase').show();
+    }
+  },
+
   getZipCode:function (argument) {
     // using for action click text zip code
     $('.form-header').on('click', 'span', function() {
@@ -100,7 +112,7 @@ var Sidebar = {
 				success: function(data) {
 					$.unblockUI();
 					$('.list-form').empty().html(data);
-					$('.news').removeClass('hide-important');
+					$('.news').removeClass('hide');
 					Lender.btnRequest();
 				},
 				error: function() {
@@ -116,7 +128,7 @@ var Contact = {
 	btnSubmit: function() {
 		$('#contactForm').on('click', '.btn-get-rates', function() {
 
-			$('.show-lender, .news').addClass('hide-important');
+			$('.show-lender, .news').addClass('hide');
 			$('.request-quote-container').show();
 			$('.rates-check').addClass('display-block');
 			$('#contactForm').modal('hide');
@@ -127,16 +139,16 @@ var Contact = {
 var Lender = {
 	btnRequest: function() {
 		$('.request-quote-container').on('click', '.btn-request-quote', function() {
-			$('.show-lender').removeClass('hide-important');
-			$('.request-quote-container, .rates-check').addClass('hide-important');
+			$('.show-lender').removeClass('hide');
+			$('.request-quote-container, .rates-check').addClass('hide');
 		});
 	}
 };
 
 $(function() {
 	$('#thankyouForm').on('hidden.bs.modal', function (e) {
-		$('.show-lender, .news').addClass('hide-important');
-		$('.request-quote-container, .rates-check').removeClass('hide-important');
+		$('.show-lender, .news').addClass('hide');
+		$('.request-quote-container, .rates-check').removeClass('hide');
 	});
 
 	Sidebar.init();
