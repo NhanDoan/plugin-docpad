@@ -20,6 +20,9 @@ class SiteController extends BaseController {
 		$valoanNews = Helpers::get_news();
 
 		$params = Input::except('_token');
+
+		if (!isset($params['zipcode']))
+			$params['zipCode'] = '10014';
 	
 		$results = $this->calculate();
 
@@ -43,7 +46,7 @@ class SiteController extends BaseController {
 	public function calculate() {
 		
 		$params = Input::except('zipCode', '_token');
-		$zipCode = '94107';//Input::get('zipCode');
+		$zipCode = Input::get('zipCode', '10014');
 
 		$stateAbbr = Helpers::geocode_execute($zipCode);
 
@@ -69,7 +72,7 @@ class SiteController extends BaseController {
 		else {
 			// $params['loanAmount'] = $params['propertyValue'] = 200000;
 			$params['propertyType'] = 1; // Single Family
-			$params['propertyValue'] = 200000; 
+			$params['propertyValue'] = 200000;
 			$params['loanProduct'] = 2; // 30 year Fixed
 			$params['creditRating'] = 5; // excellent (740-850)
 			$params['veteranType'] = 0; // veteran
