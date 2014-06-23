@@ -50,4 +50,8 @@
         <script type="text/javascript" src="../../assets/sass-bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="../../assets/javascripts/frontend.js"></script>
     <!-- endbuild -->
+    <script type="text/javascript">
+        var baseUrl = '<?php echo Request::root() ?>';
+        new VALOAN.Home().init({baseUrl: baseUrl});
+    </script>
 </html>

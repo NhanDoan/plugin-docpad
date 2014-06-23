@@ -1,153 +1,209 @@
-var Sidebar = {
-	init: function() {
-		Sidebar.purposeChange();
-		Sidebar.getRates();
-    Sidebar.getZipCode();
-    Sidebar.getDownPayment();
-    Sidebar.handlePurpose(Sidebar.urlParam('mortgageType'));
-	},
+(function(VALOAN, $) {
+    'use strict;';
+    VALOAN.Home = function() {
+        var sefl = this,
+            
+            // define private functions
+            urlParam = function(name) {
 
-  urlParam: function(name) {
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    
-    return (results === null) ? null : (results[1] || 0);
-  },
-
-  calDownPayment : function (loanAmount, percent) {
-      return loanAmount*(percent/100);
-  },
-
-	purposeChange: function() {
-		$('input[name="mortgageType"]').change(function() {
-      Sidebar.handlePurpose($(this).val());
-		});
-	},
-
-  handlePurpose: function(purpose) {
-    if (purpose == 'refinance') {
-      $('#refinance').show();
-      $('.purchase').hide();
-    } else {
-      $('#refinance').hide();
-      $('.purchase').show();
-    }
-  },
-
-  getZipCode:function (argument) {
-    // using for action click text zip code
-    $('.form-header').on('click', 'span', function() {
-        var _value = $(this).html();
-        $(this).remove();
-        $('input.zipCode').removeClass('hidden error-zipCode').val(_value);
-        $('input.zipCode').focus();
-
-    });
-
-    $('.form-header').on('blur', 'input.zipCode', function () {
-      var _valInput = ($(this).val()),
-        _this = $(this);
-          $.ajax({
-            url:  '/checkzip/' + _valInput,
-            type: 'get',
-            cache: false,
-            dataType: 'json',
-            beforeSend: function() {
+              var href = window.location.href,
+                  results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(href);
+              
+              return (results === null) ? null : (results[1] || 0);
             },
-            success: function(data) {
-              console.log(data);
-              if (data.message === "" ) {
-                
-                _this.parent().append($('<span />').html(_valInput));
-                _this.addClass('hidden');
-                } else {
+            calDownPayment = function(loanAmount, percent) {
 
-                  _this.addClass('error-zipCode');
+              return loanAmount*(percent/100);
+            },
+            purposeChange = function(sideBar) {
+              var mortgageType = sideBar.find('input[name="mortgageType"]');
+             
+              // bind change event for purpose     
+              mortgageType.bind(
+                'change',
+                function() {
+                  displayPurchase(sideBar, $(this).val());
                 }
-              },
-            error: function(xhr, textStatus, thrownError) {
-                _this.addClass('error-zipCode');
-            }
-          });
-    });
-  },
+              );
+            },
+            displayPurchase = function(sideBar, purpose) {
+              var refinancePanel  = sideBar.find('#refinance'),
+                  purchasePanel   = sideBar.find('.purchase');
 
-  getDownPayment: function (argument) {
-    // calculation value Down Payment
-    $('select[name="loanAmount"]').change(function () {
-        var _valueLoanAmount = $(this).val(),
-            _valDownPayment = $('select[name="downPayment"]').val(),
+              if (purpose == 'refinance') {
+                refinancePanel.show();
+                purchasePanel.hide();
+              } else {
+                refinancePanel.hide();
+                purchasePanel.show();
+              }
+            },
+            getZipCode = function(sideBar, baseUrl) {
 
-            _downPaymentAmount = Sidebar.calDownPayment(_valueLoanAmount, _valDownPayment);
-        $('input[name="downPaymentAmount"]').val('$' + _downPaymentAmount);
-    });
+              var spanZipCode = sideBar.find('.form-header span'),
+                  txtZipCode  = sideBar.find('input.zipCode');
 
-    $('select[name="downPayment"]').change(function () {
-        var _valDownPayment = $(this).val(),
-            _valueLoanAmount = $('select[name="loanAmount"]').val();
-        
-            _downPaymentAmount = Sidebar.calDownPayment(_valueLoanAmount, _valDownPayment);
-        $('input[name="downPaymentAmount"]').val('$' + _downPaymentAmount);
-    });
-  },
+              // using for action click text zip code
+              spanZipCode.bind(
+                'click',
+                function() {
+                  var th    = $(this),
+                      value = th.html();
 
-	getRates: function() {
-		$('#formNav').on('click', '.btn-get-rates', function() {
-			var form = $(this).closest('form');
+                  th.remove();
+                  txtZipCode
+                    .focus()
+                    .removeClass('hidden error-zipCode')
+                    .val(value);
+                }
+              );
 
-			$.ajax({
-				type: 'POST',
-				url: form.attr('action'),
-				data: form.serialize(),
-				beforeSend: function() {
-					$('div.btn-get-rates').addClass('indicator');
-          $('section.list-form').addClass('indicator-hidden');
-        },
-				
-				success: function(data) {
-					
-          $('div.btn-get-rates').removeClass('indicator');
-          $('section.list-form').removeClass('indicator-hidden');
-          $('.list-form').empty().html(data);
-          $('.news').removeClass('hide');
-					Lender.btnRequest();
-				},
-				error: function() {
+              txtZipCode.bind(
+                'blur',
+                function() {
+                  var th      = $(this),
+                      zipcode = th.val();
 
-				}
-			});
-			
-		});
-	}
-};
+                  $.ajax({
+                    url:  baseUrl + '/checkzip/' + zipcode,
+                    type: 'get',
+                    cache: false,
+                    dataType: 'json',
+                    beforeSend: function() {
+                    },
+                    success: function(data) {
 
-var Contact = {
-	btnSubmit: function() {
-		$('#contactForm').on('click', '.btn-get-rates', function() {
+                      if (data.message === "" ) {
+                        
+                        th.parent().append($('<span />').html(zipcode));
+                        th.addClass('hidden');
+                      } else
+                        th.addClass('error-zipCode');
+                    },
+                    error: function(xhr, textStatus, thrownError) {
+                        th.addClass('error-zipCode');
+                    }
+                  });
+                }
+              );
+            },
+            getDownPayment = function(sideBar) {
+              var loanAmount  = sideBar.find('select[name="loanAmount"]'),
+                  downPayment = sideBar.find('select[name="downPayment"]');
 
-			$('.show-lender, .news').addClass('hide');
-			$('.request-quote-container').show();
-			$('.rates-check').addClass('display-block');
-			$('#contactForm').modal('hide');
-		});
-	}
-};
+              // calculation value Down Payment
+              loanAmount.bind(
+                'change',
+                function () {
+                  var valueLoanAmount   = $(this).val(),
+                      valDownPayment    = downPayment.val(),
+                      downPaymentAmount = calDownPayment(valueLoanAmount, valDownPayment);
 
-var Lender = {
-	btnRequest: function() {
-		$('.request-quote-container').on('click', '.btn-request-quote', function() {
-			$('.show-lender').removeClass('hide');
-			$('.request-quote-container, .rates-check').addClass('hide');
-		});
-	}
-};
+                  setDownPayment(sideBar, downPaymentAmount);
+                }
+              );
 
-$(function() {
-	$('#thankyouForm').on('hidden.bs.modal', function (e) {
-		$('.show-lender, .news').addClass('hide');
-		$('.request-quote-container, .rates-check').removeClass('hide');
-	});
+              downPayment.bind(
+                'change',
+                function () {
+                  var valDownPayment    = $(this).val(),
+                      valueLoanAmount   = loanAmount.val(),
+                      downPaymentAmount = calDownPayment(valueLoanAmount, valDownPayment);
 
-	Sidebar.init();
-	Contact.btnSubmit();
-	Lender.btnRequest();
-});
+                  setDownPayment(sideBar, downPaymentAmount);
+                });
+            },
+            setDownPayment = function(sideBar, val) {
+              sideBar.find('input[name="downPaymentAmount"]').val('$' + val);
+            },
+            getRates = function(content) {
+              var btnGetRates     = content.find('.btn-get-rates'),
+                  lenderList      = content.find('.list-form'),
+                  form            = btnGetRates.closest('form'),
+                  newsList        = content.find('.news'),
+                  indicatorClass  = 'indicator',
+                  hiddenIndClass  = 'indicator-hidden';
+
+              btnGetRates.bind(
+                'click',
+                function() {
+                  $.ajax({
+                    type: 'POST',
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    beforeSend: function() {
+                      btnGetRates.addClass(indicatorClass);
+                      lenderList.addClass(hiddenIndClass);
+                    },
+                    
+                    success: function(data) {
+                      
+                      btnGetRates.removeClass(indicatorClass);
+                      lenderList.removeClass(hiddenIndClass).empty().html(data);
+                      newsList.removeClass('hide');
+                      requestLender();
+                    },
+                    error: function() {
+
+                    }
+                  });
+                }
+              );
+            },
+            contact = function(content) {
+              var contacForm  = $('body').find('#contactForm'),
+                  btnSubmit   = contacForm.find('.btn-get-rates');
+
+              btnSubmit.bind(
+                'click',
+                function() {
+                  content.find('.show-lender, .news').addClass('hide');
+                  content.find('.request-quote-container').show();
+                  content.find('.rates-check').addClass('display-block');
+                  contacForm.modal('hide');
+                }
+              );
+            },
+            requestLender = function() {
+              var lenderList = $('.list-form'),
+                  btnRequest = lenderList.find('.btn-request-quote');
+
+              btnRequest.bind(
+                'click',
+                function() {
+                  lenderList.find('.show-lender').removeClass('hide');
+                  lenderList.find('.request-quote-container, .rates-check').addClass('hide');
+                }
+              );
+              
+            },
+            requestQuoteFormHidden = function(content) {
+              var requestQuoteForm = $('body').find('#thankyouForm');
+
+              requestQuoteForm.bind(
+                'hidden.bs.modal',
+                function (e) {
+                 content.find('.show-lender, .news').addClass('hide');
+                 content.find('.request-quote-container, .rates-check').removeClass('hide');
+               }
+              );
+            };
+
+        // define public functions
+        sefl.init = function(options) {
+            var sideBar = $('#formNav'),
+                content = $('#content');
+
+            purposeChange(sideBar);
+            getRates(content);
+            requestLender();
+            getZipCode(sideBar, options.baseUrl);
+            contact(content);
+            getDownPayment(sideBar);
+            displayPurchase(sideBar, urlParam('mortgageType'));
+            requestQuoteFormHidden(content);
+        };
+    };
+
+
+})(window.VALOAN = window.VALOAN || {}, jQuery);
