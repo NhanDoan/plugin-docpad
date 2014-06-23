@@ -250,8 +250,9 @@ input[type="checkbox"], input[type="radio"] {
 				}
 			}
 			.error-zipCode {
-				border-color: #A94442;
-				box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+				border: 1px solid #a94442!important;
+			    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #a94442 !important;
+         		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #a94442 !important;
 			}
 			.zipCode {
                 width: 30%;
@@ -390,6 +391,16 @@ input[type="checkbox"], input[type="radio"] {
 			}
 		}
 	}
+}
+.indicator {
+ background-image: url(../images/indicator.gif);
+ background-repeat: no-repeat;
+ background-position: 95% center;
+}
+
+.indicator-hidden {
+ opacity: 0.2;
+ filter: alpha(opacity=20); /* For IE8 and earlier */
 }
 .btn-get-rates {
 	background-color: #0f3d6e;

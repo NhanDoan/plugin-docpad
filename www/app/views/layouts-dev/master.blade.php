@@ -48,7 +48,6 @@
     <!-- build:js assets/javascripts/frontend.js -->
         <script src="../../assets/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="../../assets/sass-bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../../assets/javascripts/jquery.blockUI.js"></script>
         <script src="../../assets/javascripts/frontend.js"></script>
     <!-- endbuild -->
 </html>
