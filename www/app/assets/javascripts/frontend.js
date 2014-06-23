@@ -26,11 +26,12 @@
                 }
               );
             },
+
             displayPurchase = function(sideBar, purpose) {
               var refinancePanel  = sideBar.find('#refinance'),
                   purchasePanel   = sideBar.find('.purchase');
 
-              if (purpose == 'refinance') {
+              if (purpose == 'refinance' ) {
                 refinancePanel.show();
                 purchasePanel.hide();
               } else {
@@ -38,7 +39,8 @@
                 purchasePanel.show();
               }
             },
-            getZipCode = function(sideBar, baseUrl) {
+
+            getZipCode = function(sideBar) {
 
               var spanZipCode = sideBar.find('.form-header span'),
                   txtZipCode  = sideBar.find('input.zipCode');
@@ -50,11 +52,11 @@
                   var th    = $(this),
                       value = th.html();
 
-                  th.remove();
+                  th.addClass('hidden');
                   txtZipCode
-                    .focus()
-                    .removeClass('hidden error-zipCode')
-                    .val(value);
+                    .removeClass('hidden')
+                    .val(value)
+                    .focus();
                 }
               );
 
@@ -63,29 +65,46 @@
                 function() {
                   var th      = $(this),
                       zipcode = th.val();
-
-                  $.ajax({
-                    url:  baseUrl + '/checkzip/' + zipcode,
-                    type: 'get',
-                    cache: false,
-                    dataType: 'json',
-                    beforeSend: function() {
-                    },
-                    success: function(data) {
-
-                      if (data.message === "" ) {
-                        
-                        th.parent().append($('<span />').html(zipcode));
-                        th.addClass('hidden');
-                      } else
-                        th.addClass('error-zipCode');
-                    },
-                    error: function(xhr, textStatus, thrownError) {
-                        th.addClass('error-zipCode');
-                    }
-                  });
+                  th.parent().find('span').html(zipcode).removeClass('hidden');
+                  th.addClass('hidden');
                 }
               );
+            },
+
+            checkZipCode = function(form) {
+              var zipCode = form.find('input[name="zipCode"]'),
+                  valZipCode = zipCode.val();
+
+              if (valZipCode.length < 5 || isNaN(valZipCode)) {
+                zipCode
+                  .removeClass('hidden')
+                  .addClass('error-zipCode')
+                  .val(valZipCode);
+                form.find('.form-header span')
+                  .addClass('hidden');
+                return false;
+              } else {
+                zipCode
+                  .addClass('hidden')
+                  .removeClass('error-zipCode');
+                form.find('.form-header span')
+                  .removeClass('hidden')
+                  .html(valZipCode);
+                return true;
+              }
+            },
+
+            getCashOut = function () {
+              var _this = $('input[name="additionalCashOutAmount"]');
+
+              if ($('input#cash-out').is(':checked')) {
+                _this.attr('disabled', false);
+                _this.bind('keyup', function (argument) {
+                      this.value = this.value.replace(/[^(0*),^0-9\.]/g,'');
+                  });
+              } else {
+                _this.attr('disabled', true);
+              }
             },
             getDownPayment = function(sideBar) {
               var loanAmount  = sideBar.find('select[name="loanAmount"]'),
@@ -122,31 +141,34 @@
                   form            = btnGetRates.closest('form'),
                   newsList        = content.find('.news'),
                   indicatorClass  = 'indicator',
-                  hiddenIndClass  = 'indicator-hidden';
+                  hiddenIndClass  = 'indicator-hidden',
+                  zipCode         = form.find('input[name="zipCode"]').val(),
+                  isError         = false;
 
               btnGetRates.bind(
                 'click',
                 function() {
-                  $.ajax({
-                    type: 'POST',
-                    url: form.attr('action'),
-                    data: form.serialize(),
-                    beforeSend: function() {
-                      btnGetRates.addClass(indicatorClass);
-                      lenderList.addClass(hiddenIndClass);
-                    },
-                    
-                    success: function(data) {
-                      
-                      btnGetRates.removeClass(indicatorClass);
-                      lenderList.removeClass(hiddenIndClass).empty().html(data);
-                      newsList.removeClass('hide');
-                      requestLender();
-                    },
-                    error: function() {
-
-                    }
-                  });
+                var _checkZipCode = checkZipCode(form);
+                  if (_checkZipCode ) {
+                    $.ajax({
+                      type: 'POST',
+                      url: form.attr('action'),
+                      data: form.serialize(),
+                      beforeSend: function() {
+                        btnGetRates.addClass(indicatorClass);
+                        lenderList.addClass(hiddenIndClass);
+                      },
+                      success: function(data) {
+                        
+                        btnGetRates.removeClass(indicatorClass);
+                        lenderList.removeClass(hiddenIndClass).empty().html(data);
+                        newsList.removeClass('hide');
+                        requestLender();
+                      },
+                      error: function() {
+                      }
+                    });
+                  }
                 }
               );
             },
@@ -193,11 +215,11 @@
         sefl.init = function(options) {
             var sideBar = $('#formNav'),
                 content = $('#content');
-
+            getCashOut();
             purposeChange(sideBar);
             getRates(content);
             requestLender();
-            getZipCode(sideBar, options.baseUrl);
+            getZipCode(sideBar);
             contact(content);
             getDownPayment(sideBar);
             displayPurchase(sideBar, urlParam('mortgageType'));
