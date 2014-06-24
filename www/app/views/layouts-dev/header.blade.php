@@ -17,9 +17,9 @@
       <nav id="primaryNav" class="navbar-collapse collapse bs-navbar-collapse">
 
         <ul class="nav">
-          <li>{{ HTML::link('"javascript: void(0)"', 'Home') }}</li>
-          <li>{{ HTML::link('"javascript: void(0)"', 'Free VA Loan Book') }}</li>
-          <li>{{ HTML::link('"javascript: void(0)"', 'Learning Center') }}</li>
+          <li><a href="javascript: void(0)">Home</a></li>
+          <li><a href="javascript: void(0)">Free VA Loan Book</a></li>
+          <li><a href="javascript: void(0)">Learning Center</a></li>
         </ul>
       </nav>
     </div>
