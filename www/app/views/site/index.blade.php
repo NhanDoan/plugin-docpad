@@ -11,8 +11,8 @@
 @stop
 
 
-@section('news')
-	@include('site.partials._news', array('valoanNews' => $valoanNews))
+@section('veteranNews')
+	@include('site.partials._news', array('veteranNews' => $veteranNews))
 @stop
 
 @section('modal')

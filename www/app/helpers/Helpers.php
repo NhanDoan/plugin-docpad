@@ -171,4 +171,19 @@ class Helpers {
         return $newstr . $more;
 
     }
+
+
+    /**
+    * Used connection named 'wpe' to connect to wordpress engine
+    * for getting 3 of new feeds
+    * TODO: should be caching here.
+    */
+    public static function getValoanNews() {
+        $newPosts = DB::connection('wpe')
+        ->select('SELECT p.post_title, p.post_content, p.guid, p.post_modified, u.display_name FROM wp_posts AS p
+                    LEFT JOIN wp_users AS u ON p.post_author = u.ID
+                    WHERE post_status = "publish"
+                    ORDER BY post_modified DESC LIMIT 3');
+
+    }
 }

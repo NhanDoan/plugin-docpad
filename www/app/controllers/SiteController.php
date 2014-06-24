@@ -17,7 +17,8 @@ class SiteController extends BaseController {
 	public function index()
 	{
 
-		$valoanNews = Helpers::get_news();
+		$veteranNews = Helpers::get_news();
+		$valoanNews = Helpers::getValoanNews();
 
 		$params = Input::except('_token');
 
@@ -26,7 +27,7 @@ class SiteController extends BaseController {
 	
 		$results = $this->calculate();
 
-		$this->layout->content = View::make('site/index', compact('params', 'results', 'valoanNews'));
+		$this->layout->content = View::make('site/index', compact('params', 'results', 'veteranNews', 'valoanNews'));
 
 	}
 

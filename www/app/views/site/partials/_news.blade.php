@@ -32,7 +32,7 @@
       <section class="rss">
         <div class="rss-header">Veteran News</div>
         <div class="rss-body">
-          @foreach( $valoanNews as $news )
+          @foreach( $veteranNews as $news )
             <div class="rss-container-content">
               <div class="title">
                 {{ HTML::link('http://www.stripes.com/' . $news->guid, $news->title, array('target' => '_blank')) }}
