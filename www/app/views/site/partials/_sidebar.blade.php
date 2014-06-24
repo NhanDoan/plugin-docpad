@@ -146,7 +146,7 @@
           </div>
         </div>
         <div class="form-group text-center clearfix">
-          <a href="#">
+          <a href="javascript: void(0)">
             <div class="btn-get-rates">Get Rates</div>
           </a>
         </div>

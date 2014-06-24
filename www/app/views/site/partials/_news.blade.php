@@ -6,13 +6,13 @@
         <div class="rss-body">
           <div class="rss-container-content">
             <div class="title"><a href="javascript: void(0)">The VA Loan Approval Countdown</a></div>
-            <div class="desc">How long does it take to obtain a VA loan approval? That's probably one of the first questions...<a href="#">Read more</a></div>
+            <div class="desc">How long does it take to obtain a VA loan approval? That's probably one of the first questions...<a href="javascript: void(0)">Read more</a></div>
             <div class="by">by Grant Moon, April 30, 2014</div>
           </div>
           <hr/>
           <div class="rss-container-content">
             <div class="title"><a href="javascript: void(0)">The VA 3 Day Rescission Period</a></div>
-            <div class="desc">The VA loan used to buy and finance a property is the best program around for those who qualify and need or want a no money...<a href="#">Read more</a></div>
+            <div class="desc">The VA loan used to buy and finance a property is the best program around for those who qualify and need or want a no money...<a href="javascript: void(0)">Read more</a></div>
             <div class="by">by Grant Moon, April 30, 2014</div>
           </div>
           <hr/>
