@@ -22,21 +22,7 @@
             @include('layouts.header')
 
             <section id="content">
-                <h2>Get Today's Best VA Loan Rates</h2>
-                <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sem mauris, eleifend in consectetur id, ornare <br/>vitae turpis. Pellentesque viverra gravida velit, eu vulputate risus scelerisque id.      </div>
-                <div class="content">
-                    <div class="row m-t-lg">
-                        <div class="col-md-3">
-                            @yield('sidebar')
-                            @include('site.partials._sidebar-image')
-                            
-                        </div>
-                        <div class="col-md-9">
-                            @yield('content')
-                            @yield('news')
-                        </div>
-                    </div>
-                </div>
+                @yield('content')
             </section>
 
             <!-- include footer -->

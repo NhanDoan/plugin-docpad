@@ -148,8 +148,9 @@
               btnGetRates.bind(
                 'click',
                 function() {
-                var _checkZipCode = checkZipCode(form);
-                  if (_checkZipCode ) {
+                  var _checkZipCode = checkZipCode(form);
+
+                  if (_checkZipCode && !btnGetRates.hasClass(indicatorClass)) {
                     $.ajax({
                       type: 'POST',
                       url: form.attr('action'),
@@ -159,7 +160,6 @@
                         lenderList.addClass(hiddenIndClass);
                       },
                       success: function(data) {
-                        
                         btnGetRates.removeClass(indicatorClass);
                         lenderList.removeClass(hiddenIndClass).empty().html(data);
                         newsList.removeClass('hide');
@@ -209,6 +209,24 @@
                  content.find('.request-quote-container, .rates-check').removeClass('hide');
                }
               );
+            },
+            getNews = function(action, section) {
+              var indicatorClass  = 'indicator',
+                  rssHeader = section.prev().find('.pull-right');
+
+              $.ajax({
+                type: 'GET',
+                url: action,
+                beforeSend: function() {
+                  rssHeader.addClass(indicatorClass);
+                },
+                success: function(data) {
+                  section.empty().html(data);
+                  rssHeader.removeClass(indicatorClass);
+                },
+                error: function() {
+                }
+              });
             };
 
         // define public functions
@@ -224,6 +242,9 @@
             getDownPayment(sideBar);
             displayPurchase(sideBar, urlParam('mortgageType'));
             requestQuoteFormHidden(content);
+            getNews(options.baseUrl + '/getValoanNews', $('.valoan-news'));
+            getNews(options.baseUrl + '/getVeteranNews', $('.veteran-news'));
+
         };
     };
 

@@ -16,18 +16,14 @@ class SiteController extends BaseController {
 	*/
 	public function index()
 	{
-
-		$veteranNews = Helpers::get_news();
-		$valoanNews = Helpers::getValoanNews();
-
 		$params = Input::except('_token');
 
-		if (!isset($params['zipcode']))
+		if (!isset($params['zipCode']))
 			$params['zipCode'] = '10014';
 	
 		$results = $this->calculate();
 
-		$this->layout->content = View::make('site/index', compact('params', 'results', 'veteranNews', 'valoanNews'));
+		$this->layout->content = View::make('site/index', compact('params', 'results'));
 
 	}
 
@@ -44,12 +40,12 @@ class SiteController extends BaseController {
 	 * @param  array  $params paramater user enter
 	 * @return array  results
 	 */
-	public function calculate() {
+	private function calculate() {
 		
 		$params = Input::except('zipCode', '_token');
 		$zipCode = Input::get('zipCode', '10014');
 
-		$stateAbbr = Helpers::geocode_execute($zipCode);
+		$stateAbbr = Helpers::geocodeExecute($zipCode);
 
 		$params = ($stateAbbr !== '-1' ) ? array_merge( $params, array('stateAbbr' => $stateAbbr) ) : $params;
 
@@ -87,27 +83,28 @@ class SiteController extends BaseController {
 		unset($params['mortgageType']);
 		unset($params['cash']);
 
-		return Helpers::mortech_execute($params);
+		return Helpers::mortechExecute($params);
 
 	}
 
 	/**
-	 * validate zipcode
-	 * @param  string $zipcode zipcode user enter
-	 * @return json   string json message
+	 * get list news from VA LOAN Captain
+	 * @return none
 	 */
-	public function validateZip($zipCode) {
-		$message = '';
+	public function getValoanNews() {
+		$valoanNews = Helpers::getValoanNews();
 
-        if( !is_numeric($zipCode) || strlen($zipCode) != 5 ) {
+		return View::make('site/partials/_valoan-news', compact('valoanNews'));
+	}
 
-            $message = 'Zipcode Invalid';
-        } else {
+	/**
+	 * get list news from Veteran
+	 * @return none
+	 */
+	public function getVeteranNews() {
+		$veteranNews = Helpers::getVeteranNews();
 
-            $stateAbbr = Helpers::geocode_execute($zipCode);
-            $message = ($stateAbbr == '-1') ? 'Zipcode Invalid' : '' ;
-        }
-        return json_encode(array('message' => $message));
+		return View::make('site/partials/_veteran-news', compact('veteranNews'));
 	}
 
 }
