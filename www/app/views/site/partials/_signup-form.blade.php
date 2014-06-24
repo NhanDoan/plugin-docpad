@@ -94,10 +94,10 @@
         </div>
         <div class="row m-t-lg">
           <div class="col-md-12">
-            <a href="#">
+            <a href="javascript: void(0)">
               <span class="btn-get-rates m-r-lg">Submit</span>
             </a>
-            <a data-dismiss="modal" href="#"><span>Cancel</span></a>
+            <a data-dismiss="modal" href="javascript: void(0)"><span>Cancel</span></a>
           </div>
         </div>
       </div>

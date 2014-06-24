@@ -17,7 +17,7 @@
         </div>
         <div class="row m-t-lg">
           <div class="col-md-12 m-t m-r-lg">
-            <a data-dismiss="modal" href="#"><span class="btn-get-rates">Close</span></a>
+            <a data-dismiss="modal" href="javascript: void(0)"><span class="btn-get-rates">Close</span></a>
           </div>
         </div>
       </div>
