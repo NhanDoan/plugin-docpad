@@ -1,4 +1,6 @@
-@extends('layouts.master')
+{{--*/ $layout = (App::environment('dev')) ? 'layouts-dev.master' : 'layouts.master' /*--}}
+
+@extends($layout)
 
 @section('content')
 	<h2>Page Not Found</h2>
