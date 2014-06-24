@@ -25,6 +25,7 @@ class Helpers {
         if ( !empty( $params ) ) {
             
             $queryString = Helpers::buildQueryString($params);
+
             curl_setopt($ch, CURLOPT_POST, count($params));
             curl_setopt($ch, CURLOPT_POSTFIELDS, $queryString);
         }
@@ -90,7 +91,7 @@ class Helpers {
 
         if ( !empty($params = array_diff( $params, array('', ' ', null, false) )) ) {
 
-            $apiParams = array_merge($apiParams, $params);
+            $apiParams = array_merge($params, $apiParams);
         }
 
         $resultStr = Helpers::curlExecute( $apiUrl, $apiParams );

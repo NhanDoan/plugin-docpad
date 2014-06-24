@@ -58,12 +58,17 @@ class SiteController extends BaseController {
 
 			} else {
 				
-				$params['currentMortgageBalance'] = $params['propertyValue'] = 200000;
+				$params['propertyValue'] = 200000;
 				// $params['propertyValue'] = $params['loanAmount'];
 				unset($params['loanAmount']);
 
-				if (isset($params['cash']) && $params['cash'] == 1)
-					$params['mortgageType'] = 4;
+				if (isset($params['cash']))
+          if ($params['cash'] == 1)
+        		$params['mortgageType'] = 4;
+          else
+            $params['additionalCashOutAmount'] = preg_replace("/[^0-9\.]/", "", $params['additionalCashOutAmount']);
+
+        $params['currentMortgageBalance'] = 200000;
 			}
 		} // if user not select 'Loan Purpose' radio set default value
 		else {
@@ -83,7 +88,7 @@ class SiteController extends BaseController {
 		unset($params['mortgageType']);
 		unset($params['cash']);
 
-		return Helpers::mortechExecute($params);
+		return Helpers::mortechExecute(array_reverse($params));
 
 	}
 
