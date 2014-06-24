@@ -93,17 +93,30 @@
                 return true;
               }
             },
+            cashChange = function (sideBar) {
+              var radioCash = sideBar.find('input[name="cash"]');
 
-            getCashOut = function () {
-              var _this = $('input[name="additionalCashOutAmount"]');
+              radioCash.bind('change', function () {
+                  getCashOut(sideBar, $(this).val());
+              });
+            },
 
-              if ($('input#cash-out').is(':checked')) {
-                _this.attr('disabled', false);
-                _this.bind('keyup', function (argument) {
-                      this.value = this.value.replace(/[^(0*),^0-9\.]/g,'');
-                  });
+            getCashOut = function (sideBar, valCash) {
+              var cashInput = sideBar.find('input[name="additionalCashOutAmount"]'),
+                  valCashInput = cashInput.val();
+              if (valCash == "0") {
+                cashInput.attr('disabled', false);
+                cashInput.on('keyup', function (argument) {
+                  var sanitized = $(this).val().replace(/[^0-9.]/g, ''),
+                      _sanitized = sanitized.replace(/\.(?=.*\.)/, ''),
+                      value = _sanitized.replace(/^0+/,"");
+                  $(this).val(value);
+                })
+                .on('change', function() {
+                  $(this).currency();
+                });
               } else {
-                _this.attr('disabled', true);
+                cashInput.attr('disabled', true);
               }
             },
             getDownPayment = function(sideBar) {
@@ -132,8 +145,9 @@
                   setDownPayment(sideBar, downPaymentAmount);
                 });
             },
+         
             setDownPayment = function(sideBar, val) {
-              sideBar.find('input[name="downPaymentAmount"]').val('$' + val);
+              sideBar.find('input[name="downPaymentAmount"]').val(val).currency();
             },
             getRates = function(content) {
               var btnGetRates     = content.find('.btn-get-rates'),
@@ -233,7 +247,8 @@
         sefl.init = function(options) {
             var sideBar = $('#formNav'),
                 content = $('#content');
-            getCashOut();
+            getCashOut(sideBar, 0);
+            cashChange(sideBar);
             purposeChange(sideBar);
             getRates(content);
             requestLender();
