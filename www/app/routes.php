@@ -13,8 +13,8 @@
 
 Route::get('/', array('uses' => 'SiteController@index'));
 Route::post('getRates', array('uses' => 'SiteController@getRates', 'as' => 'getRates'));
-
-Route::get('checkzip/{zipcode}', 'SiteController@validateZip');
+Route::get('getValoanNews', 'SiteController@getValoanNews');
+Route::get('getVeteranNews', 'SiteController@getVeteranNews');
 
 
 // Route::get('/', function()

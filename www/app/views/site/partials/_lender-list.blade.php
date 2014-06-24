@@ -8,7 +8,7 @@
               <input name="ratescheck" type="checkbox" value=""/>
             </span>{{ $lender['apr'] }}<span>%APR</span></div>
           <div class="col-md-3">
-            <div class="clearfix">{{ $lender['consumerProductName'] }}</div>
+            <div class="clearfix">{{ str_replace('Yr', 'Year', $lender['consumerProductName']) }}</div>
             <div class="clearfix">{{ $lender['noteRate'] }} % Rate - {{ Helpers::money($lender['monthlyPayment']['totalMonthlyPayment']) }}/mo</div>
             <div class="clearfix">{{ Helpers::money($lender['settlementDetails']['cashToClose']) }} closing cost</div>
           </div>

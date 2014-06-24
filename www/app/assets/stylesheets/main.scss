@@ -363,6 +363,9 @@ input[type="checkbox"], input[type="radio"] {
 				font-size:1.8em;
 				font-weight: 700;
 				padding:7px 15px;
+				.pull-right {
+					width: 50px;
+				}
 			}
 			.rss-body {
 				margin:5px;

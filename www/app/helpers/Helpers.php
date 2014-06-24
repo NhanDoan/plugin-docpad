@@ -7,7 +7,7 @@ class Helpers {
     * @param  array  $params get paramater
     * @return string  resutl with json format
     */
-    public static function curl_execute( $apiUrl, $params = array() ) {
+    public static function curlExecute( $apiUrl, $params = array() ) {
 
         $ch = curl_init();
 
@@ -24,7 +24,8 @@ class Helpers {
 
         if ( !empty( $params ) ) {
             
-            $queryString = Helpers::build_query_string($params);
+            $queryString = Helpers::buildQueryString($params);
+
             curl_setopt($ch, CURLOPT_POST, count($params));
             curl_setopt($ch, CURLOPT_POSTFIELDS, $queryString);
         }
@@ -44,7 +45,7 @@ class Helpers {
     * @param $str string json result
     * @return array list lender
     */
-    public static function format_result( $str ) {
+    public static function formatResult( $str ) {
         $results = json_decode( $str, true );
 
         if ( !empty($results) ) {
@@ -84,18 +85,18 @@ class Helpers {
     * @param  array  $params get paramater
     * @return array  results after format
     */
-    public static function mortech_execute($params = array()) {
+    public static function mortechExecute($params = array()) {
         $apiUrl = Config::get('mortechapi.url');
         $apiParams = Config::get('mortechapi.params');
 
         if ( !empty($params = array_diff( $params, array('', ' ', null, false) )) ) {
 
-            $apiParams = array_merge($apiParams, $params);
+            $apiParams = array_merge($params, $apiParams);
         }
 
-        $result_str = Helpers::curl_execute( $apiUrl, $apiParams );
+        $resultStr = Helpers::curlExecute( $apiUrl, $apiParams );
 
-        return Helpers::format_result($result_str);
+        return Helpers::formatResult($resultStr);
     }
 
     /**
@@ -103,14 +104,14 @@ class Helpers {
      * @param  string $zipcde is a string 5 character
      * @return string stateAbbr
      */
-    public static function geocode_execute( $zipcode ) {
+    public static function geocodeExecute( $zipCode ) {
         $apiUrl = Config::get('geocodeapi.url');
-        $apiUrl .= '?address='.$zipcode;
-        $params = array('address' => $zipcode);
+        $apiUrl .= '?address='.$zipCode;
+        $params = array('address' => $zipCode);
 
-        $result_str = Helpers::curl_execute( $apiUrl, $params );
+        $resultStr = Helpers::curlExecute( $apiUrl, $params );
 
-        return Helpers::format_result($result_str);
+        return Helpers::formatResult($resultStr);
 
     }
 
@@ -119,15 +120,16 @@ class Helpers {
     * @param  array  $params get paramater
     * @return string querystring
     */
-    public static function build_query_string($params = array()) {
+    public static function buildQueryString($params = array()) {
+        $queryArray = array();
 
         foreach ( $params as $key => $value ) {
 
-            $query_array[] = ((strpos($key, 'lender') !== FALSE) ? 'lender' : $key) . '=' . $value;
+            $queryArray[] = ((strpos($key, 'lender') !== FALSE) ? 'lender' : $key) . '=' . $value;
 
         }
 
-        return implode( '&', $query_array );
+        return implode( '&', $queryArray );
 
     }
 
@@ -141,34 +143,63 @@ class Helpers {
     }
 
     /**
-     * get VA Loan Caption News
-     * @return array list news
+     * get Veteran News
+     * @return array is a list news
      */
-    public static function get_news() {
+    public static function getVeteranNews() {
 
         $rssUrl = Config::get('veteran-news-rss.rss_url');
 
         $xml = simplexml_load_file($rssUrl);
 
         if ( !empty($xml) ) {
-            // only get 3 element
+            // only get 3 items
             $items = $xml->xpath('/rss/channel/article[position() <= 3]');
+            
             return $items;
         }
         
         return null;
     }
 
-    public static function str_limit( $str, $length = 125, $more = '...') {
+    /**
+     * Truncate a string with length
+     * @param  string  $str
+     * @param  integer $length
+     * @param  string  $more
+     * @return string a string after truncate
+     */
+    public static function strLimit( $str, $length = 160, $more = '...') {
         
         if (strlen($str) <= $length) return $str;
 
-        $newstr = substr($str, 0, $length);
+        $newStr = substr($str, 0, $length);
 
-        if (substr($newstr, -1, 1) != ' ') 
-            $newstr = substr($newstr, 0, strrpos($newstr, " "));
+        if (substr($newStr, -1, 1) != ' ') 
+            $newStr = substr($newStr, 0, strrpos($newStr, " "));
 
-        return $newstr . $more;
+        return $newStr . $more;
 
+    }
+
+
+    /**
+    * Used connection named 'wpe' to connect to wordpress engine
+    * for getting 3 of new feeds
+    * TODO: should be caching here.
+    */
+    public static function getValoanNews() {
+        try {
+            $newPosts = DB::connection('wpe')
+                    ->select('SELECT p.post_title, p.post_content, p.guid, p.post_modified, u.display_name FROM wp_posts AS p
+                        LEFT JOIN wp_users AS u ON p.post_author = u.ID
+                        WHERE post_status = "publish"
+                        ORDER BY post_modified DESC LIMIT 3');
+
+        } catch(Exception $e) {
+           $newPosts = 'Cannot connect to Database';
+        }
+
+        return $newPosts;
     }
 }

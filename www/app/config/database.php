@@ -63,6 +63,17 @@ return array(
 			'prefix'    => '',
 		),
 
+		'wpe' => array(
+			'driver'    => 'mysql',
+			'host'      => '69.164.201.191',
+			'database'  => 'wp_valoan',
+			'username'  => 'valoan',
+			'password'  => 'bw8Ztgrxn64NRDz9',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => 'wp_',
+		),
+
 		'pgsql' => array(
 			'driver'   => 'pgsql',
 			'host'     => 'localhost',

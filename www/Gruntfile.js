@@ -113,7 +113,7 @@ module.exports = function (grunt) {
                     src: [
                        'jquery/jquery.min.js',
                        'sass-bootstrap/dist/js/bootstrap.min.js',
-                       'javascripts/frontend.js'
+                       'javascripts/{,*/}*.js'
                     ]
                 }]
             },
@@ -191,7 +191,6 @@ module.exports = function (grunt) {
         useminPrepare: {
             html: [
                 '<%= options.app %>/views/layouts-dev/{,*/}*.php',
-                '<%= options.app %>/views/layouts-dev/site-dev/{,*/}*.php'
             ],
             options: {
                 dest: '<%= options.dist %>'
@@ -293,7 +292,7 @@ module.exports = function (grunt) {
                 }
             },
             js: {
-                files: ['<%= options.assets %>/javascripts/frontend.js'],
+                files: ['<%= options.assets %>/javascripts/*.js'],
                 tasks: ['useminPrepare','concat', 'copy:js'] ,
                 options: {
                     livereload: true
