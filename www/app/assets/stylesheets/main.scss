@@ -27,6 +27,11 @@ input[type="checkbox"], input[type="radio"] {
 	margin-top:1px;
 	vertical-align:top;
 }
+select, button {
+	&:active, &:focus {
+		outline:none;
+	}
+}
 ::-webkit-input-placeholder { /* WebKit browsers */
     color:    #000;
 }
@@ -107,9 +112,13 @@ input[type="checkbox"], input[type="radio"] {
 	padding:0;
 }
 .header {
-	background:#fff;
-	border-color:#fff;
+	background:#0b2d52 url(../images/header-img.png) 100% 50% no-repeat;
+	border-color:#68c5fe;
+	border-width:0;
 	border-radius:0;
+	border-bottom:4px solid #d3b726;
+	height:167px;
+	position:relative;
 }
 #logo {
 	display: inline-block;
@@ -117,8 +126,8 @@ input[type="checkbox"], input[type="radio"] {
 }
 #logo h1 {
   	background: url(../images/stripes-logo.png) no-repeat;
-  	background-size:162px 26px;
-  	margin:11px 0;
+  	background-size:175px 26px;
+  	margin:20px 0;
   	position: relative;
   	text-indent: -9999px;
 }
@@ -126,23 +135,36 @@ input[type="checkbox"], input[type="radio"] {
 	display: block;
 	height: 26px;
 	margin-left:0px;
-	width: 162px;
+	width: 175px;
 }
 .navigation {
-	background:#0f3d6e;
+	bottom:0;
 	color:#fff;
-	float:left;
+	line-height:1.2;
 	padding-left:40px;
 	padding-right:10px;
+	position:absolute;
 	width:100%;
+	.container-title {
+		position:relative;
+	}
 	.title {
 		display:inline-block;
-		font-family:Impact, sans-serif;
-		font-size:3.8em;
-		margin-right:15px;
+		font-family:Impact, "Anton", sans-serif;
+		font-size:6.6em;
+		text-shadow:0 0 5px #000;
+		span {
+			font-size:1.33em;
+		}
+	}
+	.container-powered {
+		position:absolute;
+		right:0;
+		top:0;
 	}
 	.powered {
 		display:inline-block;
+		font-size: 1.3em;
 		margin-right:10px;
 	}
 	.captain-logo {
@@ -151,14 +173,26 @@ input[type="checkbox"], input[type="radio"] {
 	  	height:19px;
 	  	width:102px;
 	}
+	.nav-container {
+		position:absolute;
+		bottom:0;
+		right:20px;
+	}
 	#primaryNav {
 		ul {
 			list-style: none;
 			li {
+				background:#0f3b60;
+				border-radius:5px 5px 0 0;
+				-moz-border-radius:5px 5px 0 0;
+				-webkit-border-radius:5px 5px 0 0;
 				font-size: 1.4em;
 				font-weight: 700;
 				float:left;
-				padding:30px 20px 6px;
+				margin-right:4px;
+				opacity:0.9;
+				padding:10px 20px;
+				box-shadow:2px 0 0 rgba(0,0,0,.1);
 				a, a:hover, a:focus {
 					color: #fff;
 					background:none;
@@ -167,60 +201,6 @@ input[type="checkbox"], input[type="radio"] {
 			}
 		}
 	}
-}
-
-.styled-select {
-    display: inline-block;
-    position: relative;
-	width:94%;
-    select {
-        background: white;
-        border:0;
-        border-radius:2px;
-        -moz-border-radius:2px;
-        -webkit-border-radius:2px;
-        box-shadow: 0 2px 0 rgba(0,0,0,0.3);
-        color:#333;
-        display: inline-block;
-        font: inherit;
-        line-height: 1.2;
-        margin: 0;
-        height:23px;
-        padding: 4px 3px 3px 5px;
-        outline:none; /* remove focus ring from Webkit */
-    	width:100%;
-    }
-    /* Select arrow styling */
-    &:after {
-        background: white;
-        border-left:1px #ccc solid;
-        border-radius:0 2px 2px 0;
-        -moz-border-radius:0 2px 2px 0;
-        -webkit-border-radius:0 2px 2px 0;
-        bottom: 0;
-        color: grey;
-        content: "▼";
-        line-height: 24px;
-        padding: 0 7px;
-        pointer-events:none;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-
-}
-.col-p {
-	.col-select {
-		float: left;
-		padding-left:15px;
-		width:50%;
-		margin-top:2px;
-	}
-	.col-text {
-		float: left;
-		width:43%;
-	}
-
 }
 #content {
 	h2 {
@@ -277,6 +257,7 @@ input[type="checkbox"], input[type="radio"] {
 					height:22px;
 					margin-right:5px;
 					margin-top:2px;
+					padding:3px;
 					vertical-align: middle;
 					width:94%;
 				}
@@ -326,9 +307,6 @@ input[type="checkbox"], input[type="radio"] {
 				li {
 					border-top:1px #e0e0e0 solid;
 					padding:16px 10px;
-					&:hover, &.active {
-						background:#fcfaed;
-					}
 					&:first-child {
 						margin-top:-20px;
 					}
@@ -339,6 +317,12 @@ input[type="checkbox"], input[type="radio"] {
 						display: inline-block;
 					}
 				}
+			}
+			.border-top-list {
+				border-top:7px #59353d solid;
+				margin-left:-10px;
+				margin-top:-16px;
+				width:25px;
 			}
 			.rates {
 				font-size: 2.34em;
@@ -410,6 +394,7 @@ input[type="checkbox"], input[type="radio"] {
 	border-radius:5px;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
+	box-shadow: 0 3px 0 #0c3159;
 	color: #fff;
 	font-size: 1.6em;
 	font-weight: 700;
@@ -425,6 +410,9 @@ a, a:hover, a:focus {
 		text-decoration: none;
 	}
 }
+span.btn-get-rates {
+	vertical-align:middle;
+}
 .container-btn-show-lender {
 	display:inline-block;
 	margin-top:12px;
@@ -434,11 +422,21 @@ a, a:hover, a:focus {
 	@extend .btn-get-rates;
 	border-radius:5px 0 0 5px;
 	-moz-border-radius:5px 0 0 5px;
-	-webkit-border-radius:5px 0 0 5px;
+	-webkit-border-radius:5px 0 0 5px;	
+	box-shadow: none;
 	font-size: 1.4em;
 	float:left;
 	height:38px;
 	padding:4px 0 4px 25px;
+}
+.btn-cancel {
+	@extend .btn-get-rates;
+	font-size: 1em;
+	opacity:0.8;
+	padding:8px 15px;
+}
+a.btn-cancel {
+	margin-top:-10px;
 }
 .btn-show-lender-img {
 	background-color: #d4dbe6;
@@ -513,9 +511,9 @@ a, a:hover, a:focus {
 	padding:15px 50px;
 	.close {
 		background: url(../images/close-bt.png) no-repeat;
-		height:18px;
+		height:30px;
 		opacity: 1;
-		width:18px;
+		width:30px;
 		margin-top:10px;
 		margin-right:-30px;
 	}
@@ -558,20 +556,70 @@ a, a:hover, a:focus {
 	}
 }
 
-@media screen and (max-width: 767px) {
-	.nav-container {
-		clear:both;
-		float:none!important;
-		padding-top:15px;
+@media screen and (max-width: 320px) {
+	.navigation {
+		.title {
+			font-size: 3.5em!important;
+		}
+		.container-powered {
+			top:55px!important;
+		}
+		.container-title {
+			margin-top:20px!important;
+		}
+		.nav-container {
+			padding-top:50px!important;
+		}
 	}
+}
+
+@media screen and (max-width: 767px) {
 	.navbar-collapse {
 		padding:0;
 	}
+	.header {
+		background:#0B2D42;
+		.navbar-header {
+			background:#fff;
+			height:50px;
+		}
+	}
+	#logo h1 {
+	  	background: url(../images/stripes-responsive-logo.png) no-repeat;
+	  	background-size:150px 22px;
+	  	margin:15px 0;
+	}
 	.navigation {
+		position:relative;
 		padding:0 40px;
 		#primaryNav ul li {
+			border-radius:0;
+			-moz-border-radius:0;
+			-webkit-border-radius:0;
+			box-shadow:none;
 			float:none;
-			padding:10px 0;
+			margin-right:0;
+			padding:10px;
+		}
+		.title {
+			font-size: 5.5em;
+			span {
+				font-size: 1em;
+			}
+		}
+		.container-title {
+			margin-top:10px;
+		}
+		.container-powered {
+			right:auto;
+			top:65px;
+		}
+		.nav-container {
+			clear:both;
+			float:none!important;
+			margin-right:-40px;
+			padding-top:35px;
+			position:relative;
 		}
 	}
 	#content {

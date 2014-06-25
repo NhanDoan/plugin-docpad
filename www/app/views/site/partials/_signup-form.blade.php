@@ -97,7 +97,9 @@
             <a href="#">
               <span class="btn-get-rates m-r-lg">Submit</span>
             </a>
-            <a data-dismiss="modal" href="#"><span>Cancel</span></a>
+            <a data-dismiss="modal" href="#">
+              <span class="btn-cancel">Cancel</span>
+            </a>
           </div>
         </div>
       </div>

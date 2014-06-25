@@ -11,10 +11,12 @@
     </button>
   </div>
   <div class="navigation">
-    <div class="pull-left">
-      <div class="title">VA Loan Center</div>
-      <div class="powered">Powered by</div>
-      <div class="captain-logo"></div>
+    <div class="pull-left container-title">
+      <div class="container-powered">
+        <div class="powered">Powered by</div>
+        <div class="captain-logo"></div>
+      </div>
+      <div class="title"><span>VA </span>Loan Center</div>
     </div>
     <div class="pull-right nav-container">
       <nav id="primaryNav" class="navbar-collapse collapse bs-navbar-collapse">
