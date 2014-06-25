@@ -56,6 +56,7 @@ module.exports = function (grunt) {
                 base: 'app/assets/javascripts',                          // Base path to you JS folder
                 files: ['<%= options.assets %>/jquery/dist/jquery.js',
                     '<%= options.assets %>/sass-bootstrap/dist/js/bootstrap.min.js',
+                    '<%= options.assets %>/bootstrapValidator/dist/js/bootstrapValidator.min.js',
                     '<%= options.assets %>/javascripts/frontend.js'],                           // JavaScript files in order you'd like them concatenated and minified
                 concat: '<%= options.js.base %>/concat.js',     // Name of the concatenated JavaScript file
                 min: '<%= options.dist_assets %>/javascripts/scripts.min.js'     // Name of the minified JavaScript file
@@ -113,6 +114,7 @@ module.exports = function (grunt) {
                     src: [
                        'jquery/jquery.min.js',
                        'sass-bootstrap/dist/js/bootstrap.min.js',
+                       'bootstrapValidator/dist/js/bootstrapValidator.min.js',
                        'javascripts/{,*/}*.js'
                     ]
                 }]
@@ -125,6 +127,7 @@ module.exports = function (grunt) {
                     dest: '<%= options.dist_assets %>',
                     src: [
                        'sass-bootstrap/dist/css/bootstrap.min.css',
+                       'bootstrapValidator/dist/css/bootstrapValidator.min.css',
                        'stylesheets/main.css'
                     ]
                 }]

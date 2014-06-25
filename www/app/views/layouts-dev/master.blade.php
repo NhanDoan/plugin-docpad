@@ -10,7 +10,7 @@
 
     <!-- build:css assets/stylesheets/main.css -->
     <link rel="stylesheet" type="text/css" href="../../assets/sass-bootstrap/dist/css/bootstrap.min.css">
-
+    <link rel="stylesheet" type="text/css" href="../../assets/bootstrapValidator/dist/css/bootstrapValidator.min.css">
     <link rel="stylesheet" href="../../assets/stylesheets/main.css"/>
     <!-- endbuild -->
 
@@ -34,7 +34,8 @@
     <!-- build:js assets/javascripts/frontend.js -->
         <script src="../../assets/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="../../assets/sass-bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../../assets/javascripts/jquery.currency.js"></script>
+        <script type="text/javascript" src="../../assets/javascripts/jquery.currency.js"></script>
+        <script type="text/javascript" src="../../assets/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
         <script src="../../assets/javascripts/frontend.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">

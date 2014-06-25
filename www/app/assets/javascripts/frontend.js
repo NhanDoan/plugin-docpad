@@ -186,10 +186,104 @@
                 }
               );
             },
+
+            resetForm = function () {
+              $('#contactForm').on('show.bs.modal', function() {
+                $('#infoContactForm').bootstrapValidator('resetForm', true);
+              });
+            },
             contact = function(content) {
+              resetForm();
+
               var contacForm  = $('body').find('#contactForm'),
                   btnSubmit   = contacForm.find('.btn-get-rates');
-
+               $('#infoContactForm').bootstrapValidator({
+                  message: 'This value is not valid',
+                  feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                  },
+                  live: 'enabled',
+                  excluded: [':disabled', ':hidden'],
+                  // submitButtons: '.btn-get-rates',
+                  trigger: 'change blur',
+                  fields: {
+                    firstname: {
+                      validators: {
+                        notEmpty: {
+                          message: 'The firstname is required and cannot be empty'
+                        },
+                        stringLength: {
+                          min: 5,
+                          max: 30,
+                          message: 'The firstname must be more than 6 and less than 30 characters long'
+                        },
+                        regexp: {
+                          regexp: /^[a-zA-Z0-9_]+$/,
+                          message: 'The firstname can only consist of alphabetical, number and underscore'
+                        }
+                      }
+                    },
+                    lastname: {
+                      validators: {
+                        notEmpty: {
+                            message: 'The lastname is required'
+                        }
+                      }
+                    },
+                    email: {
+                      validators: {
+                        notEmpty: {
+                          message: 'The email address is required and can\'t be empty'
+                        },
+                        emailAddress: {
+                          message: 'The input is not a valid email address'
+                        }
+                      }
+                    },
+                    phone: {
+                      validators: {
+                        notEmpty: {
+                          message: 'The phone is request and cannot empty'
+                        },
+                        country: 'US',
+                        regexp: {
+                          regexp: /([0-9\s\-]{7,})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/,
+                          message: 'Pls enter input correct'
+                        }
+                      }
+                    },
+                    agree_auto: {
+                      validators: {
+                        notEmpty: {
+                          message: 'You must be agree to the Auto Dialer Disclosure'
+                        }
+                      }
+                    },
+                    address: {
+                      validators: {
+                        notEmpty: {
+                          message: 'The address is required and can\'t be empty'
+                        }
+                      }
+                    },
+                    city: {
+                      validators: {
+                        notEmpty: {
+                          message: 'The city is required and can\'t be empty'
+                        }
+                      }
+                    },
+                    agree_terms: {
+                      validators: {
+                        notEmpty: {
+                          message: 'You must be agree with the Terms of Service'
+                        }
+                      }
+                    },
+                  },
+              });
               btnSubmit.bind(
                 'click',
                 function() {

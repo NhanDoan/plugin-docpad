@@ -390,6 +390,7 @@ select, button {
  filter: alpha(opacity=20); /* For IE8 and earlier */
 }
 .btn-get-rates {
+    border: medium none;
 	background-color: #0f3d6e;
 	border-radius:5px;
 	-moz-border-radius:5px;
@@ -431,6 +432,7 @@ span.btn-get-rates {
 }
 .btn-cancel {
 	@extend .btn-get-rates;
+    border: medium none;
 	font-size: 1em;
 	opacity:0.8;
 	padding:8px 15px;
