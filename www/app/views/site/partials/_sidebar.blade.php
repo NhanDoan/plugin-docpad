@@ -1,5 +1,5 @@
 {{--*/
-  $isRefinance = (isset($params['mortgageType'])) ? ($params['mortgageType'] == 'refinance' ? true : false) : false;
+  $isRefinance = (isset($params['payment'])) ? ($params['payment'] == 'refinance' ? true : false) : false;
   $loanAmount = array();
   for( $i = 100000; $i < 430000; $i += 25000)
     $loanAmount[$i] = Helpers::money($i); 
@@ -18,11 +18,11 @@
           <div class="clearfix"><strong>Loan Purpose</strong></div>
           <div class="clearfix">
             <span>
-              {{ Form::radio('mortgageType', 'purchase', !$isRefinance, ['id' => 'rdo-purchase']) }}
+              {{ Form::radio('payment', 'purchase', !$isRefinance, ['id' => 'rdo-purchase']) }}
               {{ Form::label('rdo-purchase', 'Purchase', ['class' => 'reset-label']) }}
             </span>
             <span>
-              {{ Form::radio('mortgageType', 'refinance', $isRefinance, ['id' => 'rdo-refinance']) }}
+              {{ Form::radio('payment', 'refinance', $isRefinance, ['id' => 'rdo-refinance']) }}
               {{ Form::label('rdo-refinance', 'Refinance', ['class' => 'reset-label']) }}
             </span>
           </div>

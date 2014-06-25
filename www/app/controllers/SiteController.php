@@ -49,10 +49,10 @@ class SiteController extends BaseController {
 
 		$params = ($stateAbbr !== '-1' ) ? array_merge( $params, array('stateAbbr' => $stateAbbr) ) : $params;
 
-		if ( isset($params['mortgageType']) ) {
+		if ( isset($params['payment']) ) {
 			$params['propertyValue'] = 200000;
 
-			if ( strtolower($params['mortgageType']) == 'purchase' ) {
+			if ( strtolower($params['payment']) == 'purchase' ) {
 				// if user selected loanAmount 
 				if (isset($params['loanAmount']))
 					$params['propertyValue'] = $params['loanAmount'] + (($params['downPayment'] / 100) * $params['loanAmount']);
@@ -90,10 +90,7 @@ class SiteController extends BaseController {
 			$params['veteranType'] = 2;
 		}
 
-		if ((isset($params['cash']) && $params['cash'] != 1) 
-            || (isset($params['mortgageType']) && strtolower($params['mortgageType']) == 'purchase'))
-			unset($params['mortgageType']);
-
+		unset($params['payment']);
 		unset($params['cash']);
 		unset($params['downPayment']);
 		unset($params['receive']);

@@ -16,10 +16,10 @@
               return loanAmount*(percent/100);
             },
             purposeChange = function(sideBar) {
-              var mortgageType = sideBar.find('input[name="mortgageType"]');
+              var payment = sideBar.find('input[name="payment"]');
              
               // bind change event for purpose     
-              mortgageType.bind(
+              payment.bind(
                 'change',
                 function() {
                   displayPurchase(sideBar, $(this).val());
@@ -255,7 +255,7 @@
             getZipCode(sideBar);
             contact(content);
             getDownPayment(sideBar);
-            displayPurchase(sideBar, urlParam('mortgageType'));
+            displayPurchase(sideBar, urlParam('payment'));
             requestQuoteFormHidden(content);
             getNews(options.baseUrl + '/getValoanNews', $('.valoan-news'));
             getNews(options.baseUrl + '/getVeteranNews', $('.veteran-news'));
