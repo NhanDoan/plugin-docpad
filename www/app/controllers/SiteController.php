@@ -90,7 +90,7 @@ class SiteController extends BaseController {
 			$params['veteranType'] = 2;
 		}
 
-		if ($params['cash'] != 1 || strtolower($params['mortgageType']) == 'purchase')
+		if ((isset($params['cash']) && $params['cash'] != 1) || strtolower($params['mortgageType']) == 'purchase')
 			unset($params['mortgageType']);
 
 		unset($params['cash']);
