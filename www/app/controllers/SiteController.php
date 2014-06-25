@@ -50,43 +50,53 @@ class SiteController extends BaseController {
 		$params = ($stateAbbr !== '-1' ) ? array_merge( $params, array('stateAbbr' => $stateAbbr) ) : $params;
 
 		if ( isset($params['mortgageType']) ) {
-			if ( $params['mortgageType'] == 'purchase' ) {
-				$params['propertyValue'] = 200000;
+			$params['propertyValue'] = 200000;
 
+			if ( strtolower($params['mortgageType']) == 'purchase' ) {
+				// if user selected loanAmount 
 				if (isset($params['loanAmount']))
 					$params['propertyValue'] = $params['loanAmount'] + (($params['downPayment'] / 100) * $params['loanAmount']);
+				
+				// else set default
+				else
+					$params['loanAmount'] = 200000;
 
 			} else {
-				
-				$params['propertyValue'] = 200000;
-				// $params['propertyValue'] = $params['loanAmount'];
-				unset($params['loanAmount']);
 
+				// $params['propertyValue'] = $params['loanAmount'];
 				if (isset($params['cash']))
+
+					// if user checked 'Interest Rate Reduction Refinance Loan (IRRRL)'
           if ($params['cash'] == 1)
         		$params['mortgageType'] = 4;
           else
-            $params['additionalCashOutAmount'] = preg_replace("/[^0-9\.]/", "", $params['additionalCashOutAmount']);
+            $params['additionalCashOutAmount'] = (double)preg_replace("/[^0-9\.]/", "", $params['additionalCashOutAmount']);
 
-        $params['currentMortgageBalance'] = 200000;
+        // if user selected loanAmount 
+        if (isset($params['loanAmount']))
+					$params['propertyValue'] = $params['currentMortgageBalance'] = $params['loanAmount'];
+				// else set default
+				else
+					$params['currentMortgageBalance'] = 200000;
+
+        unset($params['loanAmount']);
+        unset($params['loanProduct']);
+        unset($params['propertyType']);
 			}
-		} // if user not select 'Loan Purpose' radio set default value
-		else {
-			// $params['loanAmount'] = $params['propertyValue'] = 200000;
-			$params['propertyType'] = 1; // Single Family
-			$params['propertyValue'] = 200000;
-			$params['loanProduct'] = 2; // 30 year Fixed
-			$params['creditRating'] = 5; // excellent (740-850)
-			$params['veteranType'] = 0; // veteran
 		}
-
-		// if user check "I'm receiving disability compensation from the VA"
+		
+		// if user checked "I'm receiving disability compensation from the VA"
 		if (isset($params['receive'])) {
 			$params['veteranType'] = 2;
 		}
 
-		unset($params['mortgageType']);
+		if ((isset($params['cash']) && $params['cash'] != 1) || strtolower($params['mortgageType']) == 'purchase')
+			unset($params['mortgageType']);
+
 		unset($params['cash']);
+		unset($params['downPayment']);
+		unset($params['receive']);
+		unset($params['connect']);
 
 		return Helpers::mortechExecute(array_reverse($params));
 
