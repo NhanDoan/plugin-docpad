@@ -16,10 +16,10 @@
               return loanAmount*(percent/100);
             },
             purposeChange = function(sideBar) {
-              var mortgageType = sideBar.find('input[name="mortgageType"]');
+              var payment = sideBar.find('input[name="payment"]');
              
               // bind change event for purpose     
-              mortgageType.bind(
+              payment.bind(
                 'change',
                 function() {
                   displayPurchase(sideBar, $(this).val());
@@ -186,19 +186,109 @@
                 }
               );
             },
+
+            resetForm = function () {
+              $('#contactForm').on('show.bs.modal', function() {
+                $('#infoContactForm').bootstrapValidator('resetForm', true);
+              });
+            },
             contact = function(content) {
+              resetForm();
+
               var contacForm  = $('body').find('#contactForm'),
                   btnSubmit   = contacForm.find('.btn-get-rates');
-
-              btnSubmit.bind(
-                'click',
-                function() {
-                  content.find('.show-lender, .news').addClass('hide');
-                  content.find('.request-quote-container').show();
-                  content.find('.rates-check').addClass('display-block');
-                  contacForm.modal('hide');
-                }
-              );
+               $('#infoContactForm').bootstrapValidator({
+                  message: 'This value is not valid',
+                  live: 'enabled',
+                  excluded: [':disabled', ':hidden'],
+                  submitButtons: 'input.btn-get-rates',
+                  trigger: 'change blur keyup',
+                  fields: {
+                    firstname: {
+                      validators: {
+                        notEmpty: {
+                          message: 'The firstname is required and cannot be empty'
+                        },
+                      }
+                    },
+                    lastname: {
+                      validators: {
+                        notEmpty: {
+                            message: 'The lastname is required'
+                        }
+                      }
+                    },
+                    email: {
+                      validators: {
+                        notEmpty: {
+                          message: 'The email address is required and can\'t be empty'
+                        },
+                        emailAddress: {
+                          message: 'The input is not a valid email address'
+                        }
+                      }
+                    },
+                    phone: {
+                      validators: {
+                        notEmpty: {
+                          message: 'The phone is request and cannot empty'
+                        },
+                        country: 'US',
+                        regexp: {
+                          regexp: /([0-9\s\-]{7,})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/,
+                          message: 'Pls enter input correct'
+                        }
+                      }
+                    },
+                    agree_auto: {
+                      validators: {
+                        notEmpty: {
+                          message: 'You must be agree to the Auto Dialer Disclosure'
+                        }
+                      }
+                    },
+                    address: {
+                      validators: {
+                        notEmpty: {
+                          message: 'The address is required and can\'t be empty'
+                        }
+                      }
+                    },
+                    city: {
+                      validators: {
+                        notEmpty: {
+                          message: 'The city is required and can\'t be empty'
+                        }
+                      }
+                    },
+                    agree_terms: {
+                      validators: {
+                        notEmpty: {
+                          message: 'You must be agree with the Terms of Service'
+                        }
+                      }
+                    },
+                  },
+                  submitHandler: function(validator, form, submitButton) {
+                    var _firstname = validator.getFieldElements('firstname').val(),
+                        _lastname  = validator.getFieldElements('lastname').val(),
+                        _email     = validator.getFieldElements('email').val(),
+                        _phone     = validator.getFieldElements('phone').val(),
+                        _address   = validator.getFieldElements('address').val(),
+                        _city      = validator.getFieldElements('city').val(),
+                        _agree_terms = validator.getFieldElements('agree_terms').val(),
+                        _agree_auto = validator.getFieldElements('agree_auto').val();
+                        
+                    content.find('.show-lender, .news').addClass('hide');
+                    content.find('.request-quote-container').show();
+                    content.find('.rates-check').addClass('display-block');
+                    $('.list-form').find('.col-md-1').remove();
+                    $('.list-form').find('.col-md-5').removeClass('col-md-5').addClass('col-md-6');
+                    $('.btn-request-quote').css('padding','5px 30px');
+                    contacForm.modal('hide');
+                  }
+              });
+              
             },
             requestLender = function() {
               var lenderList = $('.list-form'),
@@ -255,7 +345,7 @@
             getZipCode(sideBar);
             contact(content);
             getDownPayment(sideBar);
-            displayPurchase(sideBar, urlParam('mortgageType'));
+            displayPurchase(sideBar, urlParam('payment'));
             requestQuoteFormHidden(content);
             getNews(options.baseUrl + '/getValoanNews', $('.valoan-news'));
             getNews(options.baseUrl + '/getVeteranNews', $('.veteran-news'));

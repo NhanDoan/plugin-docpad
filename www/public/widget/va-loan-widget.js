@@ -74,7 +74,7 @@
             '<div class="form-container">',
             'I\'m looking to',
             '<span>',
-            '<select name="mortgageType">',
+            '<select name="payment">',
             '<option value="purchase">Purchase</option>',
             '<option value="refinance">Refinance</option>',
             '</select>',

@@ -1,7 +1,10 @@
 {
   "name": "gruntRocks",
   "dependencies": {
-    "sass-bootstrap" : "~3",
-    "jquery" : "1.10.2"
+    "sass-bootstrap": "~3",
+    "jquery": "1.10.2"
+  },
+  "devDependencies": {
+    "bootstrapValidator": "~0.4.5"
   }
 }

@@ -3,7 +3,10 @@
     @foreach( $results as $lender )
       <li>
         <div class="row">
-          <div class="col-md-4 rates">
+          <div class="col-md-1">
+            <div class="border-top-list"></div>
+          </div>
+          <div class="col-md-3 rates">
             <span class="rates-check m-r-lg">
               <input name="ratescheck" type="checkbox" value=""/>
             </span>{{ $lender['apr'] }}<span>%APR</span></div>
