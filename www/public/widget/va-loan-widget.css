@@ -1,4 +1,5 @@
-#vaLoanWidget {
+#vaLoanWidget,
+#vaLoanWidgetSmall {
 	font-family: Arial, sans-serif!important;
 }
 #vaLoanWidget div {
@@ -23,11 +24,11 @@
 	width:215px!important;
 	color: #333!important;
 }
-#vaLoanWidget input[type="text"] {
+#vaLoanWidgetSmall input[type="text"] {
 	background: #fff!important;
 	font-size: 1em!important;
 	padding:7px 10px!important;
-	width:215px!important;
+	width:255px!important;
 }
 #vaLoanWidget span {
 	margin:0 8px!important;
@@ -69,7 +70,7 @@
 	width:550px!important;
 }
 #vaLoanWidgetSmall .va-loan-box .va-loan-header {
-	background:#989898 url(../images/icon-home-2.png) no-repeat 245px 20px !important;
+	background:#989898 url(images/icon-home-2.png) no-repeat 245px 20px !important;
 	border-radius: 5px 5px 0 0!important;
 	color:#fff!important;
 	float:left!important;
@@ -147,24 +148,39 @@
 	-webkit-border-radius: 0 0 5px 5px!important;
 	width:550px!important;
 }
-#vaLoanWidget .va-loan-box .va-loan-footer .logo {
-	background: url(images/logo.jpg) no-repeat!important;
+#vaLoanWidget .va-loan-box .va-loan-footer .logo,
+#vaLoanWidgetSmall .va-loan-box .va-loan-footer .logo {
 	height:26px!important;
 	width:100px!important;
 	display: inline-block!important;
 	vertical-align: middle!important;
 }
-#vaLoanWidget .va-loan-box .va-loan-footer .btn-get-rates {
+#vaLoanWidget .va-loan-box .va-loan-footer .logo {
+	background: url(images/logo.jpg) no-repeat!important;
+}
+#vaLoanWidgetSmall .va-loan-box .va-loan-footer .logo {
+	background: url(images/logo.jpg) no-repeat!important;
+}
+#vaLoanWidget .va-loan-box .va-loan-footer .btn-get-rates,
+#vaLoanWidgetSmall .va-loan-box .va-loan-body .btn-get-rates {
 	background:#44464d!important;
 	border-radius: 3px!important;
 	color:#fff!important;
 	cursor: pointer!important;
-	font-size:1.625em!important;
 	font-weight: bold!important;
-	padding:7px 40px!important;
 	-moz-border-radius: 3px!important;
 	-webkit-border-radius: 3px!important;
 	text-align: center!important;
+	border: none;
+}
+#vaLoanWidget .va-loan-box .va-loan-footer .btn-get-rates {
+	font-size:1.625em!important;
+	padding:7px 40px!important;
+}
+#vaLoanWidgetSmall .va-loan-box .va-loan-body .btn-get-rates {
+	font-size:1em!important;
+	padding:10px 40px!important;
+	width: 100%;
 }
 #vaLoanWidgetSmall .va-loan-box .va-loan-body {
 	background:#fff!important;
@@ -182,18 +198,7 @@
 #vaLoanWidgetSmall .va-loan-box .va-loan-body span {
 	margin-right:40px!important;
 }
-#vaLoanWidgetSmall .va-loan-box .va-loan-body .btn-get-rates {
-	background:#44464d!important;
-	border-radius: 3px!important;
-	color:#fff!important;
-	cursor: pointer!important;
-	font-size:1em!important;
-	font-weight: bold!important;
-	padding:10px 40px!important;
-	-moz-border-radius: 3px!important;
-	-webkit-border-radius: 3px!important;
-	text-align: center!important;
-}
+
 #vaLoanWidgetSmall .va-loan-box .va-loan-footer {
 	background:#fff!important;
 	border-radius: 0 0 5px 5px!important;
@@ -216,4 +221,8 @@
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
     color:    #999!important;
+}
+#vaLoanWidget .error,
+#vaLoanWidgetSmall .error {
+	border-color: red !important;
 }

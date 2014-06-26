@@ -18,9 +18,9 @@ class SiteController extends BaseController {
 	{
 		$params = Input::except('_token');
 
-		if (!isset($params['zipCode']))
+		if (!isset($params['zipCode']) || !$params['zipCode'])
 			$params['zipCode'] = '10014';
-	
+
 		$results = $this->calculate();
 
 		$this->layout->content = View::make('site/index', compact('params', 'results'));
@@ -43,11 +43,14 @@ class SiteController extends BaseController {
 	private function calculate() {
 		
 		$params = Input::except('zipCode', '_token');
-		$zipCode = Input::get('zipCode', '10014');
+		$zipCode = Input::get('zipCode');
 
-		$stateAbbr = Helpers::geocodeExecute($zipCode);
+		$stateAbbr = Helpers::geocodeExecute($zipCode ? $zipCode : '10014');
 
-		$params = ($stateAbbr !== '-1' ) ? array_merge( $params, array('stateAbbr' => $stateAbbr) ) : $params;
+		if ($stateAbbr !== '-1')
+			$params = array_merge( $params, array('stateAbbr' => $stateAbbr) );
+		else
+			return 'ZipCode Invalid';
 
 		if ( isset($params['payment']) ) {
 			$params['propertyValue'] = 200000;
