@@ -32,7 +32,7 @@
                 <label for="email">Email</label>
               </div>
               <div class="clearfix">
-                {{ Form::email('Email', null, ['id' => 'email']) }}
+                {{ Form::email('EmailAddress', null, ['id' => 'email']) }}
               </div>
             </div>
             <div class="col-md-6 form-group">
@@ -46,7 +46,7 @@
             </div>
             <div class="col-md-6 pull-right form-group">
               <div class="clearfix m-t-sm">
-                {{ Form::checkbox('agree_auto', null, false, ['id' => 'agree-auto']) }}
+                {{ Form::checkbox('TCPAConsent', null, false, ['id' => 'agree-auto']) }}
                 <span class="m-l-xs">{{ Form::label('agree-auto', 'I agree to the', ['class' => 'reset-label']) }} {{ HTML::link('#', 'Auto Dialer Disclosure') }}</span>
               </div>
             </div>
