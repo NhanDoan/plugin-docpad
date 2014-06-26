@@ -192,6 +192,7 @@
                 $('#infoContactForm').bootstrapValidator('resetForm', true);
               });
             },
+
             contact = function(content) {
               resetForm();
 
@@ -202,7 +203,7 @@
                   live: 'enabled',
                   excluded: [':disabled', ':hidden'],
                   submitButtons: 'input.btn-get-rates',
-                  trigger: 'change blur keyup',
+                  trigger: 'change blur',
                   fields: {
                     firstname: {
                       validators: {
@@ -268,17 +269,37 @@
                         }
                       }
                     },
+                    zipcode : {
+                      validators: {
+                        notEmpty: {
+                          message: 'The zipcode is required and can\'t be empty'
+                        },
+                        digits: {
+                          message: 'The zipcode is not valid'
+                        }
+                      }
+                    }
                   },
+
                   submitHandler: function(validator, form, submitButton) {
-                    var _firstname = validator.getFieldElements('firstname').val(),
-                        _lastname  = validator.getFieldElements('lastname').val(),
-                        _email     = validator.getFieldElements('email').val(),
-                        _phone     = validator.getFieldElements('phone').val(),
-                        _address   = validator.getFieldElements('address').val(),
-                        _city      = validator.getFieldElements('city').val(),
-                        _agree_terms = validator.getFieldElements('agree_terms').val(),
-                        _agree_auto = validator.getFieldElements('agree_auto').val();
-                        
+                    // $.ajax({
+                    //   url: form.attr('action'),
+                    //   method: 'post',
+                    //   processData: false,
+                    //   contentType: false,
+                    //   cache: false,
+                    //   dataType: 'json',
+                    //   data: form.serialize(),
+                    //   beforeSend: function() {
+                    //     alert('before send');
+                    //   },
+                    //   success: function(data) {
+                    //     alert('success');
+                    //   },
+                    //   error: function() {
+                    //     alert('error');
+                    //   }
+                    // });
                     content.find('.show-lender, .news').addClass('hide');
                     content.find('.request-quote-container').show();
                     content.find('.rates-check').addClass('display-block');
@@ -288,7 +309,6 @@
                     contacForm.modal('hide');
                   }
               });
-              
             },
             requestLender = function() {
               var lenderList = $('.list-form'),

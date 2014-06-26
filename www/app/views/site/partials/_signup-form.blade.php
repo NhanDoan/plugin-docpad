@@ -47,7 +47,7 @@
             <div class="col-md-6 pull-right form-group">
               <div class="clearfix m-t-sm">
                 {{ Form::checkbox('agree_auto', null, false, ['id' => 'agree-auto']) }}
-                <span class="m-l-xs">{{ Form::label('agree_auto', 'I agree to the', ['class' => 'reset-label']) }} {{ HTML::link('#', 'Auto Dialer Disclosure') }}</span>
+                <span class="m-l-xs">{{ Form::label('agree-auto', 'I agree to the', ['class' => 'reset-label']) }} {{ HTML::link('#', 'Auto Dialer Disclosure') }}</span>
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@
                 <label for="zipcode">Zip code</label>
               </div>
               <div class="clearfix">
-                {{ Form::text('zipcode', null, ['placeholder' => '10014', 'id' => 'zipcode']) }}
+                {{ Form::text('zipcode', null, ['placeholder' => '10014', 'id' => 'zipcode', 'maxLength'=> '5']) }}
               </div>
             </div>
           </div>
