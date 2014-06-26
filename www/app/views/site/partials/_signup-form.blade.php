@@ -7,9 +7,9 @@
         <h6>Please confirm your information so that we may accurately match your record.</h6>
       </div>
       <div class="modal-body">
-        {{ Form::open(array('id'=> 'infoContactForm')) }}
+        {{ Form::open(array('id'=> 'infoContactForm', 'class'=> 'form-horizontal')) }}
           <div class="row m-t-lg">
-            <div class="col-md-6">
+            <div class="col-md-6 form-group">
               <div class="clearfix">
                 <label for="firstname">First name</label>
               </div>
@@ -17,7 +17,7 @@
                 {{ Form::text('firstname', null, ['id' => 'firstname']) }}
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 form-group">
               <div class="clearfix">
                 <label for="lastname">Last name</label>
               </div>
@@ -27,7 +27,7 @@
             </div>
           </div>
           <div class="row m-t-lg">
-            <div class="col-md-6">
+            <div class="col-md-6 form-group">
               <div class="clearfix">
                 <label for="email">Email</label>
               </div>
@@ -35,13 +35,16 @@
                 {{ Form::email('email', null, ['id' => 'email']) }}
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 form-group">
               <div class="clearfix">
                 <label for="phone">Phone</label>
               </div>
               <div class="clearfix">
                 {{ Form::text('phone', null, ['id' => 'phone']) }}
               </div>
+              
+            </div>
+            <div class="col-md-6 pull-right form-group">
               <div class="clearfix m-t-sm">
                 {{ Form::checkbox('agree_auto', null, false, ['id' => 'agree-auto']) }}
                 <span class="m-l-xs">{{ Form::label('agree_auto', 'I agree to the', ['class' => 'reset-label']) }} {{ HTML::link('#', 'Auto Dialer Disclosure') }}</span>
@@ -50,7 +53,7 @@
           </div>
           <hr>
           <div class="row m-t-lg">
-            <div class="col-md-12">
+            <div class="col-md-12 form-group">
               <div class="clearfix">
                 <label for="address">Address</label>
               </div>
@@ -60,7 +63,7 @@
             </div>
           </div>
           <div class="row m-t-lg">
-            <div class="col-md-6">
+            <div class="col-md-6 form-group">
               <div class="clearfix">
                 <label for="city">City</label>
               </div>
@@ -68,7 +71,7 @@
                 {{ Form::text('city', null, ['id' => 'city']) }}
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 form-group">
               <div class="clearfix">
                 <label for="state">State</label>
               </div>
@@ -78,7 +81,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 form-group">
               <div class="clearfix">
                 <label for="zipcode">Zip code</label>
               </div>
@@ -88,15 +91,15 @@
             </div>
           </div>
           <div class="row m-t-lg">
-            <div class="col-md-12">
+            <div class="col-md-12 form-group">
               {{ Form::checkbox('agree_terms', null, false, ['id' => 'agree_terms']) }}
               <span class="m-l-xs">{{ Form::label('agree_terms', 'I agree with the', ['class' => 'reset-label']) }} {{ HTML::link('https://militarytimes.valoancaptain.com/LoginAndPricing.aspx', 'Terms of Service', ['target' => '_blank']) }}</span>
             </div>
           </div>
           <div class="row m-t-lg">
-            <div class="col-md-12">
-              {{ Form::button('Submit', ['class' => 'btn-get-rates m-r-lg']) }}
-              {{ Form::button('Cancel', ['class' => 'btn-cancel','data-dismiss'=>'modal']) }}
+            <div class="col-md-12 ">
+              {{ Form::submit('Submit', ['class' => 'btn-get-rates contact-submit']) }}
+              {{ Form::button('Cancel', ['class' => 'btn-sm  btn-cancel','data-dismiss'=>'modal']) }}
             </div>
           </div>
         {{Form::close()}}

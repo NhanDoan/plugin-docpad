@@ -379,6 +379,14 @@ select, button {
 		}
 	}
 }
+.contact-submit{
+    width: 32%!important;
+    height: 100%!important;
+    margin-right: 1em;
+}
+.form-horizontal .form-group {
+    margin: 0 auto;
+}
 .indicator {
  background-image: url(../images/indicator.gif);
  background-repeat: no-repeat;
@@ -431,15 +439,20 @@ span.btn-get-rates {
 	padding:4px 0 4px 25px;
 }
 .btn-cancel {
-	@extend .btn-get-rates;
+    background-color: #0f3d6e!important;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    box-shadow: 0 3px 0 #0c3159!important;
+    color: #fff!important;
+    vertical-align: .2em;
+    font-weight: 700;
     border: medium none;
 	font-size: 1em;
 	opacity:0.8;
-	padding:8px 15px;
+	padding: 6px 15px!important;
 }
-a.btn-cancel {
-	margin-top:-10px;
-}
+
 .btn-show-lender-img {
 	background-color: #d4dbe6;
 	border-radius:0 5px 5px 0;
