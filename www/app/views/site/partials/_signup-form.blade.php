@@ -96,13 +96,12 @@
               <span class="m-l-xs">{{ Form::label('agree_terms', 'I agree with the', ['class' => 'reset-label']) }} {{ HTML::link('https://militarytimes.valoancaptain.com/LoginAndPricing.aspx', 'Terms of Service', ['target' => '_blank']) }}</span>
             </div>
           </div>
-        </div>
-        <div class="row m-t-lg">
-          <div class="col-md-12 ">
-            {{ Form::submit('Submit', ['class' => 'btn-get-rates contact-submit']) }}
-            {{ Form::button('Cancel', ['class' => 'btn-sm  btn-cancel','data-dismiss'=>'modal']) }}
+          <div class="row m-t-lg">
+            <div class="col-md-12 ">
+              {{ Form::submit('Submit', ['class' => 'btn-get-rates contact-submit']) }}
+              {{ Form::button('Cancel', ['class' => 'btn-sm  btn-cancel','data-dismiss'=>'modal']) }}
+            </div>
           </div>
-        </div>
         {{Form::close()}}
       </div>
     </div>
