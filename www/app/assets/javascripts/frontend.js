@@ -219,7 +219,7 @@
                         }
                       }
                     },
-                    Email: {
+                    EmailAddress: {
                       validators: {
                         notEmpty: {
                           message: 'The email address is required and can\'t be empty'
@@ -241,7 +241,7 @@
                         }
                       }
                     },
-                    agree_auto: {
+                    TCPAConsent: {
                       validators: {
                         notEmpty: {
                           message: 'You must be agree to the Auto Dialer Disclosure'
