@@ -14,7 +14,7 @@
                 <label for="firstname">First name</label>
               </div>
               <div class="clearfix">
-                {{ Form::text('firstname', null, ['id' => 'firstname']) }}
+                {{ Form::text('FirstName', null, ['id' => 'firstname']) }}
               </div>
             </div>
             <div class="col-md-6 form-group">
@@ -22,7 +22,7 @@
                 <label for="lastname">Last name</label>
               </div>
               <div class="clearfix">
-                {{ Form::text('lastname', null, ['id' => 'lastname']) }}
+                {{ Form::text('LastName', null, ['id' => 'lastname']) }}
               </div>
             </div>
           </div>
@@ -32,7 +32,7 @@
                 <label for="email">Email</label>
               </div>
               <div class="clearfix">
-                {{ Form::email('email', null, ['id' => 'email']) }}
+                {{ Form::email('Email', null, ['id' => 'email']) }}
               </div>
             </div>
             <div class="col-md-6 form-group">
@@ -40,7 +40,7 @@
                 <label for="phone">Phone</label>
               </div>
               <div class="clearfix">
-                {{ Form::text('phone', null, ['id' => 'phone']) }}
+                {{ Form::text('PrimaryPhoneNumber', null, ['id' => 'phone']) }}
               </div>
               
             </div>
@@ -58,7 +58,7 @@
                 <label for="address">Address</label>
               </div>
               <div class="clearfix">
-                {{ Form::text('address', null, ['id' => 'address']) }}
+                {{ Form::text('Address', null, ['id' => 'address']) }}
               </div>
             </div>
           </div>
@@ -68,7 +68,7 @@
                 <label for="city">City</label>
               </div>
               <div class="clearfix">
-                {{ Form::text('city', null, ['id' => 'city']) }}
+                {{ Form::text('City', null, ['id' => 'city']) }}
               </div>
             </div>
             <div class="col-md-3 form-group">
@@ -77,7 +77,7 @@
               </div>
               <div class="clearfix">
                 <div class="styled-select">
-                  {{ Form::selectState('state', null, ['id' => 'state']) }}
+                  {{ Form::selectState('State', null, ['id' => 'state']) }}
                 </div>
               </div>
             </div>
@@ -86,13 +86,13 @@
                 <label for="zipcode">Zip code</label>
               </div>
               <div class="clearfix">
-                {{ Form::text('zipcode', null, ['placeholder' => '10014', 'id' => 'zipcode', 'maxLength'=> '5']) }}
+                {{ Form::text('Zip', null, ['placeholder' => '10014', 'id' => 'zipcode', 'maxLength'=> '5']) }}
               </div>
             </div>
           </div>
           <div class="row m-t-lg">
             <div class="col-md-12 form-group">
-              {{ Form::checkbox('agree_terms', null, false, ['id' => 'agree_terms']) }}
+              {{ Form::checkbox('TermsofService', null, false, ['id' => 'agree_terms']) }}
               <span class="m-l-xs">{{ Form::label('agree_terms', 'I agree with the', ['class' => 'reset-label']) }} {{ HTML::link('https://militarytimes.valoancaptain.com/LoginAndPricing.aspx', 'Terms of Service', ['target' => '_blank']) }}</span>
             </div>
           </div>
