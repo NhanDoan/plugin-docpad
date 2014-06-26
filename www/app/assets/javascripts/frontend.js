@@ -205,21 +205,21 @@
                   submitButtons: 'input.btn-get-rates',
                   trigger: 'change blur',
                   fields: {
-                    firstname: {
+                    FirstName: {
                       validators: {
                         notEmpty: {
                           message: 'The firstname is required and cannot be empty'
                         },
                       }
                     },
-                    lastname: {
+                    LastName: {
                       validators: {
                         notEmpty: {
                             message: 'The lastname is required'
                         }
                       }
                     },
-                    email: {
+                    Email: {
                       validators: {
                         notEmpty: {
                           message: 'The email address is required and can\'t be empty'
@@ -229,7 +229,7 @@
                         }
                       }
                     },
-                    phone: {
+                    PrimaryPhoneNumber: {
                       validators: {
                         notEmpty: {
                           message: 'The phone is request and cannot empty'
@@ -248,28 +248,28 @@
                         }
                       }
                     },
-                    address: {
+                    Address: {
                       validators: {
                         notEmpty: {
                           message: 'The address is required and can\'t be empty'
                         }
                       }
                     },
-                    city: {
+                    City: {
                       validators: {
                         notEmpty: {
                           message: 'The city is required and can\'t be empty'
                         }
                       }
                     },
-                    agree_terms: {
+                    TermsofService: {
                       validators: {
                         notEmpty: {
                           message: 'You must be agree with the Terms of Service'
                         }
                       }
                     },
-                    zipcode : {
+                    Zip: {
                       validators: {
                         notEmpty: {
                           message: 'The zipcode is required and can\'t be empty'
