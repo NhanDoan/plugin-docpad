@@ -76,7 +76,7 @@
               '20' => '20%'
               ], isset($params['downPayment']) ? $params['downPayment'] : 0, ['class' => 'form-45'])
             }}
-            {{ Form::text('downPaymentAmount', null, ['placeholder' => '$', 'class' => 'form-45','disabled']) }}
+            {{ Form::text('downPaymentAmount', null, ['placeholder' => '$', 'class' => 'form-45','readonly']) }}
           </div>
         </div>
         <div class="form-group purchase">
@@ -113,18 +113,18 @@
         </div>
         <div class="form-group clearfix">
           <div class="pull-left form-checkbox">
-            {{ Form::checkbox('receive', null, false, ['id' => 'receive']) }}
+            {{ Form::checkbox('receivingDisability', null, false, ['id' => 'receivingDisability']) }}
           </div>
           <div class="pull-left form-text">
-            {{ Form::label('receive', "I’m receiving disability compensation from the VA", ['class' => 'reset-label']) }}
+            {{ Form::label('receivingDisability', "I’m receiving disability compensation from the VA", ['class' => 'reset-label']) }}
           </div>
         </div>
         <div class="form-group clearfix">
           <div class="pull-left form-checkbox">
-            {{ Form::checkbox('connect', null, false, ['id' => 'connect']) }}
+            {{ Form::checkbox('connectwitharealtor', null, false, ['id' => 'connectwitharealtor']) }}
           </div>
           <div class="pull-left form-text">
-            {{ Form::label('connect', 'Connect me with a realtor in my area that specializes in VA Loan home pruchases', ['class' => 'reset-label']) }}
+            {{ Form::label('connectwitharealtor', 'Connect me with a realtor in my area that specializes in VA Loan home pruchases', ['class' => 'reset-label']) }}
             
           </div>
         </div>

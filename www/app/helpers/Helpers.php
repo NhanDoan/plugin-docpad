@@ -143,6 +143,14 @@ class Helpers {
     }
 
     /**
+     * convert string money to double
+     * @param  string $value
+     * @return double
+     */
+    public static function convertDouble($value) {
+        return (double)preg_replace("/[^0-9\.]/", "", $value);
+    }
+    /**
      * get Veteran News
      * @return array is a list news
      */
@@ -171,6 +179,8 @@ class Helpers {
      */
     public static function strLimit( $str, $length = 160, $more = '...') {
         
+        // replace img tag to ''
+        $str = preg_replace('/<img[^>]+\>/i', '', $str);
         if (strlen($str) <= $length) return $str;
 
         $newStr = substr($str, 0, $length);
@@ -190,11 +200,12 @@ class Helpers {
     */
     public static function getValoanNews() {
         try {
-            $newPosts = DB::connection('wpe')
-                    ->select('SELECT p.post_title, p.post_content, p.guid, p.post_modified, u.display_name FROM wp_posts AS p
-                        LEFT JOIN wp_users AS u ON p.post_author = u.ID
-                        WHERE post_status = "publish"
-                        ORDER BY post_modified DESC LIMIT 3');
+            $newPosts = DB::table('wp_posts AS p')
+                        ->select('p.post_title', 'p.post_content', 'p.guid', 'p.post_modified', 'u.display_name')
+                        ->leftJoin('wp_users AS u', 'p.post_author', '=', 'u.ID')
+                        ->where('post_status', 'publish')
+                        ->orderBy('post_modified', 'DESC')
+                        ->take(3)->get();
 
         } catch(Exception $e) {
            $newPosts = 'Cannot connect to Database';
@@ -202,4 +213,88 @@ class Helpers {
 
         return $newPosts;
     }
+
+    /**
+     * map param post form with lead exec api params
+     * @param  array $mortgageParams mortgage variable
+     *         array('payment' => 'refinance', 'loanAmount' => 200000)
+     * @param  array $contactParams contact form varaible
+     *         array('FirstName' => 'Testing', 'LastName' => 'One')
+     * @return array
+     */
+    public static function mapParamLeadExec($mortgageParams, $contactParams) {
+        $results = array();
+        
+        $leadExecParamsFixed = Config::get('leadexecapi.paramsFixed');
+        $leadExecParamsMap = Config::get('leadexecapi.paramsMap');
+        
+        // mapping bettwen form variable and variable api
+        $paramFormMapApi = array(
+                // mortgage form variable
+                'LoanPurpose'           => 'payment',
+                'HomeType'              => 'propertyType',
+                'LoanAmount'            => 'loanAmount',
+                'DownPayment'           => 'downPayment',
+                'DownPaymentValue'      => 'downPaymentAmount',
+                'LoanTerm'              => 'loanProduct',
+                'CreditScore'           => 'creditRating',
+                'Status'                => 'veteranType',
+                'ReceivingDisability'   => 'receivingDisability',
+                'Connectwitharealtor'   => 'connectwitharealtor',
+                // contact form variable
+                'TCPAConsent'           => 'TCPAConsent',
+                'TermsofService'        => 'TermsofService'
+            );
+        
+        foreach($leadExecParamsMap as $key => $param) {
+            /**
+             * ex
+             * $key = 'LoanPurpose'
+             * =>  $param = array('purchase' => 303814, 'refinance' => 303815) in $leadExecParamsMap array
+             *     $keyForm = 'payment'
+             */
+            $keyForm = isset($paramFormMapApi[$key]) ? $paramFormMapApi[$key] : null;
+
+            if (is_array($param)) {
+
+                foreach($param as $k => $p) {
+                    /**
+                     * isset($mortgageParams['payment']) == true
+                     * $k = 'refinance'
+                     * $mortgageParams[$keyForm] = 'refinance'
+                     */
+                    if (isset($mortgageParams[$keyForm]) && $k == $mortgageParams[$keyForm ])
+                        // $results['refinance'] = 303815
+                        $results[$key] = $p;
+                }
+            } else {
+                if (isset($mortgageParams[$keyForm]) )
+                    $results[$key] = $mortgageParams[$keyForm];
+            }
+        }
+
+        return array_merge($leadExecParamsFixed, $results, $contactParams);
+    }
+
+    /**
+     * use api lead exec to insert data
+     * @param  array $mortgageParams data of mortgage
+     * @param  array $contactParams  data of contact form
+     * @return [type]                 [description]
+     */
+    public static function leadExecute($params) {
+        
+        $leadExecUrl = Config::get('leadexecapi.url');
+
+        $resultStr = Helpers::curlExecute($leadExecUrl, $params);
+
+        $xml = simplexml_load_string($resultStr);
+
+        if ($xml->isValidPost == 'false') {
+            return array('message' => $xml->ResponseDetails);
+        }
+
+        return array('message' => '');
+    }
+
 }

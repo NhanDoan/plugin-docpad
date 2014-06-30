@@ -15,9 +15,5 @@ Route::get('/', array('uses' => 'SiteController@index'));
 Route::post('getRates', array('uses' => 'SiteController@getRates', 'as' => 'getRates'));
 Route::get('getValoanNews', 'SiteController@getValoanNews');
 Route::get('getVeteranNews', 'SiteController@getVeteranNews');
-
-
-// Route::get('/', function()
-// {
-// 	return View::make('site/index');
-// });
+Route::resource('contact', 'ContactsController', array('only' => array('store', 'edit', 'update')));
+Route::get('quote', 'SiteController@requestQuote');

@@ -27,7 +27,7 @@
 #vaLoanWidgetSmall input[type="text"] {
 	background: #fff!important;
 	font-size: 1em!important;
-	padding:7px 10px!important;
+	padding:7px 12px!important;
 	width:255px!important;
 }
 #vaLoanWidget span {
@@ -45,13 +45,13 @@
 	width:600px!important;
 }
 #vaLoanWidgetSmall .va-loan-box {
-	border: 1px #ccc solid!important;
+    box-shadow: -5px 5px 5px #ececec;
 	border-radius: 5px!important;
 	float: left!important;
 	margin:20px 0!important;
 	-moz-border-radius: 5px!important;
 	-webkit-border-radius: 5px!important;
-	width:320px!important;
+	width:300px!important;
 }
 #vaLoanWidget .pull-left {
 	float:left!important;
@@ -70,7 +70,7 @@
 	width:550px!important;
 }
 #vaLoanWidgetSmall .va-loan-box .va-loan-header {
-	background:#989898 url(images/icon-home-2.png) no-repeat 245px 20px !important;
+	background:#183b64 url(images/icon-home-2.png) no-repeat 245px 20px !important;
 	border-radius: 5px 5px 0 0!important;
 	color:#fff!important;
 	float:left!important;
@@ -151,19 +151,19 @@
 #vaLoanWidget .va-loan-box .va-loan-footer .logo,
 #vaLoanWidgetSmall .va-loan-box .va-loan-footer .logo {
 	height:26px!important;
-	width:100px!important;
+	width:120px!important;
 	display: inline-block!important;
 	vertical-align: middle!important;
 }
 #vaLoanWidget .va-loan-box .va-loan-footer .logo {
-	background: url(images/logo.jpg) no-repeat!important;
+	background: url(images/logo.jpg) no-repeat !important;
 }
 #vaLoanWidgetSmall .va-loan-box .va-loan-footer .logo {
-	background: url(images/logo.jpg) no-repeat!important;
+	background: url(images/logo.jpg) no-repeat 13px 0% !important;
 }
 #vaLoanWidget .va-loan-box .va-loan-footer .btn-get-rates,
 #vaLoanWidgetSmall .va-loan-box .va-loan-body .btn-get-rates {
-	background:#44464d!important;
+	background:#a83727!important;
 	border-radius: 3px!important;
 	color:#fff!important;
 	cursor: pointer!important;
@@ -172,10 +172,13 @@
 	-webkit-border-radius: 3px!important;
 	text-align: center!important;
 	border: none;
+    text-transform: uppercase;
 }
 #vaLoanWidget .va-loan-box .va-loan-footer .btn-get-rates {
+    background:#44464D!important;
 	font-size:1.625em!important;
 	padding:7px 40px!important;
+    text-transform: none;
 }
 #vaLoanWidgetSmall .va-loan-box .va-loan-body .btn-get-rates {
 	font-size:1em!important;
@@ -200,6 +203,7 @@
 }
 
 #vaLoanWidgetSmall .va-loan-box .va-loan-footer {
+    box-shadow: -1px 2px #ececec;
 	background:#fff!important;
 	border-radius: 0 0 5px 5px!important;
 	float: left!important;

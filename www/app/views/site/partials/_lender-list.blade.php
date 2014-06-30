@@ -1,3 +1,4 @@
+{{ Form::hidden('stateAbbr', $state) }}
 <ul>
   @if ( is_array($results) )
     @if (!empty ($results) )

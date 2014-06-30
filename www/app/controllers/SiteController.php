@@ -17,11 +17,13 @@ class SiteController extends BaseController {
 	public function index()
 	{
 		$params = Input::except('_token');
-
+		
 		if (!isset($params['zipCode']) || !$params['zipCode'])
 			$params['zipCode'] = '10014';
 
 		$results = $this->calculate();
+		$mortgageParams = Session::get('mortgageParams');
+		$params['state'] = $mortgageParams['stateAbbr'];
 
 		$this->layout->content = View::make('site/index', compact('params', 'results'));
 
@@ -30,8 +32,10 @@ class SiteController extends BaseController {
 	public function getRates() {
 		
 		$results = $this->calculate();
+		$mortgageParams = Session::get('mortgageParams');
+		$state = $mortgageParams['stateAbbr'];
 
-		return View::make('site/partials/_lender-list', compact('results'));
+		return View::make('site/partials/_lender-list', compact('results', 'state'));
 
 	}
 
@@ -52,17 +56,27 @@ class SiteController extends BaseController {
 		else
 			return 'ZipCode Invalid';
 
+		// if user checked "I'm receiving disability compensation from the VA"
+		if (isset($params['receivingDisability'])) {
+			$params['veteranType'] = 2;
+		}
+
 		if ( isset($params['payment']) ) {
 			$params['propertyValue'] = 200000;
 
 			if ( strtolower($params['payment']) == 'purchase' ) {
 				// if user selected loanAmount 
-				if (isset($params['loanAmount']))
-					$params['propertyValue'] = $params['loanAmount'] + (($params['downPayment'] / 100) * $params['loanAmount']);
+				if (isset($params['loanAmount'])) {
+					// $params['propertyValue'] = $params['loanAmount'] + (($params['downPayment'] / 100) * $params['loanAmount']);
+					$params['downPaymentAmount'] = Helpers::convertDouble($params['downPaymentAmount']);
+					$params['propertyValue'] = $params['loanAmount'] + $params['downPaymentAmount'];
+				}
 				
 				// else set default
 				else
 					$params['loanAmount'] = 200000;
+
+				Session::put('mortgageParams', $params);
 
 			} else {
 
@@ -73,7 +87,7 @@ class SiteController extends BaseController {
           if ($params['cash'] == 1)
         		$params['mortgageType'] = 4;
           else
-            $params['additionalCashOutAmount'] = (double)preg_replace("/[^0-9\.]/", "", $params['additionalCashOutAmount']);
+            $params['additionalCashOutAmount'] = Helpers::convertDouble($params['additionalCashOutAmount']);
 
         // if user selected loanAmount 
         if (isset($params['loanAmount']))
@@ -82,22 +96,21 @@ class SiteController extends BaseController {
 				else
 					$params['currentMortgageBalance'] = 200000;
 
-        unset($params['loanAmount']);
+				unset($params['downPaymentAmount']);
         unset($params['loanProduct']);
         unset($params['propertyType']);
+
+        Session::put('mortgageParams', $params);
+
+        unset($params['loanAmount']);
 			}
-		}
-		
-		// if user checked "I'm receiving disability compensation from the VA"
-		if (isset($params['receive'])) {
-			$params['veteranType'] = 2;
 		}
 
 		unset($params['payment']);
 		unset($params['cash']);
 		unset($params['downPayment']);
-		unset($params['receive']);
-		unset($params['connect']);
+		unset($params['receivingDisability']);
+		unset($params['connectwitharealtor']);
 
 		return Helpers::mortechExecute(array_reverse($params));
 
@@ -123,4 +136,13 @@ class SiteController extends BaseController {
 		return View::make('site/partials/_veteran-news', compact('veteranNews'));
 	}
 
+	public function requestQuote() {
+		$contact = Contact::where('key', Session::get('contactKey'))->first();
+		$contact->posted = 1;
+		$contact->save();
+		Session::forget('contactKey');
+
+		return Helpers::leadExecute(json_decode($contact->params));
+
+	}
 }
