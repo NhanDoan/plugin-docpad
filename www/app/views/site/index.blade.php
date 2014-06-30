@@ -11,7 +11,7 @@
           </div>
           <div class="col-md-9">
               <section class="list-form m-t-lg m-b-lg clearfix">
-                @include('site.partials._lender-list', array('results' => $results))
+                @include('site.partials._lender-list', array('results' => $results, 'state' => $params['state']))
               </section>
               <div class="clearfix news">
                 <div class="row">

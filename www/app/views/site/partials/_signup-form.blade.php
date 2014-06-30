@@ -7,7 +7,7 @@
         <h6>Please confirm your information so that we may accurately match your record.</h6>
       </div>
       <div class="modal-body">
-        {{ Form::open(array('id'=> 'infoContactForm', 'class'=> 'form-horizontal')) }}
+        {{ Form::open(array('route' => 'contact.store', 'id'=> 'infoContactForm', 'class'=> 'form-horizontal')) }}
           <div class="row m-t-lg">
             <div class="col-md-6 form-group">
               <div class="clearfix">

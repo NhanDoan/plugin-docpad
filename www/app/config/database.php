@@ -54,24 +54,13 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'database',
-			'username'  => 'root',
-			'password'  => '',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
-		),
-
-		'wpe' => array(
-			'driver'    => 'mysql',
 			'host'      => '69.164.201.191',
 			'database'  => 'wp_valoan',
 			'username'  => 'valoan',
 			'password'  => 'bw8Ztgrxn64NRDz9',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => 'wp_',
+			'prefix'    => '',
 		),
 
 		'pgsql' => array(

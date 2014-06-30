@@ -187,14 +187,22 @@
               );
             },
 
-            resetForm = function () {
-              $('#contactForm').on('show.bs.modal', function() {
+            resetForm = function (content) {
+              var contactForm = $('body').find('#contactForm');
+
+              contactForm.on('show.bs.modal', function() {
+                var zipCode = content.find('input[name="zipCode"]').val(),
+                    stateAbbr = content.find('input[name="stateAbbr"]').val();
+
                 $('#infoContactForm').bootstrapValidator('resetForm', true);
+
+                contactForm.find('#zipcode').val(zipCode);
+                contactForm.find('#state').val(stateAbbr);
               });
             },
 
             contact = function(content) {
-              resetForm();
+              resetForm(content);
 
               var contacForm  = $('body').find('#contactForm'),
                   btnSubmit   = contacForm.find('.btn-get-rates');
@@ -282,31 +290,31 @@
                   },
 
                   submitHandler: function(validator, form, submitButton) {
-                    // $.ajax({
-                    //   url: form.attr('action'),
-                    //   method: 'post',
-                    //   processData: false,
-                    //   contentType: false,
-                    //   cache: false,
-                    //   dataType: 'json',
-                    //   data: form.serialize(),
-                    //   beforeSend: function() {
-                    //     alert('before send');
-                    //   },
-                    //   success: function(data) {
-                    //     alert('success');
-                    //   },
-                    //   error: function() {
-                    //     alert('error');
-                    //   }
-                    // });
-                    content.find('.show-lender, .news').addClass('hide');
-                    content.find('.request-quote-container').show();
-                    content.find('.rates-check').addClass('display-block');
-                    $('.list-form').find('.col-md-1').remove();
-                    $('.list-form').find('.col-md-5').removeClass('col-md-5').addClass('col-md-6');
-                    $('.btn-request-quote').css('padding','5px 30px');
-                    contacForm.modal('hide');
+                    $.ajax({
+                      url: form.attr('action'),
+                      type: 'POST',
+                      dataType: 'json',
+                      data: form.serialize(),
+                      beforeSend: function() {
+                        submitButton.addClass('indicator');
+                      },
+                      success: function(data) {
+                        submitButton.removeClass('indicator');
+
+                        if (data.message === '') {
+                          content.find('.show-lender, .news').addClass('hide');
+                          content.find('.request-quote-container').show();
+                          content.find('.rates-check').addClass('display-block');
+                          $('.list-form').find('.col-md-1').remove();
+                          $('.list-form').find('.col-md-5').removeClass('col-md-5').addClass('col-md-6');
+                          $('.btn-request-quote').css('padding','5px 30px');
+                          contacForm.modal('hide');
+                        }
+                        
+                      },
+                      error: function() {
+                      }
+                    });
                   }
               });
             },

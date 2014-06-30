@@ -68,6 +68,24 @@ App::down(function()
 	return Response::make("Be right back!", 503);
 });
 
+Event::listen('cron.collectJobs', function() {
+    Cron::add('sendContact', '*/2 * * * *', function() {
+
+    	$contacts = Contact::whereRaw('created_at <= date_sub(now(), interval 45 minute)')->where('posted', 0)->get();
+        
+        // Do some crazy things unsuccessfully every minute
+        if (!empty($contacts)) {
+            foreach ($contacts as $contact) {
+                $contact->posted = 1;
+                $contact->save();
+                Helpers::leadExecute(json_decode($contact->params));
+            }
+        }
+
+        return null;
+    });
+
+});
 
 App::missing(function($exception)
 {
