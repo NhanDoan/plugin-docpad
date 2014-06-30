@@ -242,11 +242,9 @@
                         notEmpty: {
                           message: 'The phone is request and cannot empty'
                         },
-                        country: 'US',
-                        regexp: {
-                          regexp: /([0-9\s\-]{7,})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/,
-                          message: 'Pls enter input correct'
-                        }
+                        phone: {
+                            message: 'Please enter a valid phone number in US'
+                        },
                       }
                     },
                     TCPAConsent: {
