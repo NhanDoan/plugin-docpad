@@ -28,7 +28,7 @@
 	background: #fff!important;
 	font-size: 1em!important;
 	padding:7px 12px!important;
-	width:255px!important;
+	width:235px!important;
 }
 #vaLoanWidget span {
 	margin:0 8px!important;
@@ -45,13 +45,13 @@
 	width:600px!important;
 }
 #vaLoanWidgetSmall .va-loan-box {
-    box-shadow: -5px 5px 5px #ececec;
+    box-shadow: -3px 3px 3px #ececec;
 	border-radius: 5px!important;
 	float: left!important;
 	margin:20px 0!important;
 	-moz-border-radius: 5px!important;
 	-webkit-border-radius: 5px!important;
-	width:300px!important;
+	width:280px!important;
 }
 #vaLoanWidget .pull-left {
 	float:left!important;
@@ -70,14 +70,14 @@
 	width:550px!important;
 }
 #vaLoanWidgetSmall .va-loan-box .va-loan-header {
-	background:#183b64 url(images/icon-home-2.png) no-repeat 245px 20px !important;
+	background:#183b64 url(images/icon-home-2.png) no-repeat 225px 20px !important;
 	border-radius: 5px 5px 0 0!important;
 	color:#fff!important;
 	float:left!important;
 	padding:15px 20px 10px!important;
 	-moz-border-radius: 5px 5px 0 0!important;
 	-webkit-border-radius: 5px 5px 0 0!important;
-	width:280px!important;
+	width:260px!important;
 }
 #vaLoanWidget .va-loan-box .va-loan-header .icon-home {
 	background: url(images/icon-home.png) no-repeat!important;
@@ -193,10 +193,10 @@
 	padding:20px 20px 0!important;
 	-moz-border-radius: 0 0 5px 5px!important;
 	-webkit-border-radius: 0 0 5px 5px!important;
-	width:280px!important;
+	width:260px!important;
 }
 #vaLoanWidgetSmall .va-loan-box .va-loan-body .form-group {
-	margin-bottom:20px!important;
+	margin-bottom: 10px!important;
 }
 #vaLoanWidgetSmall .va-loan-box .va-loan-body span {
 	margin-right:40px!important;
@@ -212,7 +212,7 @@
 	-moz-border-radius: 0 0 5px 5px!important;
 	-webkit-border-radius: 0 0 5px 5px!important;
 	text-align: center!important;
-	width:280px!important;
+	width:260px!important;
 }
 ::-webkit-input-placeholder { /* WebKit browsers */
     color:    #999!important;
