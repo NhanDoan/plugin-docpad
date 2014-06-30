@@ -8,11 +8,11 @@
             <div class="col-md-1">
               <div class="border-top-list"></div>
             </div>
-            <div class="col-md-3 rates">
+            <div class="col-md-3 rates custom-col-md-3 custom-col-sm-3 custom-col-xs-3">
               <span class="rates-check m-r-lg">
                 <input name="ratescheck" type="checkbox" value=""/>
               </span>{{ $lender['apr'] }}<span>%APR</span></div>
-            <div class="col-md-3">
+            <div class="col-md-3 custom-col-md-3 custom-col-sm-3 custom-col-xs-3">
               <div class="clearfix">{{ str_replace('Yr', 'Year', $lender['consumerProductName']) }}</div>
               <div class="clearfix">{{ $lender['noteRate'] }} % Rate - {{ Helpers::money($lender['monthlyPayment']['totalMonthlyPayment']) }}/mo</div>
               <div class="clearfix">{{ Helpers::money($lender['lenderFees']['totalFees']) }} closing cost</div>

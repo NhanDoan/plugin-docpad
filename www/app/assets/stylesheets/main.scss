@@ -96,7 +96,9 @@ select, button {
 	padding:0;
 }
 .navbar-inverse .navbar-toggle {
+	background:#fff;
 	border-color:#ccc;
+	opacity:0.9;
 	&:hover, &:focus {
 		background:#fff;
 	}
@@ -113,6 +115,7 @@ select, button {
 }
 .header {
 	background:#0b2d52 url(../images/header-img.png) 100% 50% no-repeat;
+	background-size:auto 100%;
 	border-color:#68c5fe;
 	border-width:0;
 	border-radius:0;
@@ -127,7 +130,7 @@ select, button {
 #logo h1 {
   	background: url(../images/stripes-logo.png) no-repeat;
   	background-size:175px 26px;
-  	margin:20px 0;
+  	margin:18px 0 12px;
   	position: relative;
   	text-indent: -9999px;
 }
@@ -138,12 +141,11 @@ select, button {
 	width: 175px;
 }
 .navigation {
-	bottom:0;
 	color:#fff;
+	float:left;
 	line-height:1.2;
 	padding-left:40px;
 	padding-right:10px;
-	position:absolute;
 	width:100%;
 	.container-title {
 		position:relative;
@@ -153,14 +155,17 @@ select, button {
 		font-family:Impact, "Anton", sans-serif;
 		font-size:6.6em;
 		text-shadow:0 0 5px #000;
+		vertical-align: middle;
 		span {
 			font-size:1.33em;
 		}
 	}
 	.container-powered {
+		display:inline-block;
 		position:absolute;
 		right:0;
-		top:0;
+		top:5px;
+		vertical-align: middle;
 	}
 	.powered {
 		display:inline-block;
@@ -248,7 +253,7 @@ select, button {
 				span {
 					margin-right:20px;
 				}
-				.form-94 {
+				.form-100 {
 					border:none;
 					border-radius:2px;
 					-moz-border-radius:2px;
@@ -259,32 +264,27 @@ select, button {
 					margin-top:2px;
 					padding:3px;
 					vertical-align: middle;
-					width:94%;
+					width:100%;
 				}
 				.form-45 {
-					@extend .form-94;
+					@extend .form-100;
 					width:45%;
 				}
 				.form-88 {
-					@extend .form-94;
+					@extend .form-100;
 					width:88%;
 				}
 				.form-120 {
-					@extend .form-94;
+					@extend .form-100;
 					width:120%!important;
 				}
 				.form-group {
 					margin-bottom: 10px;
 				}
-				.form-checkbox {
-					margin-top: 10px;
-					width:20px;
-				}
-				.form-radio {
-					width:20px;
+				.form-checkbox, .form-radio {
+					width:10%;
 				}
 				.form-text {
-					margin-top: 10px;
 					width:90%;
 				}
 				.form-title {
@@ -379,8 +379,16 @@ select, button {
 		}
 	}
 }
+.col-form-left {
+	float:left;
+	width:50%;
+}
+.col-form-right {
+	@extend .col-form-left;
+	padding-left:5px;
+}
 .contact-submit{
-    width: 32%!important;
+    width: 166px!important;
     height: 100%!important;
     margin-right: 1em;
 }
@@ -405,9 +413,12 @@ select, button {
 	-webkit-border-radius:5px;
 	box-shadow: 0 3px 0 #0c3159;
 	color: #fff;
+	display:inline-block;
 	font-size: 1.6em;
 	font-weight: 700;
 	padding:7px 50px;
+	text-align:center;
+	width:100%;
   	a, a:hover, a:focus {
 		color: #fff;
 		text-decoration: none;
@@ -437,6 +448,7 @@ span.btn-get-rates {
 	float:left;
 	height:38px;
 	padding:4px 0 4px 25px;
+	width:auto;
 }
 .btn-cancel {
     background-color: #0f3d6e!important;
@@ -479,6 +491,7 @@ span.btn-get-rates {
 	display:inline-block;
 	font-size:1em;
 	padding:5px 10px;
+	width:auto;
 }
 #footer {
 	a, a:hover, a:focus {
@@ -571,39 +584,137 @@ span.btn-get-rates {
 	}
 }
 
-@media screen and (max-width: 320px) {
-	.navigation {
-		.title {
-			font-size: 3.5em!important;
+@media (width: 320px) {	
+    .custom-col-xs-3 {
+        width: 100%!important;
+        float:left;
+    }
+	.header {
+	  	background:#0b2d52 url(../images/header-img-320.png) 100% 50% no-repeat!important;
+	  	height: 116px!important;
+	}
+	#logo {
+		margin-left: 15px!important;
+		h1 {
+		  	background: url(../images/stripes-logo.png) no-repeat;
+		  	background-size:80px 12px!important;
 		}
-		.container-powered {
-			top:55px!important;
+	}
+	.navigation {
+		padding:0 15px!important;
+		width: auto!important;
+		.title {
+			font-size: 4.1em!important;
 		}
 		.container-title {
-			margin-top:20px!important;
+			margin-top:-2px!important;
 		}
 		.nav-container {
-			padding-top:50px!important;
+			padding-top:2px!important;
 		}
+	}
+	#content {
+		padding:0 15px!important;
+	}
+	#footer {
+		padding:10px 15px!important;
+	}
+	.btn-get-rates {
+		font-size: 1.4em;
+		padding:7px 30px!important;
+	}
+	.btn-show-lender-text {
+		padding:4px 0 4px 25px!important;
+	}
+	.btn-request-quote {
+		font-size: 1em!important;
+		padding:5px 10px!important;
+	}
+	.request-quote-container .lender-img-container {
+		margin:15px 0;
+	}
+	.contact-submit {
+		width:120px!important;
+	}
+	.modal-header {
+		padding:15px 50px 15px 25px;
+	}
+	.modal-body {
+		padding:0 25px 25px;
 	}
 }
-
-@media screen and (max-width: 767px) {
-	.navbar-collapse {
-		padding:0;
-	}
+@media (width: 480px) {	
+    .custom-col-sm-3 {
+        width: 30%!important;
+        float:left;
+    }
 	.header {
-		background:#0B2D42;
-		.navbar-header {
-			background:#fff;
-			height:50px;
+	  	background:#0b2d52 url(../images/header-img-480.png) 100% 50% no-repeat;
+	  	height: 96px!important;
+	}
+	#logo {
+		margin-left: 15px!important;
+		h1 {
+		  	background: url(../images/stripes-logo.png) no-repeat;
+		  	background-size:80px 12px!important;
 		}
 	}
-	#logo h1 {
-	  	background: url(../images/stripes-responsive-logo.png) no-repeat;
-	  	background-size:150px 22px;
-	  	margin:15px 0;
+	.navigation {
+		padding:0 15px!important;
+		width: 99%!important;
+		.title {
+			font-size: 3.4em!important;
+		}
+		.container-title {
+			margin-top:-16px!important;
+		}
 	}
+	#content {
+		padding:0 15px;
+	}
+	.btn-show-lender-text {
+		font-size: 1.2em;
+		height:30px;
+		padding:2px 0 4px 15px!important;
+	}
+	.btn-request-quote {
+		padding:5px 10px!important;
+	}
+	.btn-show-lender-img {
+		font-size: 1.2em;
+		padding:2px 4px 3px 20px!important;
+		.btn-curve {
+			background:url(../images/btn-curve-480.png);
+			left:-1px;
+			height:30px;
+			width:32px;
+		}
+	}
+	#footer {
+		padding:10px 15px;
+	}
+}
+@media (max-width: 991px) {
+	.navbar-collapse {
+		border-top:none;
+	}
+    .col-md-1, .col-md-3, .col-md-5, .col-md-6, .col-md-9 {
+        width: 100%;
+    }
+    .custom-width-left {
+        margin-bottom: 10px;
+    }
+    .header {
+    	height: 116px;
+    }
+    #logo h1 {
+    	background-size:115px 17px;
+    	margin:12px 0;
+    	a {
+    		width:115px;
+    		height:17px;
+    	}
+    }
 	.navigation {
 		position:relative;
 		padding:0 40px;
@@ -617,30 +728,130 @@ span.btn-get-rates {
 			padding:10px;
 		}
 		.title {
-			font-size: 5.5em;
-			span {
-				font-size: 1em;
-			}
+			font-size: 4em;
 		}
 		.container-title {
-			margin-top:10px;
+			margin-top:-5px;
 		}
 		.container-powered {
-			right:auto;
-			top:65px;
+			left:auto;
+			right:0;
+			top:0;
+		}
+		.powered {
+			font-size: 1em;
+		}
+		.captain-logo {
+			width:81px;
+			height:15px;
+			background-size:81px 15px;
 		}
 		.nav-container {
 			clear:both;
 			float:none!important;
 			margin-right:-40px;
-			padding-top:35px;
+			padding-top:8px;
 			position:relative;
 		}
 	}
-	#content {
-		padding:10px 20px;
-	}
 	#content .content .list-form ul li:first-child {
-		margin:0;
+		margin-top:0;
+	}
+	#content .content #formNav .form-body {
+		.form-checkbox, .form-radio {
+			width:20px;
+		}
+		.form-title {
+			width:96%;
+		}
+	}
+	.btn-get-rates {
+		width:auto;
+		padding:7px 50px;
+	}
+	.btn-show-lender-text {
+		padding:4px 0 4px 25px;
+	}
+}
+@media (min-width: 992px) and (max-width: 1024px) {
+    .col-md-3, .col-md-6, .col-md-9 {
+        width: 100%;
+    }
+    .custom-width-left {
+        float: left;
+        padding-right:25px;
+        width: 75%;
+    }
+    .custom-width-right {
+        float: left;
+        margin-top:-20px;
+        width: 25%;
+    }
+    .custom-col-md-3 {
+        width: 25%;
+    }
+    .header {
+    	height: 116px;
+    }
+    #logo h1 {
+    	background-size:115px 17px;
+    	margin:12px 0;
+    	a {
+    		width:115px;
+    		height:17px;
+    	}
+    }
+	.navigation {
+		position:relative;
+		padding:0 40px;
+		#primaryNav ul li {
+			border-radius:0;
+			-moz-border-radius:0;
+			-webkit-border-radius:0;
+			box-shadow:none;
+			float:none;
+			margin-right:0;
+			padding:10px;
+		}
+		.title {
+			font-size: 4em;
+		}
+		.container-title {
+			margin-top:-5px;
+		}
+		.container-powered {
+			position:relative;
+			top:15px;
+			left:10px;
+		}
+		.nav-container {
+			clear:both;
+			float:none!important;
+			margin-right:-40px;
+			padding-top:8px;
+			position:relative;
+		}
+	}
+	#content .content #formNav .form-body {
+		.form-checkbox, .form-radio {
+			width:20px;
+		}
+		.form-title {
+			width:96%;
+		}
+	}
+	.btn-get-rates {
+		width:auto;
+	}
+}
+@media (max-width: 1024px) {
+	.navbar-collapse.collapse {
+		display: none!important;
+	}
+	.navbar-toggle {
+		display: block!important;
+	}
+	.navbar-header {
+		width:100%;
 	}
 }

@@ -12,13 +12,13 @@
   </div>
   <div class="navigation">
     <div class="pull-left container-title">
-      <div class="container-powered">
-        <div class="powered">Powered by</div>
-        <div class="captain-logo"></div>
-      </div>
       <div class="title">
         <span>VA </span>
         Loan Center
+      </div>
+      <div class="container-powered">
+        <div class="powered">Powered by</div>
+        <div class="captain-logo"></div>
       </div>
     </div>
     <div class="pull-right nav-container">

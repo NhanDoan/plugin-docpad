@@ -6,7 +6,7 @@
 /*--}}
 {{ Form::open(array('route' => 'getRates')) }}
 
-  <aside id="formNav" class="m-b-lg clearfix">
+  <aside id="formNav" class="m-b-lg clearfix custom-width-left">
     <div class="form-header">Mortgage Rates for<span>{{ $params['zipCode'] }}</span>
         {{
             Form::text('zipCode', $params['zipCode'], array('class' => 'zipCode hidden', 'required' , 'maxlength' => '5'))
@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <div class="form-group clearfix", id="refinance">
+        <div class="form-group clearfix" id="refinance">
           <div class="clearfix"><strong>Type</strong></div>
           <div class="pull-left form-radio">
             {{ Form::radio('cash', '0', true, ['id' => 'cash-out']) }}
@@ -36,7 +36,7 @@
           <div class="pull-left form-title">
             {{ Form::label('cash-out', 'Cash Out', ['class' => 'reset-label']) }}
             <div class="clearfix">
-              {{ Form::text('additionalCashOutAmount', null, ['placeholder' => '$0', 'class' => 'form-88']) }}
+              {{ Form::text('additionalCashOutAmount', null, ['placeholder' => '$0', 'class' => 'form-100']) }}
             </div>
           </div>
           <div class="pull-left form-radio m-t">
@@ -56,27 +56,31 @@
               '1' => 'Single Family',
               '2' => 'Multi-unit',
               '3' => 'Condo'
-            ], (isset($params['propertyType'])) ? $params['propertyType'] : 1, ['class' => 'form-94']) 
+            ], (isset($params['propertyType'])) ? $params['propertyType'] : 1, ['class' => 'form-100']) 
           }}
         </div>
         <div class="form-group">
           <div class="clearfix"><strong>Loan Amount</strong></div>
           {{ Form::select('loanAmount', $loanAmount, 
-            (isset($params['loanAmount'])) ? $params['loanAmount'] : 200000, ['class' => 'form-94'])
+            (isset($params['loanAmount'])) ? $params['loanAmount'] : 200000, ['class' => 'form-100'])
           }}
         </div>
         <div class="form-group purchase">
           <div class="clearfix"><strong>Down Payment</strong></div>
           <div class="clearfix">
-            {{ Form::select('downPayment', [
-              '0' => '0%',
-              '5' => '5%',
-              '10' => '10%',
-              '15' => '15%',
-              '20' => '20%'
-              ], isset($params['downPayment']) ? $params['downPayment'] : 0, ['class' => 'form-45'])
-            }}
-            {{ Form::text('downPaymentAmount', null, ['placeholder' => '$', 'class' => 'form-45','readonly']) }}
+            <div class="col-form-left">
+              {{ Form::select('downPayment', [
+                '0' => '0%',
+                '5' => '5%',
+                '10' => '10%',
+                '15' => '15%',
+                '20' => '20%'
+                ], isset($params['downPayment']) ? $params['downPayment'] : 0, ['class' => 'form-100'])
+              }}
+            </div>
+            <div class="col-form-right">
+              {{ Form::text('downPaymentAmount', null, ['placeholder' => '$', 'class' => 'form-100','readonly']) }}
+            </div>
           </div>
         </div>
         <div class="form-group purchase">
@@ -86,7 +90,7 @@
             '2' => '30 Year Fixed',
             '3' => '3/1 ARM',
             '4' => '5/1 ARM'
-            ], (isset($params['loanProduct'])) ? $params['loanProduct'] : 2, ['class' => 'form-94'])
+            ], (isset($params['loanProduct'])) ? $params['loanProduct'] : 2, ['class' => 'form-100'])
           }}
         </div>
         <div class="form-group">
@@ -99,7 +103,7 @@
               '3' => '660 - 679 (fair)',
               '8' => '640 - 659 (fair)',
               '4' => '620 - 639 (low)'
-            ], (isset($params['creditRating'])) ? $params['creditRating'] : 5, ['class' => 'form-94'])
+            ], (isset($params['creditRating'])) ? $params['creditRating'] : 5, ['class' => 'form-100'])
           }}
         </div>
         <div class="form-group">
@@ -108,7 +112,7 @@
               '0' => 'Veteran',
               '1' => 'Active Duty',
               '2' => 'Reservist'
-            ], (isset($params['veteranType'])) ? $params['veteranType'] : 0, ['class' => 'form-94'])
+            ], (isset($params['veteranType'])) ? $params['veteranType'] : 0, ['class' => 'form-100'])
           }}
         </div>
         <div class="form-group clearfix">
@@ -128,7 +132,7 @@
             
           </div>
         </div>
-        <div class="form-group text-center clearfix">
+        <div class="form-group clearfix">
           <a href="#">
             <div class="btn-get-rates">Get Rates</div>
           </a>
