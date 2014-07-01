@@ -209,7 +209,7 @@ select, button {
 }
 #content {
 	h2 {
-		font-size:2.8em;
+		font-size:4em;
 		font-weight: 700; 
 	}
 	background:#fff;
@@ -222,75 +222,121 @@ select, button {
 		margin-bottom: 30px;
 	}
 	.content {
-		#formNav {
-			.form-header {
-				background:#59353d;
-				color:#fff;
-				font-size:1.5em;
-				font-weight: 700;
-				padding:10px 15px;
-				span {
-					border-bottom:1px #fff dashed;
-					margin-left:5px;
-				}
+		.form-header {
+			background:#59353d;
+			color:#fff;
+			font-size:1.5em;
+			font-weight: 700;
+			padding:10px 15px;
+			span {
+				border-bottom:1px #fff dashed;
+				margin-left:5px;
 			}
-			.error-zipCode {
-				border: 1px solid #a94442!important;
-			    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #a94442 !important;
-         		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #a94442 !important;
+		}
+		.error-zipCode {
+			border: 1px solid #a94442!important;
+		    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #a94442 !important;
+     		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #a94442 !important;
+		}
+		.zipCode {
+            width: 30%;
+            margin-left: .5em;
+        }
+		.form-body {
+			background: url(../images/form-bg.png);
+			font-size: 1.2em;
+			float:left;
+			height:auto;
+			padding:15px 20px;
+			width:100%;
+			span {
+				margin-right:20px;
 			}
-			.zipCode {
-                width: 30%;
-                margin-left: .5em;
-            }
-			.form-body {
-				background: url(../images/form-bg.png);
-				font-size: 1.2em;
-				float:left;
-				height:auto;
-				padding:15px 20px;
+			.form-100 {
+				border:none;
+				border-radius:2px;
+				-moz-border-radius:2px;
+				-webkit-border-radius:2px;
+				box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+				height:22px;
+				margin-right:5px;
+				margin-top:2px;
+				padding:3px;
+				vertical-align: middle;
 				width:100%;
-				span {
-					margin-right:20px;
+			}
+			.form-45 {
+				@extend .form-100;
+				width:45%;
+			}
+			.form-88 {
+				@extend .form-100;
+				width:88%;
+			}
+			.form-120 {
+				@extend .form-100;
+				width:120%!important;
+			}
+			.form-group {
+				margin-bottom: 10px;
+			}
+			.form-checkbox, .form-radio {
+				width:10%;
+			}
+			.form-text {
+				width:90%;
+			}
+			.form-title {
+				width:90%;
+				a {
+					font-size: 0.8em;
 				}
-				.form-100 {
-					border:none;
-					border-radius:2px;
-					-moz-border-radius:2px;
-					-webkit-border-radius:2px;
-					box-shadow: 0 2px 0 rgba(0,0,0,0.3);
-					height:22px;
-					margin-right:5px;
-					margin-top:2px;
-					padding:3px;
-					vertical-align: middle;
-					width:100%;
-				}
-				.form-45 {
-					@extend .form-100;
-					width:45%;
-				}
-				.form-88 {
-					@extend .form-100;
-					width:88%;
-				}
-				.form-120 {
-					@extend .form-100;
-					width:120%!important;
-				}
-				.form-group {
-					margin-bottom: 10px;
-				}
-				.form-checkbox, .form-radio {
-					width:10%;
-				}
-				.form-text {
-					width:90%;
-				}
-				.form-title {
-					width:90%;
-					a {
-						font-size: 0.8em;
+			}
+		}
+		.title-body {
+			background: url(../images/form-bg.png);
+			font-size: 1.2em;
+			float:left;
+			height:auto;
+			width:100%;
+			ul {
+				list-style: none;
+				margin:0;
+				padding:0;
+				li {
+					border-bottom: 1px #cfcbc3 solid;
+					font-size: 1.2em;
+					font-weight: 700;
+					padding:15px 20px;
+					&:last-child {
+						border-bottom:0;
+					}
+					&.active {
+						background: #0f3d6e;
+						border-radius:3px 0 0 3px;
+						-moz-border-radius:3px 0 0 3px;
+						-webkit-border-radius:3px 0 0 3px;
+						border-bottom:0;
+						color:#fff;
+						margin-left:10px;
+						margin-top:10px;
+						a, a:hover ,a:focus {
+							color:#fff;
+						}
+						&:after {
+							content: " "; 
+							display: block; 
+							width: 0; 
+							height: 0;
+							border-top: 25px solid transparent;           /* Go big on the size, and let overflow hide */
+							border-bottom: 25px solid transparent;
+							border-left: 25px solid #0f3d6e;
+							position: absolute;
+							margin-top: -35px;
+							margin-left: -15px;
+							left: 100%;
+							z-index: 2;
+						}
 					}
 				}
 			}
@@ -418,7 +464,6 @@ select, button {
 	font-weight: 700;
 	padding:7px 50px;
 	text-align:center;
-	width:100%;
   	a, a:hover, a:focus {
 		color: #fff;
 		text-decoration: none;
@@ -462,7 +507,8 @@ span.btn-get-rates {
     border: medium none;
 	font-size: 1em;
 	opacity:0.8;
-	padding: 6px 15px!important;
+	padding: 5px 20px!important;
+	width:auto!important;
 }
 
 .btn-show-lender-img {
@@ -493,6 +539,35 @@ span.btn-get-rates {
 	padding:5px 10px;
 	width:auto;
 }
+.btn-normal {
+	@extend .btn-get-rates;
+	display:inline-block;
+	font-size:1.4em;
+	height:100%!important;
+	padding:5px 20px;
+	width:auto!important;
+}
+.social-container {
+	margin-top:70px;
+	.facebook {
+		background:url(../images/icon-facebook.png) no-repeat;
+		display: inline-block;
+		height:28px;
+		width:28px;
+	}
+	.twitter {
+		background:url(../images/icon-twitter.png) no-repeat;
+		display: inline-block;
+		height:28px;
+		width:28px;
+	}
+	.googleplus {
+		background:url(../images/icon-googleplus.png) no-repeat;
+		display: inline-block;
+		height:28px;
+		width:28px;
+	}
+}
 #footer {
 	a, a:hover, a:focus {
 		color: #fff;
@@ -513,6 +588,11 @@ span.btn-get-rates {
 	h3 {
 		font-size: 2.1em;
 		font-weight: 700;
+		margin-top:10px;
+	}
+	h5 {
+		font-size: 1.6em;
+		margin-top:20px;
 	}
 	h6 {
 		color:#575757;
@@ -532,6 +612,33 @@ span.btn-get-rates {
 	hr {
 		border-top:1px #8b8b8b solid;
 		opacity:.56;
+	}
+	.value {
+		background:#e3dccf;
+		color:#605746;
+		display: inline-block;
+		font-size: 1.3em;
+		font-weight: 700;
+		padding:3px 5px;
+	}
+	.indicators {
+		margin-bottom: -40px;
+		li {
+			background:#999;
+			border-radius:50%;
+			-moz-border-radius:50%;
+			-webkit-border-radius:50%;
+			cursor: pointer;
+			display: inline-block;
+			margin:1px;
+			height:8px;
+			text-indent: -9999px;
+			width: 8px;
+			&.active {
+				background: #59353d;
+				margin:0;
+			}
+		}
 	}
 }
 .modal-header {

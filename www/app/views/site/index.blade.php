@@ -1,6 +1,6 @@
 @section('content')
   <h2>Get Today's Best VA Loan Rates</h2>
-  <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sem mauris, eleifend in consectetur id, ornare <br/>vitae turpis. Pellentesque viverra gravida velit, eu vulputate risus scelerisque id.      </div>
+  <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sem mauris, eleifend in consectetur id, ornare vitae turpis. Pellentesque viverra gravida velit, eu vulputate risus scelerisque id.      </div>
   <div class="content">
       <div class="row m-t-lg">
           <div class="col-md-3">
@@ -47,4 +47,6 @@
   @include('site.partials._signup-form')
   <!-- include request quote model -->
   @include('site.partials._thank-form')
+  <!-- include download book model -->
+  @include('site.partials._download-book-form')
 @stop

@@ -145,4 +145,8 @@ class SiteController extends BaseController {
 		return Helpers::leadExecute(json_decode($contact->params));
 
 	}
+
+	public function learningCenter() {
+		$this->layout->content = View::make('site/learning');
+	}
 }

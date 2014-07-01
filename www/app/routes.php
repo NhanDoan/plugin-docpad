@@ -17,3 +17,4 @@ Route::get('getValoanNews', 'SiteController@getValoanNews');
 Route::get('getVeteranNews', 'SiteController@getVeteranNews');
 Route::resource('contact', 'ContactsController', array('only' => array('store', 'edit', 'update')));
 Route::get('quote', 'SiteController@requestQuote');
+Route::get('learn', array('uses' => 'SiteController@learningCenter', 'as' => 'learn'));
