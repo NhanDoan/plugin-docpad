@@ -722,6 +722,22 @@ span.btn-get-rates {
 	}
 	#content {
 		padding:0 15px!important;
+		h2 {
+			font-size: 1.7em;
+		}
+		.content .title-body ul li {
+			padding:10px 15px;
+			&.active {
+				border-radius: 3px;
+				-moz-border-radius: 3px;
+				-webkit-border-radius: 3px;
+				margin:10px;
+				&:after {
+					border-bottom:0;
+					border-left:0;
+				}
+			}
+		}
 	}
 	#footer {
 		padding:10px 15px!important;
@@ -778,6 +794,30 @@ span.btn-get-rates {
 	}
 	#content {
 		padding:0 15px;
+		h2 {
+			font-size: 2em;
+		}
+		.content {
+			.list-form .rates {
+				margin-top:15px;
+			}
+			.title-body ul li {
+				padding:10px 15px;
+				&.active {
+					border-radius: 3px;
+					-moz-border-radius: 3px;
+					-webkit-border-radius: 3px;
+					margin:10px;
+					&:after {
+						border-bottom:0;
+						border-left:0;
+					}
+				}
+			}
+		}
+	}
+	.container-btn-show-lender {
+		margin-top:30px;
 	}
 	.btn-show-lender-text {
 		font-size: 1.2em;
@@ -960,5 +1000,8 @@ span.btn-get-rates {
 	}
 	.navbar-header {
 		width:100%;
+	}
+	.social-container {
+		margin:0;
 	}
 }
