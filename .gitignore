@@ -27,8 +27,7 @@ www/.tmp/concat/assets/stylesheets/main.css
 www/app/assets/jquery
 www/app/assets/sass-bootstrap
 www/public/assets
-
+www/app/views/layouts
 .vagrant
-www/app/views/layouts/
 www/app/assets/bootstrap/
 www/app/assets/bootstrapValidator

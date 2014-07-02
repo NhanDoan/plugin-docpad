@@ -14,34 +14,34 @@
 	</div>
 	<div class="content">
 		<div class="row m-t-lg m-b-lg">
-			<div class="col-md-3">
-				<aside id="learningCenter" class="m-b-lg clearfix custom-width-left">
-					<div class="title-body">
-						<ul>
-							<li class="active" data-section="1">
-								<a href="javascript:void(0);">What is a VA Loan?</a>
+			<div class="col-md-3" >
+				<aside class="m-b-lg" data-spy="affix" data-offset-top="350">
+					<div class="title-body" id="target_nav">
+						<ul class="nav list-group">
+							<li class="active">
+								<a href="#section1">What is a VA Loan?</a>
 							</li>
-							<li class="" data-section="2">
-								<a href="javascript:void(0);">What can it be used for?</a>
+							<li >
+								<a href="#section2">What can it be used for?</a>
 							</li>
-							<li class="" data-section="3">
-								<a href="javascript:void(0);">What are the benefits?</a>
+							<li >
+								<a href="#section3">What are the benefits?</a>
 							</li>
-							<li class="" data-section="4">
-								<a href="javascript:void(0);">What is the progress?</a>
+							<li>
+								<a href="#section4">What is the progress?</a>
 							</li>
-							<li class="" data-section="5">
-								<a href="javascript:void(0);">Am I eligible?</a>
+							<li>
+								<a href="#section5">Am I eligible?</a>
 							</li>
-							<li class="" data-section="6">
-								<a href="javascript:void(0);">How do I get started?</a>
+							<li>
+								<a href="#section6">How do I get started?</a>
 							</li>
 						</ul>
 					</div>
 				</aside>
 			</div>
-			<div class="col-md-9">
-				<section class="rss m-b-lg" data-section="1" id="section1">
+			<div id="scroll-able" class="col-md-9">
+				<section class="rss m-b-lg" id="section1">
 					<div class="rss-header">What is a VA Loan?</div>
 					<div class="rss-body">
 						<div class="rss-container-content">
@@ -53,7 +53,7 @@
 						</div>
 					</div>
 				</section>
-				<section class="rss m-b-lg" data-section="2" id="section2">
+				<section class="rss m-b-lg" id="section2">
 					<div class="rss-header">What can it be used for?</div>
 					<div class="rss-body">
 						<div class="rss-container-content">
@@ -65,7 +65,7 @@
 						</div>
 					</div>
 				</section>
-				<section class="rss m-b-lg" data-section="3" id="section3">
+				<section class="rss m-b-lg" id="section3">
 					<div class="rss-header">What are the benefits?</div>
 					<div class="rss-body">
 						<div class="rss-container-content">
@@ -77,7 +77,7 @@
 						</div>
 					</div>
 				</section>
-				<section class="rss m-b-lg" data-section="4" id="section4">
+				<section class="rss m-b-lg" id="section4">
 					<div class="rss-header">What is the progress?</div>
 					<div class="rss-body">
 						<div class="rss-container-content">
@@ -89,7 +89,7 @@
 						</div>
 					</div>
 				</section>
-				<section class="rss m-b-lg" data-section="5" id="section5">
+				<section class="rss m-b-lg" id="section5">
 					<div class="rss-header">Am I eligible?</div>
 					<div class="rss-body">
 						<div class="rss-container-content">
@@ -116,4 +116,8 @@
 			</div>
 		</div>
 	</div>
+@stop
+@section('modal')
+  <!-- include download book model -->
+  @include('site.partials._download-book-form')
 @stop

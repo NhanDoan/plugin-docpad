@@ -8,7 +8,7 @@
         <div class="value">a value of $16.95</div>
       </div>
       <div class="modal-body">
-        {{ Form::open(array('route' => 'contact.store', 'id'=> 'infoDownloadBookForm', 'class'=> 'form-horizontal')) }}
+        {{ Form::open(array('id'=> 'infoDownloadBookForm', 'class'=> 'form-horizontal')) }}
           <div id="step1">
             <div class="row m-t-lg">
               <div class="col-md-6 form-group">
@@ -44,7 +44,6 @@
                 <div class="clearfix">
                   {{ Form::text('PrimaryPhoneNumber', null, ['id' => 'phone']) }}
                 </div>
-                
               </div>
               <div class="col-md-6 pull-right form-group">
                 <div class="clearfix m-t-sm">
@@ -94,7 +93,7 @@
             </div>
             <div class="row m-t-lg">
               <div class="col-md-12 text-right">
-                {{ Form::submit('Next', ['class' => 'btn-normal']) }}
+                {{ Form::button('Next', ['class' => 'btn-normal btn-next']) }}
               </div>
             </div>
           </div>
@@ -104,22 +103,27 @@
                 <div class="clearfix m-b-xs"><strong>Interested in</strong></div>
                 <div class="clearfix">
                   <span class="m-r-lg">
-                    {{ Form::radio('payment', 'purchase', ['id' => 'rdo-interested-purchase']) }}
-                    {{ Form::label('rdo-interested-purchase', 'Purchase', ['class' => 'reset-label']) }}
+                    {{ Form::radio('LoanPurpose', '303814', true, ['id' => 'book-purchase']) }}
+                    {{ Form::label('book-purchase', 'Purchase', ['class' => 'reset-label']) }}
                   </span>
                   <span>
-                    {{ Form::radio('payment', 'refinance', ['id' => 'rdo-interested-refinance']) }}
-                    {{ Form::label('rdo-interested-refinance', 'Refinance', ['class' => 'reset-label']) }}
+                    {{ Form::radio('LoanPurpose', '303815', false, ['id' => 'book-refinance']) }}
+                    {{ Form::label('book-refinance', 'Refinance', ['class' => 'reset-label']) }}
                   </span>
                 </div>
               </div>
-              <div class="col-md-6 form-group">
+              <div class="col-md-6 form-group estimate-content">
                 <div class="clearfix">
                   <strong>If purchase, buying time frame?</strong>
                 </div>
                 <div class="clearfix">
-                  {{ Form::select('buyingTime', [
-                      '1' => 'Select'
+                  {{ Form::select('EstimateTimeFrame', [
+                      '303851' => 'Within a Month',
+                      '303852' => '2-3 Months',
+                      '303853' => 'Within 6 Months',
+                      '303854' => '6 to 12 Months',
+                      '303855' => 'over 12 Months',
+                      '303856' => 'Within the Next Year',
                     ])
                   }}
                 </div>
@@ -127,12 +131,12 @@
             </div>
             <hr>
             <div class="row m-t-lg">
-              <div class="col-md-6 form-group">
+              <div class="col-md-6 form-group ">
                 <div class="clearfix">
                   <label for="estimate-loan"><strong>Estimate Loan Amount</strong></label>
                 </div>
                 <div class="clearfix">
-                  {{ Form::text('estimate-loan', null, ['placeholder' => '$', 'id' => 'estimate-loan']) }}
+                  {{ Form::text('LoanAmount', null, ['placeholder' => '$', 'id' => 'estimate-loan']) }}
                 </div>
               </div>
               <div class="col-md-6 form-group">
@@ -141,7 +145,11 @@
                 </div>
                 <div class="clearfix">
                   {{ Form::select('credit-score', [
-                      '1' => '740-850 - Excellent'
+                      '303846' => 'Excellent',
+                      '303847' => 'Very Good',
+                      '303848' => 'Good',
+                      '303849' => 'Fair',
+                      '303850' => 'Foor',
                     ])
                   }}
                 </div>
@@ -154,8 +162,10 @@
                   <label for="ebook-format"><strong>Prefered eBook Format</strong></label>
                 </div>
                 <div class="clearfix">
-                  {{ Form::select('ebook-format', [
-                      '1' => 'PDF'
+                  {{ Form::select('BookFormat', [
+                      '303857' => 'PDF',
+                      '303858' => 'Epub(For Ipads)',
+                      '303859' => 'Kindle',
                     ])
                   }}
                 </div>
@@ -163,13 +173,13 @@
             </div>
             <div class="row m-t-lg">
               <div class="col-md-12 form-group">
-                {{ Form::checkbox('', null, false, ['id' => 'agree-terms']) }}
+                {{ Form::checkbox('TermsofService', null, false, ['id' => 'agree-terms']) }}
                 <span class="m-l-xs">{{ Form::label('agree-terms', 'I agree with the', ['class' => 'reset-label']) }} {{ HTML::link('#', 'Terms of Service') }}</span>
               </div>
             </div>
             <div class="row m-t-lg">
               <div class="col-md-6 text-left">
-                {{ Form::submit('Prev', ['class' => 'btn-cancel']) }}
+                {{ Form::button('Prev', ['class' => 'btn-cancel btn-prev']) }}
               </div>
               <div class="col-md-6 text-right">
                 {{ Form::submit('Download Now', ['class' => 'btn-normal']) }}

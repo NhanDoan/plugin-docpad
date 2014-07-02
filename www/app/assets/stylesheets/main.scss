@@ -336,7 +336,6 @@ select, button {
 							border-left: 25px solid #0f3d6e;
 							position: absolute;
 							margin-top: -35px;
-							margin-left: -15px;
 							left: 100%;
 							z-index: 2;
 						}
@@ -664,7 +663,6 @@ span.btn-get-rates {
 			width: 8px;
 			&.active {
 				background: #59353d;
-				margin:0;
 			}
 		}
 	}
@@ -718,7 +716,16 @@ span.btn-get-rates {
 		}
 	}
 }
-
+.list-group > li > a {
+    color: #444;
+    &:focus, &:hover {
+        background: none;
+    }
+}
+.m-b-lg.affix {
+    width: 13%;
+    top: 20px;
+}
 @media (width: 320px) {	
     .custom-col-xs-3 {
         width: 100%!important;

@@ -25,9 +25,9 @@
       <nav id="primaryNav" class="navbar-collapse collapse bs-navbar-collapse">
 
         <ul class="nav">
-          <li>{{ HTML::link('#', 'Home') }}</li>
-          <li>{{ HTML::link('#', 'Free VA Loan Book') }}</li>
-          <li>{{ HTML::link('#', 'Learning Center') }}</li>
+          <li>{{ HTML::link(Request::root(), 'Home') }}</li>
+          <li>{{ HTML::link( Request::root() . '#downloadBookForm', 'Free VA Loan Book', ['data-toggle' => 'modal']) }}</li>
+          <li>{{ HTML::link(URL::route('learn'), 'Learning Center') }}</li>
         </ul>
       </nav>
     </div>

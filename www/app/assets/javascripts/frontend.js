@@ -2,7 +2,90 @@
     'use strict;';
     VALOAN.Home = function() {
         var sefl = this,
-            
+            options = {
+                FirstName: {
+                    validators: {
+                    notEmpty: {
+                      message: 'The firstname is required and cannot be empty'
+                    },
+                  }
+                },
+                LastName: {
+                  validators: {
+                    notEmpty: {
+                        message: 'The lastname is required'
+                    }
+                  }
+                },
+                EmailAddress: {
+                  validators: {
+                    notEmpty: {
+                      message: 'The email address is required and can\'t be empty'
+                    },
+                    emailAddress: {
+                      message: 'The input is not a valid email address'
+                    }
+                  }
+                },
+                PrimaryPhoneNumber: {
+                  validators: {
+                    notEmpty: {
+                      message: 'The phone is request and cannot empty'
+                    },
+                    phone: {
+                        message: 'Please enter a valid phone number in US'
+                    },
+                  }
+                },
+                TCPAConsent: {
+                  validators: {
+                    notEmpty: {
+                      message: 'You must be agree to the Auto Dialer Disclosure'
+                    }
+                  }
+                },
+                Address: {
+                  validators: {
+                    notEmpty: {
+                      message: 'The address is required and can\'t be empty'
+                    }
+                  }
+                },
+                City: {
+                  validators: {
+                    notEmpty: {
+                      message: 'The city is required and can\'t be empty'
+                    }
+                  }
+                },
+                TermsofService: {
+                  validators: {
+                    notEmpty: {
+                      message: 'You must be agree with the Terms of Service'
+                    }
+                  }
+                },
+                Zip: {
+                  validators: {
+                    notEmpty: {
+                      message: 'The zipcode is required and can\'t be empty'
+                    },
+                    digits: {
+                      message: 'The zipcode is not valid'
+                    }
+                }
+              },
+              LoanAmount: {
+                validators: {
+                  notEmpty: {
+                    message: 'The Estimate Loan Amount is required and can\'t be empty'
+                  },
+                  digits: {
+                    message: 'The Estimate Loan Amount is not valid'
+                  }
+                }
+              }
+            },
             // define private functions
             urlParam = function(name) {
 
@@ -40,6 +123,7 @@
               }
             },
 
+            displayPurchasein
             getZipCode = function(sideBar) {
 
               var spanZipCode = sideBar.find('.form-header span'),
@@ -187,110 +271,50 @@
               );
             },
 
-            resetForm = function (content) {
-              var contactForm = $('body').find('#contactForm');
+            resetForm = function (content, form) {
+              // var contactForm = $('body').find('#contactForm');
 
-              contactForm.on('show.bs.modal', function() {
+              form.on('show.bs.modal', function() {
                 var zipCode = content.find('input[name="zipCode"]').val(),
-                    stateAbbr = content.find('input[name="stateAbbr"]').val();
-
-                $('#infoContactForm').bootstrapValidator('resetForm', true);
-                setDataForm(contactForm);
-
-                contactForm.find('#zipcode').val(zipCode);
-                contactForm.find('#state').val(stateAbbr);
+                    stateAbbr = content.find('input[name="stateAbbr"]').val(),
+                    loanPurpose = content.find('input[name="payment"]:checked').val();
+                $('#infoContactForm, #infoDownloadBookForm').bootstrapValidator('resetForm', true);
+                setDataForm(form);
+                if (loanPurpose == 'refinance' ) {
+                  form.find('.estimate-content').hide();
+                } else {
+                  form.find('.estimate-content').show();
+                }
+                form.find('#book-' + loanPurpose).trigger('click');
+                form.find('#zipcode').val(zipCode);
+                form.find('#state').val(stateAbbr);
               });
             },
 
             contact = function(content) {
-              resetForm(content);
 
-              var contacForm  = $('body').find('#contactForm'),
-                  btnSubmit   = contacForm.find('.btn-get-rates');
+              var contactForm  = $('body').find('#contactForm'),
+                  btnSubmit   = contactForm.find('.btn-get-rates');
+              resetForm(content, contactForm);
+              $('#phone').mask('(000) 000-0000');
 
-               $('#phone').mask('(000) 000-0000');
-
-               $('#infoContactForm').bootstrapValidator({
+              $('#infoContactForm').bootstrapValidator({
                   message: 'This value is not valid',
                   live: 'enabled',
                   excluded: [':disabled', ':hidden'],
                   submitButtons: 'input.btn-get-rates',
                   trigger: 'change blur',
                   fields: {
-                    FirstName: {
-                      validators: {
-                        notEmpty: {
-                          message: 'The firstname is required and cannot be empty'
-                        },
-                      }
-                    },
-                    LastName: {
-                      validators: {
-                        notEmpty: {
-                            message: 'The lastname is required'
-                        }
-                      }
-                    },
-                    EmailAddress: {
-                      validators: {
-                        notEmpty: {
-                          message: 'The email address is required and can\'t be empty'
-                        },
-                        emailAddress: {
-                          message: 'The input is not a valid email address'
-                        }
-                      }
-                    },
-                    PrimaryPhoneNumber: {
-                      validators: {
-                        notEmpty: {
-                          message: 'The phone is request and cannot empty'
-                        },
-                        phone: {
-                            message: 'Please enter a valid phone number in US'
-                        },
-                      }
-                    },
-                    TCPAConsent: {
-                      validators: {
-                        notEmpty: {
-                          message: 'You must be agree to the Auto Dialer Disclosure'
-                        }
-                      }
-                    },
-                    Address: {
-                      validators: {
-                        notEmpty: {
-                          message: 'The address is required and can\'t be empty'
-                        }
-                      }
-                    },
-                    City: {
-                      validators: {
-                        notEmpty: {
-                          message: 'The city is required and can\'t be empty'
-                        }
-                      }
-                    },
-                    TermsofService: {
-                      validators: {
-                        notEmpty: {
-                          message: 'You must be agree with the Terms of Service'
-                        }
-                      }
-                    },
-                    Zip: {
-                      validators: {
-                        notEmpty: {
-                          message: 'The zipcode is required and can\'t be empty'
-                        },
-                        digits: {
-                          message: 'The zipcode is not valid'
-                        }
-                      }
-                    }
+                    FirstName: options.FirstName,
+                    LastName: options.LastName,
+                    EmailAddress: options.EmailAddress,
+                    PrimaryPhoneNumber: options.PrimaryPhoneNumber,
+                    TCPAConsent: options.TCPAConsent,
+                    Address: options.Address,
+                    City: options.City,
+                    Zip: options.Zip,
+                    TermsofService: options.TermsofService
                   },
-
                   submitHandler: function(validator, form, submitButton) {
 
                     setDataCookie(form);
@@ -394,6 +418,49 @@
                 error: function() {
                 }
               });
+            },
+            learnCenter = function (content) {
+              $('body').scrollspy({ target: '#target_nav'});
+            },
+
+            dowloadBook = function  (content) {
+              var dowloadBookForm = $('body').find('#downloadBookForm'),
+                  clicked = false;
+              dowloadBookForm.find('.btn-next, li:last-child').bind('click', function () {
+                $('#step2').removeClass('hidden');
+                $('#step1').addClass('hidden');
+                $('.indicators').find('li:first-child').removeClass('active');
+                $('.indicators').find('li:last-child').addClass('active');
+              });
+              dowloadBookForm.find('.btn-prev, li:first-child').bind('click', function () {
+                $('#step1').removeClass('hidden');
+                $('#step2').addClass('hidden');
+                $('.indicators').find('li:first-child').addClass('active');
+                $('.indicators').find('li:last-child').removeClass('active');
+              });
+              resetForm(content, dowloadBookForm);
+
+              $('#infoDownloadBookForm').bootstrapValidator({
+                live: 'enabled',
+                excluded: [':disabled', ':hidden', ':not(:visible)'],
+                submitButtons: 'input[type="submit"]',
+                trigger: 'change blur',
+                fields: {
+                  FirstName: options.FirstName,
+                  LastName: options.LastName,
+                  EmailAddress: options.EmailAddress,
+                  PrimaryPhoneNumber: options.PrimaryPhoneNumber,
+                  TCPAConsent: options.TCPAConsent,
+                  Address: options.Address,
+                  City: options.City,
+                  Zip: options.Zip,
+                  TermsofService: options.TermsofService,
+                  LoanAmount: options.LoanAmount
+                },
+                submitHandler: function(validator, form, submitButton) {
+                  
+                }
+              });
             };
 
         // define public functions
@@ -412,7 +479,8 @@
             requestQuoteFormHidden(content);
             getNews(options.baseUrl + '/getValoanNews', $('.valoan-news'));
             getNews(options.baseUrl + '/getVeteranNews', $('.veteran-news'));
-
+            learnCenter(content);
+            dowloadBook(content);
         };
     };
 

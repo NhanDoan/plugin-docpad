@@ -16,7 +16,7 @@
 
     <link rel="shortcut icon" href="favicon.ico">
     </head>
-    <body>
+    <body data-spy="scroll" data-target="#target_nav">
         <div class="container wrapper">
             <!-- include header -->
             @include('layouts.header')
