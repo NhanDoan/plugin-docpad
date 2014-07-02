@@ -203,6 +203,9 @@ select, button {
 					background:none;
 					text-decoration: none;
 				}
+				&:hover {
+					background: #4ca1ff;
+				}
 			}
 		}
 	}
@@ -452,7 +455,7 @@ select, button {
  filter: alpha(opacity=20); /* For IE8 and earlier */
 }
 .btn-get-rates {
-    border: medium none;
+    border: 0;
 	background-color: #0f3d6e;
 	border-radius:5px;
 	-moz-border-radius:5px;
@@ -475,6 +478,10 @@ a, a:hover, a:focus {
 		text-decoration: none;
 	}
 }
+.btn-get-rates:hover {
+	background:#4ca1ff;
+	box-shadow: 0 3px 0 #3d82cd;
+}
 span.btn-get-rates {
 	vertical-align:middle;
 }
@@ -488,12 +495,18 @@ span.btn-get-rates {
 	border-radius:5px 0 0 5px;
 	-moz-border-radius:5px 0 0 5px;
 	-webkit-border-radius:5px 0 0 5px;	
-	box-shadow: none;
 	font-size: 1.4em;
 	float:left;
 	height:38px;
 	padding:4px 0 4px 25px;
 	width:auto;
+}
+.btn-show-lender-text:hover {
+	background:#4ca1ff;
+}
+.btn-show-lender-text:hover + .btn-curve {
+	background:url(../images/btn-curve-hover.png) no-repeat;
+	box-shadow: 0 3px 0 #3d82cd;
 }
 .btn-cancel {
     background-color: #0f3d6e!important;
@@ -510,7 +523,9 @@ span.btn-get-rates {
 	padding: 5px 20px!important;
 	width:auto!important;
 }
-
+.btn-cancel:hover {
+	background:#4ca1ff;
+}
 .btn-show-lender-img {
 	background-color: #d4dbe6;
 	border-radius:0 5px 5px 0;
@@ -520,17 +535,22 @@ span.btn-get-rates {
 	font-size: 1.4em;
 	font-weight: 400;
 	float:left;
-	padding:4px 4px 4px 27px;
+	padding:4px 4px 4px 25px;
 	position:relative;
 	text-transform:uppercase;
-	.btn-curve {
-		background: url(../images/btn-curve.png);
-		height:38px;
-		left:0;
-		position:absolute;
-		top:0;
-		width:40px;
-	}
+}
+.btn-curve {
+	background: url(../images/btn-curve.png);
+	border-radius:0 0 5px 0;
+	-moz-border-radius:0 0 5px 0;
+	-webkit-border-radius:0 0 5px 0;
+	box-shadow: 0 3px 0 #0c3159;
+	height:38px;
+	right:0;
+	position:absolute;
+	top:0;
+	width:40px;
+	z-index:1;
 }
 .btn-request-quote {
 	@extend .btn-get-rates;
@@ -546,6 +566,14 @@ span.btn-get-rates {
 	height:100%!important;
 	padding:5px 20px;
 	width:auto!important;
+}
+.selected {
+	color: #3d6793!important;
+	background:#83a5cb!important;
+	box-shadow: 0 -3px 0 #6a85a4!important;
+	a {
+		color: #3d6793!important;
+	}
 }
 .social-container {
 	margin-top:70px;
@@ -830,12 +858,16 @@ span.btn-get-rates {
 	.btn-show-lender-img {
 		font-size: 1.2em;
 		padding:2px 4px 3px 20px!important;
-		.btn-curve {
-			background:url(../images/btn-curve-480.png);
-			left:-1px;
-			height:30px;
-			width:32px;
-		}
+	}
+	.btn-curve {
+		background:url(../images/btn-curve-480.png);
+		left:-1px;
+		height:30px;
+		width:32px;
+	}
+	.btn-show-lender-text:hover + .btn-curve {
+		background:url(../images/btn-curve-480-hover.png) no-repeat;
+		box-shadow: 0 3px 0 #3d82cd;
 	}
 	#footer {
 		padding:10px 15px;

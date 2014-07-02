@@ -21,8 +21,9 @@
               <a href="#contactForm" data-toggle="modal" class="show-lender">
                 <div class="container-btn-show-lender">
                   <div class="btn-show-lender-text">Show Lender</div>
+                  <div class="btn-curve"></div>
                   <div class="btn-show-lender-img">
-                    <div class="btn-curve"></div>K
+                    K
                   </div>
                 </div>
               </a>
