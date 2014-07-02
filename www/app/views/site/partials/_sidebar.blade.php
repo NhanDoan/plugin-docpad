@@ -109,9 +109,9 @@
         <div class="form-group">
           <div class="clearfix"><strong>Status</strong></div>
           {{ Form::select('veteranType', [
-              '0' => 'Veteran',
-              '1' => 'Active Duty',
-              '2' => 'Reservist'
+              '-1' => 'Veteran',
+              '0' => 'Active Duty',
+              '1' => 'Reservist'
             ], (isset($params['veteranType'])) ? $params['veteranType'] : 0, ['class' => 'form-100'])
           }}
         </div>

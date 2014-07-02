@@ -12,6 +12,8 @@ class ContactsController extends \BaseController {
 	{
 		
 		$contactParams = Input::except('_token');
+
+		$contactParams['IpAddress'] = Request::getClientIp();
 		$mortgageParams = Session::get('mortgageParams');
 		$contactKey = Hash::make('test');
 		Session::put('contactKey', $contactKey);

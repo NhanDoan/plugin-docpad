@@ -195,6 +195,7 @@
                     stateAbbr = content.find('input[name="stateAbbr"]').val();
 
                 $('#infoContactForm').bootstrapValidator('resetForm', true);
+                setDataForm(contactForm);
 
                 contactForm.find('#zipcode').val(zipCode);
                 contactForm.find('#state').val(stateAbbr);
@@ -206,6 +207,9 @@
 
               var contacForm  = $('body').find('#contactForm'),
                   btnSubmit   = contacForm.find('.btn-get-rates');
+
+               $('#phone').mask('(000) 000-0000');
+
                $('#infoContactForm').bootstrapValidator({
                   message: 'This value is not valid',
                   live: 'enabled',
@@ -288,6 +292,9 @@
                   },
 
                   submitHandler: function(validator, form, submitButton) {
+
+                    setDataCookie(form);
+                    
                     $.ajax({
                       url: form.attr('action'),
                       type: 'POST',
@@ -316,6 +323,36 @@
                   }
               });
             },
+            setDataCookie = function(form) {
+              if (typeof(Storage) !== "undefined") {
+                localStorage.setItem('userInfo', JSON.stringify(form.serializeArray()));
+              }
+            },
+
+            getDataCookie = function() {
+              if (typeof(Storage) !== "undefined") {
+                return JSON.parse(localStorage.getItem('userInfo'));
+              }
+
+              return null;
+            },
+            
+            setDataForm = function(form) {
+              var userInfo = getDataCookie();
+
+              if ( userInfo !== null ) {
+                $.each(userInfo, function(ind, ele) {
+
+                  // if element is a checkbox
+                  if ( $.inArray(ele.name, ['TCPAConsent', 'TermsofService']) !== -1 ) {
+                    form.find('input[name="' + ele.name + '"]').attr('checked', ele.value == 'on');
+                  } else {
+                    form.find('input[name="' + ele.name + '"]').val( ele.value );
+                  }
+                });
+              }
+            },
+
             requestLender = function() {
               var lenderList = $('.list-form'),
                   btnRequest = lenderList.find('.btn-request-quote');

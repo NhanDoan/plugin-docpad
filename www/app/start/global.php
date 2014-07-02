@@ -78,7 +78,9 @@ Event::listen('cron.collectJobs', function() {
             foreach ($contacts as $contact) {
                 $contact->posted = 1;
                 $contact->save();
-                Helpers::leadExecute(json_decode($contact->params));
+                $params = json_decode($contact->params);
+                $params['AID'] = 14359;
+                Helpers::leadExecute($params);
             }
         }
 

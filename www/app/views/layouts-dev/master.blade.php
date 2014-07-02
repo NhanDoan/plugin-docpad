@@ -35,6 +35,7 @@
         <script src="../../assets/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="../../assets/sass-bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../../assets/javascripts/jquery.currency.js"></script>
+        <script type="text/javascript" src="../../assets/javascripts/jquery.mask.min.js"></script>
         <script type="text/javascript" src="../../assets/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
         <script src="../../assets/javascripts/frontend.js"></script>
     <!-- endbuild -->

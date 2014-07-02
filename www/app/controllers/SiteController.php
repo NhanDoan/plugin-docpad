@@ -17,7 +17,7 @@ class SiteController extends BaseController {
 	public function index()
 	{
 		$params = Input::except('_token');
-		
+
 		if (!isset($params['zipCode']) || !$params['zipCode'])
 			$params['zipCode'] = '10014';
 
@@ -55,6 +55,9 @@ class SiteController extends BaseController {
 			$params = array_merge( $params, array('stateAbbr' => $stateAbbr) );
 		else
 			return 'ZipCode Invalid';
+
+		if ( isset($params['veteranType']) && $params['veteranType'] == -1)
+			$params['veteranType'] = 0;
 
 		// if user checked "I'm receiving disability compensation from the VA"
 		if (isset($params['receivingDisability'])) {
