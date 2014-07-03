@@ -6,7 +6,6 @@
     "require": {
         "laravel/framework": "4.2.*",
         "liebig/cron": "dev-master",
-        "components/jquery": "2.1.*@dev",
         "phpunit/phpunit": "3.7.*"
     },
     "require-dev": {

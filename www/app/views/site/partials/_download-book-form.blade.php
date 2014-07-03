@@ -93,7 +93,7 @@
             </div>
             <div class="row m-t-lg">
               <div class="col-md-12 text-right">
-                {{ Form::button('Next', ['class' => 'btn-normal btn-next']) }}
+                {{ Form::submit('Next', ['class' => 'btn-normal btn-next']) }}
               </div>
             </div>
           </div>
@@ -182,7 +182,7 @@
                 {{ Form::button('Prev', ['class' => 'btn-cancel btn-prev']) }}
               </div>
               <div class="col-md-6 text-right">
-                {{ Form::submit('Download Now', ['class' => 'btn-normal']) }}
+                {{ Form::submit('Download Now', ['class' => 'btn-normal dowload-book']) }}
               </div>
             </div>
           </div>

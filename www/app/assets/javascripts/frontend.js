@@ -94,10 +94,12 @@
               
               return (results === null) ? null : (results[1] || 0);
             },
+
             calDownPayment = function(loanAmount, percent) {
 
               return loanAmount*(percent/100);
             },
+
             purposeChange = function(sideBar) {
               var payment = sideBar.find('input[name="payment"]');
              
@@ -123,7 +125,6 @@
               }
             },
 
-            displayPurchasein
             getZipCode = function(sideBar) {
 
               var spanZipCode = sideBar.find('.form-header span'),
@@ -270,21 +271,30 @@
                 }
               );
             },
+            changeLoanPurpose = function (content) {
+              var _change = $('#downloadBookForm').find('input[name="LoanPurpose"]'),
+                  loanPurpose = content.find('input[name="payment"]:checked').val();
+              _change.bind('change', function  () {
+                  displayLoanPurpose(loanPurpose, $(this).val());
+              });
+            },
 
+            displayLoanPurpose = function  (loanPurpose, _value) {
+              if (loanPurpose == 'refinance' || _value == '303815') {
+                  $('#downloadBookForm').find('.estimate-content').hide();
+                } else {
+                  $('#downloadBookForm').find('.estimate-content').show();
+                }
+            },
             resetForm = function (content, form) {
-              // var contactForm = $('body').find('#contactForm');
-
               form.on('show.bs.modal', function() {
                 var zipCode = content.find('input[name="zipCode"]').val(),
                     stateAbbr = content.find('input[name="stateAbbr"]').val(),
                     loanPurpose = content.find('input[name="payment"]:checked').val();
+
                 $('#infoContactForm, #infoDownloadBookForm').bootstrapValidator('resetForm', true);
                 setDataForm(form);
-                if (loanPurpose == 'refinance' ) {
-                  form.find('.estimate-content').hide();
-                } else {
-                  form.find('.estimate-content').show();
-                }
+                changeLoanPurpose(content);
                 form.find('#book-' + loanPurpose).trigger('click');
                 form.find('#zipcode').val(zipCode);
                 form.find('#state').val(stateAbbr);
@@ -424,26 +434,25 @@
             },
 
             dowloadBook = function  (content) {
-              var dowloadBookForm = $('body').find('#downloadBookForm'),
-                  clicked = false;
-              dowloadBookForm.find('.btn-next, li:last-child').bind('click', function () {
-                $('#step2').removeClass('hidden');
-                $('#step1').addClass('hidden');
-                $('.indicators').find('li:first-child').removeClass('active');
-                $('.indicators').find('li:last-child').addClass('active');
-              });
+              var dowloadBookForm = $('body').find('#infoDownloadBookForm');
+              
               dowloadBookForm.find('.btn-prev, li:first-child').bind('click', function () {
-                $('#step1').removeClass('hidden');
-                $('#step2').addClass('hidden');
-                $('.indicators').find('li:first-child').addClass('active');
-                $('.indicators').find('li:last-child').removeClass('active');
+                dowloadBookForm.find('#step1').removeClass('hidden');
+                dowloadBookForm.find('#step2').addClass('hidden');
+                dowloadBookForm.find('li:first-child').addClass('active');
+                dowloadBookForm.find('li:last-child').removeClass('active');
+                dowloadBookForm.find('.btn-next').attr('disabled', false);
               });
+
+              dowloadBookForm.find('li:last-child').bind('click', function () {
+                dowloadBookForm.find('.btn-next').attr('disabled', false).click();
+              });
+
               resetForm(content, dowloadBookForm);
 
-              $('#infoDownloadBookForm').bootstrapValidator({
+              dowloadBookForm.bootstrapValidator({
                 live: 'enabled',
                 excluded: [':disabled', ':hidden', ':not(:visible)'],
-                submitButtons: 'input[type="submit"]',
                 trigger: 'change blur',
                 fields: {
                   FirstName: options.FirstName,
@@ -457,8 +466,22 @@
                   TermsofService: options.TermsofService,
                   LoanAmount: options.LoanAmount
                 },
-                submitHandler: function(validator, form, submitButton) {
-                  
+                submitHandler: function(validator, form, submitButtons) {
+
+                  if (validator.$submitButton.hasClass('btn-next')) {
+                    $('#step2').removeClass('hidden');
+                    $('#step1').addClass('hidden');
+                    $('.indicators').find('li:first-child').removeClass('active');
+                    $('.indicators').find('li:last-child').addClass('active');
+                    $('.dowload-book').attr('disabled', false);
+
+                    
+                  } else {
+                    setDataCookie(dowloadBookForm);
+                    console.log(getDataCookie());
+                    // validator.defaultSubmit();
+                  }
+                
                 }
               });
             };
@@ -467,6 +490,7 @@
         sefl.init = function(options) {
             var sideBar = $('#formNav'),
                 content = $('#content');
+            changeLoanPurpose(content);
             getCashOut(sideBar, 0);
             cashChange(sideBar);
             purposeChange(sideBar);
